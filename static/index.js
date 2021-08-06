@@ -3,10 +3,10 @@ const dependenciesCalc = require("./src/dependencies/dependenciesCalc");
 const checksumCalc = require("./src/checksum/checksumCalc");
 const firewallCalc = require("./src/firewall/firewallCalc");
 
-const contracts = loader.loadContracts("./content/contracts");
+const contracts = loader.loadContracts("./example_content/contracts");
 const changedContracts = checksumCalc.checkContracts(contracts);
 
-const tests = loader.loadTests("./content/tests");
+const tests = loader.loadTests("./example_content/tests");
 const changedTests = checksumCalc.checkTests(tests);
 
 // const dangerousContracts = firewallCalc.getDangerousContracts(
