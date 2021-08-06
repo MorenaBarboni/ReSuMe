@@ -1,0 +1,22 @@
+{
+  "name": "ReMuS",
+  "version": "1.0.0",
+  "description": "no description available",
+  "main": "index.js",
+  "scripts": {
+    "start": "node static/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@solidity-parser/parser": "^0.13.2",
+    "checksum": "^0.1.1",
+    "dependency-graph": "^0.11.0",
+    "ganache-cli": "^6.12.2",
+    "ganache-core": "^2.13.2",
+    "pify": "^5.0.0"
+  },
+  "devDependencies": {
+    "solidity-coverage": "^0.7.16"
+  }
+}
