@@ -1,1 +1,4 @@
 node_modules
+example_content/contracts/**
+example_content/tests/**
+static/results/**

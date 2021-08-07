@@ -1,6 +1,8 @@
-const { get } = require("http");
-const path = require("path");
 const writer = require("../utils/writer");
+
+const unique = (value, index, self) => {
+  return self.indexOf(value) === index;
+};
 
 function getDangerousFiles(changedContracts, changedTests, dependencies) {
   const changedFiles = changedContracts.concat(changedTests);
@@ -11,26 +13,33 @@ function getDangerousFiles(changedContracts, changedTests, dependencies) {
     dangerousFiles = dangerousFiles.concat(dep);
   });
 
-  const unique = (value, index, self) => {
-    return self.indexOf(value) === index;
-  };
   const result = dangerousFiles.filter(unique).sort();
 
-  writer.writeJsonToFile(__dirname + "/firewall.json", result);
+  writer.writeJsonToFile("firewall.json", result);
 
   return result;
 }
 
-function getAffectedTests(dangerousFiles) {
-  
-  const result = dangerousFiles.filter(file => file.endsWith(".js")).sort();
+function getAffectedTests(dangerousFiles, tests, dependencies) {
+  tests = tests.map((t) => t.name);
+  const affectedTests = dangerousFiles
+    .filter((file) => tests.includes(file))
+    .sort();
 
-  writer.writeJsonToFile(__dirname + "/testsToRerun.json", result);
+  var result = affectedTests;
+  affectedTests.forEach((test) => {
+    const dep = dependencies.dependenciesOf(test);
+    result = result.concat(dep);
+  });
+
+  result = result.filter((file) => tests.includes(file)).sort().filter(unique);
+
+  writer.writeJsonToFile("testsToRerun.json", result);
 
   return result;
 }
 
 module.exports = {
   getDangerousFiles: getDangerousFiles,
-  getAffectedTests: getAffectedTests
+  getAffectedTests: getAffectedTests,
 };

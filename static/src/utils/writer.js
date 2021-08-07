@@ -1,9 +1,19 @@
 const fs = require("fs");
+const path = require("path");
 
-function writeJsonToFile(path, json) {
-  fs.writeFileSync(path, JSON.stringify(json, null, "\t"), (err) => {
-    if (err) throw err;
-  });
+const resultsPath = path.join(
+  path.resolve(path.resolve(__dirname, ".."), ".."),
+  "results"
+);
+
+function writeJsonToFile(fileName, json) {
+  fs.writeFileSync(
+    path.join(resultsPath, fileName),
+    JSON.stringify(json, null, "\t"),
+    (err) => {
+      if (err) throw err;
+    }
+  );
 }
 
-module.exports = { writeJsonToFile: writeJsonToFile };
+module.exports = { writeJsonToFile: writeJsonToFile, resultsPath: resultsPath };

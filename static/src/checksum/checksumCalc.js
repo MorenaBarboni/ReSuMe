@@ -4,11 +4,11 @@ const path = require("path");
 const checksum = require("checksum");
 
 function checkContracts(contracts) {
-  const contractsFolder = path.join(__dirname, ".contracts");
-  if (!fs.existsSync(contractsFolder))
-    fs.mkdirSync(path.join(__dirname, ".contracts"));
-  const checksumsPath = path.join(__dirname, ".contracts", "checksums.json");
-  const changedPaths = path.join(__dirname, ".contracts", "changed.json");
+  const checksumsPath = path.join(
+    writer.resultsPath,
+    "contractsChecksums.json"
+  );
+  const changedPaths = path.join(writer.resultsPath, "changedContracts.json");
 
   var oldChecksums = fs.existsSync(checksumsPath);
   var oldFilesChecksums;
@@ -30,26 +30,23 @@ function checkContracts(contracts) {
     newFilesChecksums.push(current);
   });
 
-  writer.writeJsonToFile(checksumsPath, newFilesChecksums);
-  
+  writer.writeJsonToFile("contractsChecksums.json", newFilesChecksums);
+
   var changedFilesNames = new Array();
   newFilesChecksums.forEach((element) => {
     if (element.checksum != element.lastChecksum)
-    changedFilesNames.push(element.fileName);
+      changedFilesNames.push(element.fileName);
   });
   //if (changedFilesNames.length == 0) changedFilesNames.push("none");
-  
-  writer.writeJsonToFile(changedPaths, changedFilesNames);
+
+  writer.writeJsonToFile("changedContracts.json", changedFilesNames);
 
   return changedFilesNames;
 }
 
 function checkTests(tests) {
-  const contractsFolder = path.join(__dirname, ".tests");
-  if (!fs.existsSync(contractsFolder))
-    fs.mkdirSync(path.join(__dirname, ".tests"));
-  const checksumsPath = path.join(__dirname, ".tests", "checksums.json");
-  const changedPaths = path.join(__dirname, ".tests", "changed.json");
+  const checksumsPath = path.join(writer.resultsPath, "testsChecksums.json");
+  const changedPaths = path.join(writer.resultsPath, "changedTests.json");
 
   var oldChecksums = fs.existsSync(checksumsPath);
   var oldFilesChecksums;
@@ -71,7 +68,7 @@ function checkTests(tests) {
     newFilesChecksums.push(current);
   });
 
-  writer.writeJsonToFile(checksumsPath, newFilesChecksums);
+  writer.writeJsonToFile("testsChecksums.json", newFilesChecksums);
 
   var changedFilesNames = new Array();
   newFilesChecksums.forEach((element) => {
@@ -80,7 +77,7 @@ function checkTests(tests) {
   });
   //if (changedFilesNames.length == 0) changedFilesNames.push("none");
 
-  writer.writeJsonToFile(changedPaths, changedFilesNames);
+  writer.writeJsonToFile("changedTests.json", changedFilesNames);
 
   return changedFilesNames;
 }

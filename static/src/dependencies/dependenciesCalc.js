@@ -386,7 +386,7 @@ function buildAllDependenciesGraph(contracts, tests) {
     allDependencies.push(dep);
   });
 
-  writer.writeJsonToFile(__dirname + "/dependencies.json", allDependencies);
+  writer.writeJsonToFile("dependencies.json", allDependencies);
 
   var contractDependencies = new Array();
   var testDependencies = new Array();
@@ -395,14 +395,8 @@ function buildAllDependenciesGraph(contracts, tests) {
     else contractDependencies.push(dep);
   });
 
-  writer.writeJsonToFile(
-    __dirname + "/testDependencies.json",
-    testDependencies
-  );
-  writer.writeJsonToFile(
-    __dirname + "/contractDependencies.json",
-    contractDependencies
-  );
+  writer.writeJsonToFile("testDependencies.json", testDependencies);
+  writer.writeJsonToFile("contractDependencies.json", contractDependencies);
 
   return graph;
 }
