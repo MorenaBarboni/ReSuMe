@@ -1,0 +1,678 @@
+{
+    "contractName": "ERC721Burnable",
+    "abi": [
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "interfaceId",
+                    "type": "bytes4"
+                }
+            ],
+            "name": "supportsInterface",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getApproved",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "approve",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "transferFrom",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "safeTransferFrom",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "burn",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "ownerOf",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "owner",
+                    "type": "address"
+                }
+            ],
+            "name": "balanceOf",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "name": "approved",
+                    "type": "bool"
+                }
+            ],
+            "name": "setApprovalForAll",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "name": "tokenId",
+                    "type": "uint256"
+                },
+                {
+                    "name": "_data",
+                    "type": "bytes"
+                }
+            ],
+            "name": "safeTransferFrom",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "owner",
+                    "type": "address"
+                },
+                {
+                    "name": "operator",
+                    "type": "address"
+                }
+            ],
+            "name": "isApprovedForAll",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "Transfer",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "owner",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "name": "approved",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "Approval",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "owner",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "name": "operator",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "approved",
+                    "type": "bool"
+                }
+            ],
+            "name": "ApprovalForAll",
+            "type": "event"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.5.2+commit.1df8f40c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"burn\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"from\",\"type\":\"address\"},{\"name\":\"to\",\"type\":\"address\"},{\"name\":\"tokenId\",\"type\":\"uint256\"},{\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"to\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"approved\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"}],\"devdoc\":{\"details\":\"ERC721 Token that can be irreversibly burned (destroyed).\",\"methods\":{\"approve(address,uint256)\":{\"details\":\"Approves another address to transfer the given token ID The zero address indicates there is no approved address. There can only be one approved address per token at a given time. Can only be called by the token owner or an approved operator.\",\"params\":{\"to\":\"address to be approved for the given token ID\",\"tokenId\":\"uint256 ID of the token to be approved\"}},\"balanceOf(address)\":{\"details\":\"Gets the balance of the specified address.\",\"params\":{\"owner\":\"address to query the balance of\"},\"return\":\"uint256 representing the amount owned by the passed address\"},\"burn(uint256)\":{\"details\":\"Burns a specific ERC721 token.\",\"params\":{\"tokenId\":\"uint256 id of the ERC721 token to be burned.\"}},\"getApproved(uint256)\":{\"details\":\"Gets the approved address for a token ID, or zero if no address set Reverts if the token ID does not exist.\",\"params\":{\"tokenId\":\"uint256 ID of the token to query the approval of\"},\"return\":\"address currently approved for the given token ID\"},\"isApprovedForAll(address,address)\":{\"details\":\"Tells whether an operator is approved by a given owner.\",\"params\":{\"operator\":\"operator address which you want to query the approval of\",\"owner\":\"owner address which you want to query the approval of\"},\"return\":\"bool whether the given operator is approved by the given owner\"},\"ownerOf(uint256)\":{\"details\":\"Gets the owner of the specified token ID.\",\"params\":{\"tokenId\":\"uint256 ID of the token to query the owner of\"},\"return\":\"address currently marked as the owner of the given token ID\"},\"safeTransferFrom(address,address,uint256)\":{\"details\":\"Safely transfers the ownership of a given token ID to another address If the target address is a contract, it must implement `onERC721Received`, which is called upon a safe transfer, and return the magic value `bytes4(keccak256(\\\"onERC721Received(address,address,uint256,bytes)\\\"))`; otherwise, the transfer is reverted. Requires the msg.sender to be the owner, approved, or operator\",\"params\":{\"from\":\"current owner of the token\",\"to\":\"address to receive the ownership of the given token ID\",\"tokenId\":\"uint256 ID of the token to be transferred\"}},\"safeTransferFrom(address,address,uint256,bytes)\":{\"details\":\"Safely transfers the ownership of a given token ID to another address If the target address is a contract, it must implement `onERC721Received`, which is called upon a safe transfer, and return the magic value `bytes4(keccak256(\\\"onERC721Received(address,address,uint256,bytes)\\\"))`; otherwise, the transfer is reverted. Requires the msg.sender to be the owner, approved, or operator\",\"params\":{\"_data\":\"bytes data to send along with a safe transfer check\",\"from\":\"current owner of the token\",\"to\":\"address to receive the ownership of the given token ID\",\"tokenId\":\"uint256 ID of the token to be transferred\"}},\"setApprovalForAll(address,bool)\":{\"details\":\"Sets or unsets the approval of a given operator An operator is allowed to transfer all tokens of the sender on their behalf.\",\"params\":{\"approved\":\"representing the status of the approval to be set\",\"to\":\"operator address to set the approval\"}},\"supportsInterface(bytes4)\":{\"details\":\"See `IERC165.supportsInterface`.     * Time complexity O(1), guaranteed to always use less than 30 000 gas.\"},\"transferFrom(address,address,uint256)\":{\"details\":\"Transfers the ownership of a given token ID to another address. Usage of this method is discouraged, use `safeTransferFrom` whenever possible. Requires the msg.sender to be the owner, approved, or operator.\",\"params\":{\"from\":\"current owner of the token\",\"to\":\"address to receive the ownership of the given token ID\",\"tokenId\":\"uint256 ID of the token to be transferred\"}}},\"title\":\"ERC721 Burnable Token\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol\":\"ERC721Burnable\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/drafts/Counters.sol\":{\"keccak256\":\"0x5eb69360d3441ab2ee799bd7c007cccbffb0896f12b2dfe1456193e2aa180a11\",\"urls\":[\"bzzr://ecd0352164978c418c8f5b0080c972b65e4b07f6afc593fb7cdd856185a458ea\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/introspection/ERC165.sol\":{\"keccak256\":\"0xac2eacd7e7762e275442f28f21d821544df5aae2ed7698af13be8c41b7005e2e\",\"urls\":[\"bzzr://43e901f6f210568ebc1d3591da3ce6a9d10796b854767a9c6e3da10305a8a332\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/introspection/IERC165.sol\":{\"keccak256\":\"0x661553e43d7c4fbb2de504e5999fd5c104d367488350ed5bf023031bd1ba5ac5\",\"urls\":[\"bzzr://fc2ba15143ce3a00268ecd15fc98eb2469b18bfe27a64bbab0ac6446f161c739\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x4ccf2d7b51873db1ccfd54ca2adae5eac3b184f9699911ed4490438419f1c690\",\"urls\":[\"bzzr://1604f5b6d6e916c154efd8c6720cda069e5ba32dfa0a9dedf2b42e5b02d07f89\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol\":{\"keccak256\":\"0xf151df411bbf4eaef1fc8e8480cd10c2cd985f1a36517e63981517610213efc1\",\"urls\":[\"bzzr://9bca20c0c1208be8f31fc7a73faccd2fca4c5f84dc0a432ae2e066970551db34\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol\":{\"keccak256\":\"0x957fcb984a04ef8b3d6e5259cb92dcd38ffe17d46b7337e8bfddadf0ac8791da\",\"urls\":[\"bzzr://9ba2be7d175c85fc4b22d0d23adf8661545ccc165fa146af3a452afb091f8448\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/IERC721.sol\":{\"keccak256\":\"0xce48937a8007c580b8e2e35705738c922dd17540de89ebee6df06d2917a3f9fc\",\"urls\":[\"bzzr://de494d3843e2c151aa108782382720b5d9f4531f0aa620a4244ca12fc1f8a780\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol\":{\"keccak256\":\"0xadbfb7028fb0f851dc848a48b9e54e7c89ffd2c2edc12fa4ba9bb383dfaa83d9\",\"urls\":[\"bzzr://2466b6491600969dd9ffdeb0b705e7cecc38418aa215cec64b2481273bba9076\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/utils/Address.sol\":{\"keccak256\":\"0xf3358e5819ca73357abd6c90bdfffd0474af54364897f6b3e3234c4b71fbe9a1\",\"urls\":[\"bzzr://f7f6da60a184233fd666ac44e6fb2bd51ca6ebdc4867a310d368049aa4e62786\"]}},\"version\":1}",
+    "bytecode": "60806040526100367f01ffc9a70000000000000000000000000000000000000000000000000000000064010000000061006d810204565b6100687f80ac58cd0000000000000000000000000000000000000000000000000000000064010000000061006d810204565b61013b565b7fffffffff0000000000000000000000000000000000000000000000000000000080821614156100fe57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601c60248201527f4552433136353a20696e76616c696420696e7465726661636520696400000000604482015290519081900360640190fd5b7fffffffff00000000000000000000000000000000000000000000000000000000166000908152602081905260409020805460ff19166001179055565b610fcc8061014a6000396000f3fe608060405234801561001057600080fd5b50600436106100c6576000357c01000000000000000000000000000000000000000000000000000000009004806342966c681161008e57806342966c68146101ee5780636352211e1461020b57806370a0823114610228578063a22cb46514610260578063b88d4fde1461028e578063e985e9c514610354576100c6565b806301ffc9a7146100cb578063081812fc1461011b578063095ea7b31461015457806323b872dd1461018257806342842e0e146101b8575b600080fd5b610107600480360360208110156100e157600080fd5b50357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916610382565b604080519115158252519081900360200190f35b6101386004803603602081101561013157600080fd5b50356103b6565b60408051600160a060020a039092168252519081900360200190f35b6101806004803603604081101561016a57600080fd5b50600160a060020a03813516906020013561041d565b005b6101806004803603606081101561019857600080fd5b50600160a060020a0381358116916020810135909116906040013561053d565b610180600480360360608110156101ce57600080fd5b50600160a060020a03813581169160208101359091169060400135610597565b6101806004803603602081101561020457600080fd5b50356105b3565b6101386004803603602081101561022157600080fd5b5035610609565b61024e6004803603602081101561023e57600080fd5b5035600160a060020a0316610668565b60408051918252519081900360200190f35b6101806004803603604081101561027657600080fd5b50600160a060020a03813516906020013515156106d5565b610180600480360360808110156102a457600080fd5b600160a060020a038235811692602081013590911691604082013591908101906080810160608201356401000000008111156102df57600080fd5b8201836020820111156102f157600080fd5b8035906020019184600183028401116401000000008311171561031357600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295506107a4945050505050565b6101076004803603604081101561036a57600080fd5b50600160a060020a0381358116916020013516610801565b7bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191660009081526020819052604090205460ff1690565b60006103c18261082f565b15156104015760405160e560020a62461bcd02815260040180806020018281038252602c815260200180610ea5602c913960400191505060405180910390fd5b50600090815260026020526040902054600160a060020a031690565b600061042882610609565b9050600160a060020a0383811690821614156104785760405160e560020a62461bcd028152600401808060200182810382526021815260200180610efa6021913960400191505060405180910390fd5b33600160a060020a038216148061049457506104948133610801565b15156104d45760405160e560020a62461bcd028152600401808060200182810382526038815260200180610e1a6038913960400191505060405180910390fd5b600082815260026020526040808220805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0387811691821790925591518593918516917f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b92591a4505050565b610547338261084c565b15156105875760405160e560020a62461bcd028152600401808060200182810382526031815260200180610f1b6031913960400191505060405180910390fd5b6105928383836108f5565b505050565b61059283838360206040519081016040528060008152506107a4565b6105bd338261084c565b15156105fd5760405160e560020a62461bcd028152600401808060200182810382526030815260200180610f716030913960400191505060405180910390fd5b61060681610a4e565b50565b600081815260016020526040812054600160a060020a03168015156106625760405160e560020a62461bcd028152600401808060200182810382526029815260200180610e7c6029913960400191505060405180910390fd5b92915050565b6000600160a060020a03821615156106b45760405160e560020a62461bcd02815260040180806020018281038252602a815260200180610e52602a913960400191505060405180910390fd5b600160a060020a038216600090815260036020526040902061066290610a60565b600160a060020a038216331415610736576040805160e560020a62461bcd02815260206004820152601960248201527f4552433732313a20617070726f766520746f2063616c6c657200000000000000604482015290519081900360640190fd5b336000818152600460209081526040808320600160a060020a03871680855290835292819020805460ff1916861515908117909155815190815290519293927f17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31929181900390910190a35050565b6107af84848461053d565b6107bb84848484610a64565b15156107fb5760405160e560020a62461bcd028152600401808060200182810382526032815260200180610d986032913960400191505060405180910390fd5b50505050565b600160a060020a03918216600090815260046020908152604080832093909416825291909152205460ff1690565b600090815260016020526040902054600160a060020a0316151590565b60006108578261082f565b15156108975760405160e560020a62461bcd02815260040180806020018281038252602c815260200180610dee602c913960400191505060405180910390fd5b60006108a283610609565b905080600160a060020a031684600160a060020a031614806108dd575083600160a060020a03166108d2846103b6565b600160a060020a0316145b806108ed57506108ed8185610801565b949350505050565b82600160a060020a031661090882610609565b600160a060020a0316146109505760405160e560020a62461bcd028152600401808060200182810382526029815260200180610ed16029913960400191505060405180910390fd5b600160a060020a038216151561099a5760405160e560020a62461bcd028152600401808060200182810382526024815260200180610dca6024913960400191505060405180910390fd5b6109a381610be0565b600160a060020a03831660009081526003602052604090206109c490610c28565b600160a060020a03821660009081526003602052604090206109e590610c3f565b600081815260016020526040808220805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0386811691821790925591518493918716917fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef91a4505050565b610606610a5a82610609565b82610c48565b5490565b6000610a7884600160a060020a0316610d2f565b1515610a86575060016108ed565b6040517f150b7a020000000000000000000000000000000000000000000000000000000081523360048201818152600160a060020a03888116602485015260448401879052608060648501908152865160848601528651600095928a169463150b7a029490938c938b938b939260a4019060208501908083838e5b83811015610b19578181015183820152602001610b01565b50505050905090810190601f168015610b465780820380516001836020036101000a031916815260200191505b5095505050505050602060405180830381600087803b158015610b6857600080fd5b505af1158015610b7c573d6000803e3d6000fd5b505050506040513d6020811015610b9257600080fd5b50517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167f150b7a020000000000000000000000000000000000000000000000000000000014915050949350505050565b600081815260026020526040902054600160a060020a031615610606576000908152600260205260409020805473ffffffffffffffffffffffffffffffffffffffff19169055565b8054610c3b90600163ffffffff610d3716565b9055565b80546001019055565b81600160a060020a0316610c5b82610609565b600160a060020a031614610ca35760405160e560020a62461bcd028152600401808060200182810382526025815260200180610f4c6025913960400191505060405180910390fd5b610cac81610be0565b600160a060020a0382166000908152600360205260409020610ccd90610c28565b600081815260016020526040808220805473ffffffffffffffffffffffffffffffffffffffff1916905551829190600160a060020a038516907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef908390a45050565b6000903b1190565b600082821115610d91576040805160e560020a62461bcd02815260206004820152601e60248201527f536166654d6174683a207375627472616374696f6e206f766572666c6f770000604482015290519081900360640190fd5b5090039056fe4552433732313a207472616e7366657220746f206e6f6e20455243373231526563656976657220696d706c656d656e7465724552433732313a207472616e7366657220746f20746865207a65726f20616464726573734552433732313a206f70657261746f7220717565727920666f72206e6f6e6578697374656e7420746f6b656e4552433732313a20617070726f76652063616c6c6572206973206e6f74206f776e6572206e6f7220617070726f76656420666f7220616c6c4552433732313a2062616c616e636520717565727920666f7220746865207a65726f20616464726573734552433732313a206f776e657220717565727920666f72206e6f6e6578697374656e7420746f6b656e4552433732313a20617070726f76656420717565727920666f72206e6f6e6578697374656e7420746f6b656e4552433732313a207472616e73666572206f6620746f6b656e2074686174206973206e6f74206f776e4552433732313a20617070726f76616c20746f2063757272656e74206f776e65724552433732313a207472616e736665722063616c6c6572206973206e6f74206f776e6572206e6f7220617070726f7665644552433732313a206275726e206f6620746f6b656e2074686174206973206e6f74206f776e4552433732314275726e61626c653a2063616c6c6572206973206e6f74206f776e6572206e6f7220617070726f766564a165627a7a72305820fc8e4e4ce13258e6160261d9f26c5577ebe050a05dc6b3788b9cac761e79e71b0029",
+    "deployedBytecode": "608060405234801561001057600080fd5b50600436106100c6576000357c01000000000000000000000000000000000000000000000000000000009004806342966c681161008e57806342966c68146101ee5780636352211e1461020b57806370a0823114610228578063a22cb46514610260578063b88d4fde1461028e578063e985e9c514610354576100c6565b806301ffc9a7146100cb578063081812fc1461011b578063095ea7b31461015457806323b872dd1461018257806342842e0e146101b8575b600080fd5b610107600480360360208110156100e157600080fd5b50357bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916610382565b604080519115158252519081900360200190f35b6101386004803603602081101561013157600080fd5b50356103b6565b60408051600160a060020a039092168252519081900360200190f35b6101806004803603604081101561016a57600080fd5b50600160a060020a03813516906020013561041d565b005b6101806004803603606081101561019857600080fd5b50600160a060020a0381358116916020810135909116906040013561053d565b610180600480360360608110156101ce57600080fd5b50600160a060020a03813581169160208101359091169060400135610597565b6101806004803603602081101561020457600080fd5b50356105b3565b6101386004803603602081101561022157600080fd5b5035610609565b61024e6004803603602081101561023e57600080fd5b5035600160a060020a0316610668565b60408051918252519081900360200190f35b6101806004803603604081101561027657600080fd5b50600160a060020a03813516906020013515156106d5565b610180600480360360808110156102a457600080fd5b600160a060020a038235811692602081013590911691604082013591908101906080810160608201356401000000008111156102df57600080fd5b8201836020820111156102f157600080fd5b8035906020019184600183028401116401000000008311171561031357600080fd5b91908080601f0160208091040260200160405190810160405280939291908181526020018383808284376000920191909152509295506107a4945050505050565b6101076004803603604081101561036a57600080fd5b50600160a060020a0381358116916020013516610801565b7bffffffffffffffffffffffffffffffffffffffffffffffffffffffff191660009081526020819052604090205460ff1690565b60006103c18261082f565b15156104015760405160e560020a62461bcd02815260040180806020018281038252602c815260200180610ea5602c913960400191505060405180910390fd5b50600090815260026020526040902054600160a060020a031690565b600061042882610609565b9050600160a060020a0383811690821614156104785760405160e560020a62461bcd028152600401808060200182810382526021815260200180610efa6021913960400191505060405180910390fd5b33600160a060020a038216148061049457506104948133610801565b15156104d45760405160e560020a62461bcd028152600401808060200182810382526038815260200180610e1a6038913960400191505060405180910390fd5b600082815260026020526040808220805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0387811691821790925591518593918516917f8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b92591a4505050565b610547338261084c565b15156105875760405160e560020a62461bcd028152600401808060200182810382526031815260200180610f1b6031913960400191505060405180910390fd5b6105928383836108f5565b505050565b61059283838360206040519081016040528060008152506107a4565b6105bd338261084c565b15156105fd5760405160e560020a62461bcd028152600401808060200182810382526030815260200180610f716030913960400191505060405180910390fd5b61060681610a4e565b50565b600081815260016020526040812054600160a060020a03168015156106625760405160e560020a62461bcd028152600401808060200182810382526029815260200180610e7c6029913960400191505060405180910390fd5b92915050565b6000600160a060020a03821615156106b45760405160e560020a62461bcd02815260040180806020018281038252602a815260200180610e52602a913960400191505060405180910390fd5b600160a060020a038216600090815260036020526040902061066290610a60565b600160a060020a038216331415610736576040805160e560020a62461bcd02815260206004820152601960248201527f4552433732313a20617070726f766520746f2063616c6c657200000000000000604482015290519081900360640190fd5b336000818152600460209081526040808320600160a060020a03871680855290835292819020805460ff1916861515908117909155815190815290519293927f17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31929181900390910190a35050565b6107af84848461053d565b6107bb84848484610a64565b15156107fb5760405160e560020a62461bcd028152600401808060200182810382526032815260200180610d986032913960400191505060405180910390fd5b50505050565b600160a060020a03918216600090815260046020908152604080832093909416825291909152205460ff1690565b600090815260016020526040902054600160a060020a0316151590565b60006108578261082f565b15156108975760405160e560020a62461bcd02815260040180806020018281038252602c815260200180610dee602c913960400191505060405180910390fd5b60006108a283610609565b905080600160a060020a031684600160a060020a031614806108dd575083600160a060020a03166108d2846103b6565b600160a060020a0316145b806108ed57506108ed8185610801565b949350505050565b82600160a060020a031661090882610609565b600160a060020a0316146109505760405160e560020a62461bcd028152600401808060200182810382526029815260200180610ed16029913960400191505060405180910390fd5b600160a060020a038216151561099a5760405160e560020a62461bcd028152600401808060200182810382526024815260200180610dca6024913960400191505060405180910390fd5b6109a381610be0565b600160a060020a03831660009081526003602052604090206109c490610c28565b600160a060020a03821660009081526003602052604090206109e590610c3f565b600081815260016020526040808220805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0386811691821790925591518493918716917fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef91a4505050565b610606610a5a82610609565b82610c48565b5490565b6000610a7884600160a060020a0316610d2f565b1515610a86575060016108ed565b6040517f150b7a020000000000000000000000000000000000000000000000000000000081523360048201818152600160a060020a03888116602485015260448401879052608060648501908152865160848601528651600095928a169463150b7a029490938c938b938b939260a4019060208501908083838e5b83811015610b19578181015183820152602001610b01565b50505050905090810190601f168015610b465780820380516001836020036101000a031916815260200191505b5095505050505050602060405180830381600087803b158015610b6857600080fd5b505af1158015610b7c573d6000803e3d6000fd5b505050506040513d6020811015610b9257600080fd5b50517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167f150b7a020000000000000000000000000000000000000000000000000000000014915050949350505050565b600081815260026020526040902054600160a060020a031615610606576000908152600260205260409020805473ffffffffffffffffffffffffffffffffffffffff19169055565b8054610c3b90600163ffffffff610d3716565b9055565b80546001019055565b81600160a060020a0316610c5b82610609565b600160a060020a031614610ca35760405160e560020a62461bcd028152600401808060200182810382526025815260200180610f4c6025913960400191505060405180910390fd5b610cac81610be0565b600160a060020a0382166000908152600360205260409020610ccd90610c28565b600081815260016020526040808220805473ffffffffffffffffffffffffffffffffffffffff1916905551829190600160a060020a038516907fddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef908390a45050565b6000903b1190565b600082821115610d91576040805160e560020a62461bcd02815260206004820152601e60248201527f536166654d6174683a207375627472616374696f6e206f766572666c6f770000604482015290519081900360640190fd5b5090039056fe4552433732313a207472616e7366657220746f206e6f6e20455243373231526563656976657220696d706c656d656e7465724552433732313a207472616e7366657220746f20746865207a65726f20616464726573734552433732313a206f70657261746f7220717565727920666f72206e6f6e6578697374656e7420746f6b656e4552433732313a20617070726f76652063616c6c6572206973206e6f74206f776e6572206e6f7220617070726f76656420666f7220616c6c4552433732313a2062616c616e636520717565727920666f7220746865207a65726f20616464726573734552433732313a206f776e657220717565727920666f72206e6f6e6578697374656e7420746f6b656e4552433732313a20617070726f76656420717565727920666f72206e6f6e6578697374656e7420746f6b656e4552433732313a207472616e73666572206f6620746f6b656e2074686174206973206e6f74206f776e4552433732313a20617070726f76616c20746f2063757272656e74206f776e65724552433732313a207472616e736665722063616c6c6572206973206e6f74206f776e6572206e6f7220617070726f7665644552433732313a206275726e206f6620746f6b656e2074686174206973206e6f74206f776e4552433732314275726e61626c653a2063616c6c6572206973206e6f74206f776e6572206e6f7220617070726f766564a165627a7a72305820fc8e4e4ce13258e6160261d9f26c5577ebe050a05dc6b3788b9cac761e79e71b0029",
+    "sourceMap": "155:399:105:-;;;718:40:79;737:20;718:18;;;;:40;:::i;:::-;2220::104;2239:20;2220:18;;;;:40;:::i;:::-;155:399:105;;1442:190:79;1517:25;;;;;;1509:66;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1585:33;;:20;:33;;;;;;;;;;:40;;-1:-1:-1;;1585:40:79;1621:4;1585:40;;;1442:190::o;155:399:105:-;;;;;;;",
+    "deployedSourceMap": "155:399:105:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;155:399:105;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;915:133:79;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;915:133:79;-1:-1:-1;;915:133:79;;:::i;:::-;;;;;;;;;;;;;;;;;;4237:200:104;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;4237:200:104;;:::i;:::-;;;;-1:-1:-1;;;;;4237:200:104;;;;;;;;;;;;;;3541:411;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;3541:411:104;;;;;;;;:::i;:::-;;5877:285;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;5877:285:104;;;;;;;;;;;;;;;;;:::i;6795:132::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;6795:132:104;;;;;;;;;;;;;;;;;:::i;321:231:105:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;321:231:105;;:::i;2897:223:104:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2897:223:104;;:::i;2471:207::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2471:207:104;-1:-1:-1;;;;;2471:207:104;;:::i;:::-;;;;;;;;;;;;;;;;4730:243;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;4730:243:104;;;;;;;;;;:::i;7632:265::-;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;-1:-1;;;;;7632:265:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;5:28;;2:2;;;46:1;43;36:12;2:2;7632:265:104;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;7632:265:104;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;7632:265:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;81:16;;74:27;;;;-1:-1;7632:265:104;;-1:-1:-1;7632:265:104;;-1:-1:-1;;;;;7632:265:104:i;5295:145::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;5295:145:104;;;;;;;;;;:::i;915:133:79:-;-1:-1:-1;;1008:33:79;985:4;1008:33;;;;;;;;;;;;;;915:133::o;4237:200:104:-;4296:7;4323:16;4331:7;4323;:16::i;:::-;4315:73;;;;;;-1:-1:-1;;;;;4315:73:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;4406:24:104;;;;:15;:24;;;;;;-1:-1:-1;;;;;4406:24:104;;4237:200::o;3541:411::-;3604:13;3620:16;3628:7;3620;:16::i;:::-;3604:32;-1:-1:-1;;;;;;3654:11:104;;;;;;;;3646:57;;;;-1:-1:-1;;;;;3646:57:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3722:10;-1:-1:-1;;;;;3722:19:104;;;;:58;;;3745:35;3762:5;3769:10;3745:16;:35::i;:::-;3714:148;;;;;;-1:-1:-1;;;;;3714:148:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3873:24;;;;:15;:24;;;;;;:29;;-1:-1:-1;;3873:29:104;-1:-1:-1;;;;;3873:29:104;;;;;;;;;3917:28;;3873:24;;3917:28;;;;;;;3541:411;;;:::o;5877:285::-;6019:39;6038:10;6050:7;6019:18;:39::i;:::-;6011:101;;;;;;-1:-1:-1;;;;;6011:101:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6123:32;6137:4;6143:2;6147:7;6123:13;:32::i;:::-;5877:285;;;:::o;6795:132::-;6881:39;6898:4;6904:2;6908:7;6881:39;;;;;;;;;;;;;:16;:39::i;321:231:105:-;429:39;448:10;460:7;429:18;:39::i;:::-;421:100;;;;;;-1:-1:-1;;;;;421:100:105;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;531:14;537:7;531:5;:14::i;:::-;321:231;:::o;2897:223:104:-;2952:7;2987:20;;;:11;:20;;;;;;-1:-1:-1;;;;;2987:20:104;3025:19;;;3017:73;;;;-1:-1:-1;;;;;3017:73:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3108:5;2897:223;-1:-1:-1;;2897:223:104:o;2471:207::-;2526:7;-1:-1:-1;;;;;2553:19:104;;;;2545:74;;;;-1:-1:-1;;;;;2545:74:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2637:24:104;;;;;;:17;:24;;;;;:34;;:32;:34::i;4730:243::-;-1:-1:-1;;;;;4809:16:104;;4815:10;4809:16;;4801:54;;;;;-1:-1:-1;;;;;4801:54:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;4885:10;4866:30;;;;:18;:30;;;;;;;;-1:-1:-1;;;;;4866:34:104;;;;;;;;;;;;:45;;-1:-1:-1;;4866:45:104;;;;;;;;;;4926:40;;;;;;;4866:34;;4885:10;4926:40;;;;;;;;;;;4730:243;;:::o;7632:265::-;7738:31;7751:4;7757:2;7761:7;7738:12;:31::i;:::-;7787:48;7810:4;7816:2;7820:7;7829:5;7787:22;:48::i;:::-;7779:111;;;;;;-1:-1:-1;;;;;7779:111:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;7632:265;;;;:::o;5295:145::-;-1:-1:-1;;;;;5398:25:104;;;5375:4;5398:25;;;:18;:25;;;;;;;;:35;;;;;;;;;;;;;;;5295:145::o;8092:152::-;8149:4;8181:20;;;:11;:20;;;;;;-1:-1:-1;;;;;8181:20:104;8218:19;;;8092:152::o;8605:329::-;8690:4;8714:16;8722:7;8714;:16::i;:::-;8706:73;;;;;;-1:-1:-1;;;;;8706:73:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8789:13;8805:16;8813:7;8805;:16::i;:::-;8789:32;;8850:5;-1:-1:-1;;;;;8839:16:104;:7;-1:-1:-1;;;;;8839:16:104;;:51;;;;8883:7;-1:-1:-1;;;;;8859:31:104;:20;8871:7;8859:11;:20::i;:::-;-1:-1:-1;;;;;8859:31:104;;8839:51;:87;;;;8894:32;8911:5;8918:7;8894:16;:32::i;:::-;8831:96;8605:329;-1:-1:-1;;;;8605:329:104:o;10751:447::-;10864:4;-1:-1:-1;;;;;10844:24:104;:16;10852:7;10844;:16::i;:::-;-1:-1:-1;;;;;10844:24:104;;10836:78;;;;-1:-1:-1;;;;;10836:78:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;10932:16:104;;;;10924:65;;;;-1:-1:-1;;;;;10924:65:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;11000:23;11015:7;11000:14;:23::i;:::-;-1:-1:-1;;;;;11034:23:104;;;;;;:17;:23;;;;;:35;;:33;:35::i;:::-;-1:-1:-1;;;;;11079:21:104;;;;;;:17;:21;;;;;:33;;:31;:33::i;:::-;11123:20;;;;:11;:20;;;;;;:25;;-1:-1:-1;;11123:25:104;-1:-1:-1;;;;;11123:25:104;;;;;;;;;11164:27;;11123:20;;11164:27;;;;;;;10751:447;;;:::o;10286:90::-;10337:32;10343:16;10351:7;10343;:16::i;:::-;10361:7;10337:5;:32::i;1063:112:72:-;1154:14;;1063:112::o;11771:347:104:-;11892:4;11917:15;:2;-1:-1:-1;;;;;11917:13:104;;:15::i;:::-;11916:16;11912:58;;;-1:-1:-1;11955:4:104;11948:11;;11912:58;11996:70;;;;;12033:10;11996:70;;;;;;-1:-1:-1;;;;;11996:70:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;11980:13;;11996:36;;;;;;12033:10;;12045:4;;12051:7;;12060:5;;11996:70;;;;;;;;;;;11980:13;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;11996:70:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;11996:70:104;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;11996:70:104;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;11996:70:104;-1:-1:-1;;12084:26:104;12094:16;12084:26;;-1:-1:-1;;11771:347:104;;;;;;:::o;12280:171::-;12379:1;12343:24;;;:15;:24;;;;;;-1:-1:-1;;;;;12343:24:104;:38;12339:106;;12432:1;12397:24;;;:15;:24;;;;;:37;;-1:-1:-1;;12397:37:104;;;12280:171::o;1276:108:72:-;1356:14;;:21;;1375:1;1356:21;:18;:21;:::i;:::-;1339:38;;1276:108::o;1181:89::-;1244:19;;1262:1;1244:19;;;1181:89::o;9781:324:104:-;9875:5;-1:-1:-1;;;;;9855:25:104;:16;9863:7;9855;:16::i;:::-;-1:-1:-1;;;;;9855:25:104;;9847:75;;;;-1:-1:-1;;;;;9847:75:104;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;9933:23;9948:7;9933:14;:23::i;:::-;-1:-1:-1;;;;;9967:24:104;;;;;;:17;:24;;;;;:36;;:34;:36::i;:::-;10044:1;10013:20;;;:11;:20;;;;;;:33;;-1:-1:-1;;10013:33:104;;;10062:36;10025:7;;10044:1;-1:-1:-1;;;;;10062:36:104;;;;;10044:1;;10062:36;9781:324;;:::o;542:413:122:-;602:4;902:20;;940:8;;542:413::o;1274:179:87:-;1332:7;1359:6;;;;1351:49;;;;;-1:-1:-1;;;;;1351:49:87;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1422:5:87;;;1274:179::o",
+    "sourcePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol",
+    "compiler": {
+        "name": "solc",
+        "version": "0.5.2+commit.1df8f40c"
+    },
+    "ast": {
+        "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol",
+        "exportedSymbols": {
+            "ERC721Burnable": [
+                13547
+            ]
+        },
+        "id": 13548,
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 13524,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.5",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:105"
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol",
+                "file": "./ERC721.sol",
+                "id": 13525,
+                "nodeType": "ImportDirective",
+                "scope": 13548,
+                "sourceUnit": 13523,
+                "src": "25:22:105",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "baseContracts": [
+                    {
+                        "arguments": null,
+                        "baseName": {
+                            "contractScope": null,
+                            "id": 13526,
+                            "name": "ERC721",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 13522,
+                            "src": "182:6:105",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_ERC721_$13522",
+                                "typeString": "contract ERC721"
+                            }
+                        },
+                        "id": 13527,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "182:6:105"
+                    }
+                ],
+                "contractDependencies": [
+                    10702,
+                    13522,
+                    14292,
+                    10498
+                ],
+                "contractKind": "contract",
+                "documentation": "@title ERC721 Burnable Token\n@dev ERC721 Token that can be irreversibly burned (destroyed).",
+                "fullyImplemented": true,
+                "id": 13547,
+                "linearizedBaseContracts": [
+                    13547,
+                    13522,
+                    14292,
+                    10498,
+                    10702
+                ],
+                "name": "ERC721Burnable",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "body": {
+                            "id": 13545,
+                            "nodeType": "Block",
+                            "src": "359:193:105",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "arguments": [
+                                                    {
+                                                        "argumentTypes": null,
+                                                        "expression": {
+                                                            "argumentTypes": null,
+                                                            "id": 13534,
+                                                            "name": "msg",
+                                                            "nodeType": "Identifier",
+                                                            "overloadedDeclarations": [],
+                                                            "referencedDeclaration": 15678,
+                                                            "src": "448:3:105",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_magic_message",
+                                                                "typeString": "msg"
+                                                            }
+                                                        },
+                                                        "id": 13535,
+                                                        "isConstant": false,
+                                                        "isLValue": false,
+                                                        "isPure": false,
+                                                        "lValueRequested": false,
+                                                        "memberName": "sender",
+                                                        "nodeType": "MemberAccess",
+                                                        "referencedDeclaration": null,
+                                                        "src": "448:10:105",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_address_payable",
+                                                            "typeString": "address payable"
+                                                        }
+                                                    },
+                                                    {
+                                                        "argumentTypes": null,
+                                                        "id": 13536,
+                                                        "name": "tokenId",
+                                                        "nodeType": "Identifier",
+                                                        "overloadedDeclarations": [],
+                                                        "referencedDeclaration": 13529,
+                                                        "src": "460:7:105",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_uint256",
+                                                            "typeString": "uint256"
+                                                        }
+                                                    }
+                                                ],
+                                                "expression": {
+                                                    "argumentTypes": [
+                                                        {
+                                                            "typeIdentifier": "t_address_payable",
+                                                            "typeString": "address payable"
+                                                        },
+                                                        {
+                                                            "typeIdentifier": "t_uint256",
+                                                            "typeString": "uint256"
+                                                        }
+                                                    ],
+                                                    "id": 13533,
+                                                    "name": "_isApprovedOrOwner",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 13301,
+                                                    "src": "429:18:105",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_function_internal_view$_t_address_$_t_uint256_$returns$_t_bool_$",
+                                                        "typeString": "function (address,uint256) view returns (bool)"
+                                                    }
+                                                },
+                                                "id": 13537,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "kind": "functionCall",
+                                                "lValueRequested": false,
+                                                "names": [],
+                                                "nodeType": "FunctionCall",
+                                                "src": "429:39:105",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "argumentTypes": null,
+                                                "hexValue": "4552433732314275726e61626c653a2063616c6c6572206973206e6f74206f776e6572206e6f7220617070726f766564",
+                                                "id": 13538,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "470:50:105",
+                                                "subdenomination": null,
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_ee6b7e810d7b317242d4688e6943ff4dd7897bb01d903b1a666812481b12a4f1",
+                                                    "typeString": "literal_string \"ERC721Burnable: caller is not owner nor approved\""
+                                                },
+                                                "value": "ERC721Burnable: caller is not owner nor approved"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_ee6b7e810d7b317242d4688e6943ff4dd7897bb01d903b1a666812481b12a4f1",
+                                                    "typeString": "literal_string \"ERC721Burnable: caller is not owner nor approved\""
+                                                }
+                                            ],
+                                            "id": 13532,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                15681,
+                                                15682
+                                            ],
+                                            "referencedDeclaration": 15682,
+                                            "src": "421:7:105",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 13539,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "421:100:105",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 13540,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "421:100:105"
+                                },
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 13542,
+                                                "name": "tokenId",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 13529,
+                                                "src": "537:7:105",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            ],
+                                            "id": 13541,
+                                            "name": "_burn",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                13389,
+                                                13402
+                                            ],
+                                            "referencedDeclaration": 13402,
+                                            "src": "531:5:105",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$returns$__$",
+                                                "typeString": "function (uint256)"
+                                            }
+                                        },
+                                        "id": 13543,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "531:14:105",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 13544,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "531:14:105"
+                                }
+                            ]
+                        },
+                        "documentation": "@dev Burns a specific ERC721 token.\n@param tokenId uint256 id of the ERC721 token to be burned.",
+                        "id": 13546,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "burn",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 13530,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 13529,
+                                    "name": "tokenId",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 13546,
+                                    "src": "335:15:105",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 13528,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "335:7:105",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "334:17:105"
+                        },
+                        "returnParameters": {
+                            "id": 13531,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "359:0:105"
+                        },
+                        "scope": 13547,
+                        "src": "321:231:105",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "public"
+                    }
+                ],
+                "scope": 13548,
+                "src": "155:399:105"
+            }
+        ],
+        "src": "0:555:105"
+    },
+    "functionHashes": {
+        "approve(address,uint256)": "095ea7b3",
+        "balanceOf(address)": "70a08231",
+        "burn(uint256)": "42966c68",
+        "getApproved(uint256)": "081812fc",
+        "isApprovedForAll(address,address)": "e985e9c5",
+        "ownerOf(uint256)": "6352211e",
+        "safeTransferFrom(address,address,uint256)": "42842e0e",
+        "safeTransferFrom(address,address,uint256,bytes)": "b88d4fde",
+        "setApprovalForAll(address,bool)": "a22cb465",
+        "supportsInterface(bytes4)": "01ffc9a7",
+        "transferFrom(address,address,uint256)": "23b872dd"
+    },
+    "gasEstimates": {
+        "creation": {
+            "codeDepositCost": "808800",
+            "executionCost": "infinite",
+            "totalCost": "infinite"
+        },
+        "external": {
+            "approve(address,uint256)": "infinite",
+            "balanceOf(address)": "infinite",
+            "burn(uint256)": "infinite",
+            "getApproved(uint256)": "infinite",
+            "isApprovedForAll(address,address)": "891",
+            "ownerOf(uint256)": "infinite",
+            "safeTransferFrom(address,address,uint256)": "infinite",
+            "safeTransferFrom(address,address,uint256,bytes)": "infinite",
+            "setApprovalForAll(address,bool)": "22742",
+            "supportsInterface(bytes4)": "545",
+            "transferFrom(address,address,uint256)": "infinite"
+        }
+    }
+}

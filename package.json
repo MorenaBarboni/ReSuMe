@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node static/index.js"
   },
-  "author": "",
+  "author": "Francesco Casoni",
   "license": "ISC",
   "dependencies": {
     "@solidity-parser/parser": "^0.13.2",

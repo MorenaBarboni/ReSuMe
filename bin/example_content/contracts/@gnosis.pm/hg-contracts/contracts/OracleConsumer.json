@@ -1,0 +1,158 @@
+{
+    "contractName": "OracleConsumer",
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "id",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "result",
+                    "type": "bytes"
+                }
+            ],
+            "name": "receiveResult",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ],
+    "metadata": "",
+    "bytecode": "",
+    "deployedBytecode": "",
+    "sourceMap": "",
+    "deployedSourceMap": "",
+    "sourcePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/@gnosis.pm/hg-contracts/contracts/OracleConsumer.sol",
+    "compiler": {
+        "name": "solc",
+        "version": ""
+    },
+    "ast": {
+        "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/@gnosis.pm/hg-contracts/contracts/OracleConsumer.sol",
+        "exportedSymbols": {
+            "OracleConsumer": [
+                2133
+            ]
+        },
+        "id": 2134,
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 2125,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.5",
+                    ".1"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:14"
+            },
+            {
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "interface",
+                "documentation": null,
+                "fullyImplemented": false,
+                "id": 2133,
+                "linearizedBaseContracts": [
+                    2133
+                ],
+                "name": "OracleConsumer",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "body": null,
+                        "documentation": null,
+                        "id": 2132,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "receiveResult",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 2130,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 2127,
+                                    "name": "id",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 2132,
+                                    "src": "80:10:14",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes32",
+                                        "typeString": "bytes32"
+                                    },
+                                    "typeName": {
+                                        "id": 2126,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "80:7:14",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 2129,
+                                    "name": "result",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 2132,
+                                    "src": "92:21:14",
+                                    "stateVariable": false,
+                                    "storageLocation": "calldata",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes_calldata_ptr",
+                                        "typeString": "bytes"
+                                    },
+                                    "typeName": {
+                                        "id": 2128,
+                                        "name": "bytes",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "92:5:14",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes_storage_ptr",
+                                            "typeString": "bytes"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "79:35:14"
+                        },
+                        "returnParameters": {
+                            "id": 2131,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "123:0:14"
+                        },
+                        "scope": 2133,
+                        "src": "57:67:14",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 2134,
+                "src": "26:100:14"
+            }
+        ],
+        "src": "0:127:14"
+    },
+    "functionHashes": {
+        "receiveResult(bytes32,bytes)": "5dd80855"
+    },
+    "gasEstimates": null
+}

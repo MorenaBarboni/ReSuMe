@@ -1,0 +1,557 @@
+{
+    "contractName": "PausableCrowdsale",
+    "abi": [
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "rate",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "unpause",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "weiRaised",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "isPauser",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "wallet",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "paused",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "renouncePauser",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "addPauser",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "pause",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "beneficiary",
+                    "type": "address"
+                }
+            ],
+            "name": "buyTokens",
+            "outputs": [],
+            "payable": true,
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "token",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "payable": true,
+            "stateMutability": "payable",
+            "type": "fallback"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "Paused",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "Unpaused",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "PauserAdded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "PauserRemoved",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "purchaser",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "name": "beneficiary",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "name": "value",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "TokensPurchased",
+            "type": "event"
+        }
+    ],
+    "metadata": "",
+    "bytecode": "",
+    "deployedBytecode": "",
+    "sourceMap": "",
+    "deployedSourceMap": "",
+    "sourcePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/crowdsale/validation/PausableCrowdsale.sol",
+    "compiler": {
+        "name": "solc",
+        "version": ""
+    },
+    "ast": {
+        "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/crowdsale/validation/PausableCrowdsale.sol",
+        "exportedSymbols": {
+            "PausableCrowdsale": [
+                8755
+            ]
+        },
+        "id": 8756,
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 8732,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.5",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:67"
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol",
+                "file": "../Crowdsale.sol",
+                "id": 8733,
+                "nodeType": "ImportDirective",
+                "scope": 8756,
+                "sourceUnit": 7941,
+                "src": "25:26:67",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/lifecycle/Pausable.sol",
+                "file": "../../lifecycle/Pausable.sol",
+                "id": 8734,
+                "nodeType": "ImportDirective",
+                "scope": 8756,
+                "sourceUnit": 10881,
+                "src": "52:38:67",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "baseContracts": [
+                    {
+                        "arguments": null,
+                        "baseName": {
+                            "contractScope": null,
+                            "id": 8735,
+                            "name": "Crowdsale",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 7940,
+                            "src": "261:9:67",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_Crowdsale_$7940",
+                                "typeString": "contract Crowdsale"
+                            }
+                        },
+                        "id": 8736,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "261:9:67"
+                    },
+                    {
+                        "arguments": null,
+                        "baseName": {
+                            "contractScope": null,
+                            "id": 8737,
+                            "name": "Pausable",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 10880,
+                            "src": "272:8:67",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_Pausable_$10880",
+                                "typeString": "contract Pausable"
+                            }
+                        },
+                        "id": 8738,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "272:8:67"
+                    }
+                ],
+                "contractDependencies": [
+                    10880,
+                    15663,
+                    7350,
+                    7940
+                ],
+                "contractKind": "contract",
+                "documentation": "@title PausableCrowdsale\n@dev Extension of Crowdsale contract where purchases can be paused and unpaused by the pauser role.",
+                "fullyImplemented": false,
+                "id": 8755,
+                "linearizedBaseContracts": [
+                    8755,
+                    10880,
+                    7350,
+                    7940,
+                    15663
+                ],
+                "name": "PausableCrowdsale",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "body": {
+                            "id": 8753,
+                            "nodeType": "Block",
+                            "src": "758:76:67",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 8749,
+                                                "name": "_beneficiary",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8740,
+                                                "src": "802:12:67",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            },
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 8750,
+                                                "name": "_weiAmount",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 8742,
+                                                "src": "816:10:67",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": null,
+                                                "id": 8747,
+                                                "name": "super",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 15862,
+                                                "src": "775:5:67",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_super$_PausableCrowdsale_$8755",
+                                                    "typeString": "contract super PausableCrowdsale"
+                                                }
+                                            },
+                                            "id": 8748,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "_preValidatePurchase",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 7871,
+                                            "src": "775:26:67",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_view$_t_address_$_t_uint256_$returns$__$",
+                                                "typeString": "function (address,uint256) view"
+                                            }
+                                        },
+                                        "id": 8751,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "775:52:67",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "functionReturnParameters": 8746,
+                                    "id": 8752,
+                                    "nodeType": "Return",
+                                    "src": "768:59:67"
+                                }
+                            ]
+                        },
+                        "documentation": "@dev Validation of an incoming purchase. Use require statements to revert state when conditions are not met.\nUse super to concatenate validations.\nAdds the validation that the crowdsale must not be paused.\n@param _beneficiary Address performing the token purchase\n@param _weiAmount Value in wei involved in the purchase",
+                        "id": 8754,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [
+                            {
+                                "arguments": null,
+                                "id": 8745,
+                                "modifierName": {
+                                    "argumentTypes": null,
+                                    "id": 8744,
+                                    "name": "whenNotPaused",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 10836,
+                                    "src": "744:13:67",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_modifier$__$",
+                                        "typeString": "modifier ()"
+                                    }
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "744:13:67"
+                            }
+                        ],
+                        "name": "_preValidatePurchase",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 8743,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 8740,
+                                    "name": "_beneficiary",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8754,
+                                    "src": "688:20:67",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 8739,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "688:7:67",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 8742,
+                                    "name": "_weiAmount",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 8754,
+                                    "src": "710:18:67",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 8741,
+                                        "name": "uint256",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "710:7:67",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "687:42:67"
+                        },
+                        "returnParameters": {
+                            "id": 8746,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "758:0:67"
+                        },
+                        "scope": 8755,
+                        "src": "658:176:67",
+                        "stateMutability": "view",
+                        "superFunction": 7871,
+                        "visibility": "internal"
+                    }
+                ],
+                "scope": 8756,
+                "src": "231:605:67"
+            }
+        ],
+        "src": "0:837:67"
+    },
+    "functionHashes": {
+        "addPauser(address)": "82dc1ec4",
+        "buyTokens(address)": "ec8ac4d8",
+        "isPauser(address)": "46fbf68e",
+        "pause()": "8456cb59",
+        "paused()": "5c975abb",
+        "rate()": "2c4e722e",
+        "renouncePauser()": "6ef8d66d",
+        "token()": "fc0c546a",
+        "unpause()": "3f4ba83a",
+        "wallet()": "521eb273",
+        "weiRaised()": "4042b66f"
+    },
+    "gasEstimates": null
+}

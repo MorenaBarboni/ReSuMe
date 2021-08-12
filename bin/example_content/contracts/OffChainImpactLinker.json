@@ -1,0 +1,728 @@
+{
+    "contractName": "OffChainImpactLinker",
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "renounceOwnership",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "registry",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "linkImpact",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "isOwner",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "_claimId",
+                    "type": "bytes32"
+                },
+                {
+                    "name": "_accountIndex",
+                    "type": "uint256"
+                },
+                {
+                    "name": "_impactVal",
+                    "type": "uint256"
+                }
+            ],
+            "name": "linkDirectly",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "transferOwnership",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "name": "_impactRegistry",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "previousOwner",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnershipTransferred",
+            "type": "event"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.5.2+commit.1df8f40c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"registry\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"linkImpact\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_claimId\",\"type\":\"bytes32\"},{\"name\":\"_accountIndex\",\"type\":\"uint256\"},{\"name\":\"_impactVal\",\"type\":\"uint256\"}],\"name\":\"linkDirectly\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"_impactRegistry\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"isOwner()\":{\"details\":\"Returns true if the caller is the current owner.\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * > Note: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/OffChainImpactLinker.sol\":\"OffChainImpactLinker\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/ImpactLinker.sol\":{\"keccak256\":\"0x1e7514dba1721fecec84af463410b10ba69bae8b805cbfe83805d7e10d5e6ee9\",\"urls\":[\"bzzr://9beedc5386da4b303a14f6428b3fc597278842b9eb761e8739beed9cfa1bf9c5\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/ImpactRegistry.sol\":{\"keccak256\":\"0xa342e7209725381265866f218cecd5df14749a6bbc97736959baaf5d35d4e311\",\"urls\":[\"bzzr://83864b38909469f71c154f0c672d5aa7703b935b15d22be4aac1ab214f3f6292\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/OffChainImpactLinker.sol\":{\"keccak256\":\"0xfcbf0de7678813ec93f04a17a25f624718b8802226fcca5f644c4a3de7b4b070\",\"urls\":[\"bzzr://a6c170eed51be56c4e8030adb741cc006c76c57cbf1efa127508b2e443648d2b\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x4ccf2d7b51873db1ccfd54ca2adae5eac3b184f9699911ed4490438419f1c690\",\"urls\":[\"bzzr://1604f5b6d6e916c154efd8c6720cda069e5ba32dfa0a9dedf2b42e5b02d07f89\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/ownership/Ownable.sol\":{\"keccak256\":\"0xf79fb10e8235770eb4aea7249034076a3cc9f9119ad944fc48705bae9c9d20dc\",\"urls\":[\"bzzr://d12a11272051eb6586de8f7e0a82c04a98c9984ce8b2a6cf1ee439f65aba29a9\"]}},\"version\":1}",
+    "bytecode": "608060405234801561001057600080fd5b506040516020806105488339810180604052602081101561003057600080fd5b505160008054600160a060020a03191633178082556040518392600160a060020a039290921691907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908290a360018054600160a060020a031916600160a060020a03929092169190911790555061049b806100ad6000396000f3fe608060405234801561001057600080fd5b506004361061009a576000357c0100000000000000000000000000000000000000000000000000000000900480638da5cb5b116100785780638da5cb5b146100ea5780638f32d59b146100f2578063c06b730f1461010e578063f2fde38b146101375761009a565b8063715018a61461009f5780637b103999146100a957806386e875e3146100cd575b600080fd5b6100a761015d565b005b6100b1610212565b60408051600160a060020a039092168252519081900360200190f35b6100a7600480360360208110156100e357600080fd5b5035610221565b6100b1610226565b6100fa610235565b604080519115158252519081900360200190f35b6100a76004803603606081101561012457600080fd5b5080359060208101359060400135610246565b6100a76004803603602081101561014d57600080fd5b5035600160a060020a0316610335565b610165610235565b15156101bb576040805160e560020a62461bcd02815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b60008054604051600160a060020a03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a36000805473ffffffffffffffffffffffffffffffffffffffff19169055565b600154600160a060020a031681565bfe5b50565b600054600160a060020a031690565b600054600160a060020a0316331490565b61024e610235565b15156102a4576040805160e560020a62461bcd02815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b600154604080517fc55920710000000000000000000000000000000000000000000000000000000081526004810186905260248101859052604481018490529051600160a060020a039092169163c55920719160648082019260009290919082900301818387803b15801561031857600080fd5b505af115801561032c573d6000803e3d6000fd5b50505050505050565b61033d610235565b1515610393576040805160e560020a62461bcd02815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b61022381600160a060020a03811615156103e15760405160e560020a62461bcd02815260040180806020018281038252602681526020018061044a6026913960400191505060405180910390fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061646472657373a165627a7a723058202e32b77644c5e2f594638afe6d8cdde9973bca2732d7e748c3d0220a3c63fce60029",
+    "deployedBytecode": "608060405234801561001057600080fd5b506004361061009a576000357c0100000000000000000000000000000000000000000000000000000000900480638da5cb5b116100785780638da5cb5b146100ea5780638f32d59b146100f2578063c06b730f1461010e578063f2fde38b146101375761009a565b8063715018a61461009f5780637b103999146100a957806386e875e3146100cd575b600080fd5b6100a761015d565b005b6100b1610212565b60408051600160a060020a039092168252519081900360200190f35b6100a7600480360360208110156100e357600080fd5b5035610221565b6100b1610226565b6100fa610235565b604080519115158252519081900360200190f35b6100a76004803603606081101561012457600080fd5b5080359060208101359060400135610246565b6100a76004803603602081101561014d57600080fd5b5035600160a060020a0316610335565b610165610235565b15156101bb576040805160e560020a62461bcd02815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b60008054604051600160a060020a03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a36000805473ffffffffffffffffffffffffffffffffffffffff19169055565b600154600160a060020a031681565bfe5b50565b600054600160a060020a031690565b600054600160a060020a0316331490565b61024e610235565b15156102a4576040805160e560020a62461bcd02815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b600154604080517fc55920710000000000000000000000000000000000000000000000000000000081526004810186905260248101859052604481018490529051600160a060020a039092169163c55920719160648082019260009290919082900301818387803b15801561031857600080fd5b505af115801561032c573d6000803e3d6000fd5b50505050505050565b61033d610235565b1515610393576040805160e560020a62461bcd02815260206004820181905260248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572604482015290519081900360640190fd5b61022381600160a060020a03811615156103e15760405160e560020a62461bcd02815260040180806020018281038252602681526020018061044a6026913960400191505060405180910390fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f2061646472657373a165627a7a723058202e32b77644c5e2f594638afe6d8cdde9973bca2732d7e748c3d0220a3c63fce60029",
+    "sourceMap": "237:410:40:-;;;290:92;8:9:-1;5:2;;;30:1;27;20:12;5:2;290:92:40;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;290:92:40;657:6:88;:19;;-1:-1:-1;;;;;;657:19:88;666:10;657:19;;;;691:40;;290:92:40;;-1:-1:-1;;;;;724:6:88;;;;;657;691:40;;657:6;;691:40;370:8:34;:26;;-1:-1:-1;;;;;;370:26:34;-1:-1:-1;;;;;370:26:34;;;;;;;;;;-1:-1:-1;237:410:40;;;-1:-1:-1;237:410:40;;",
+    "deployedSourceMap": "237:410:40:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;237:410:40;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1599:137:88;;;:::i;:::-;;175:30:34;;;:::i;:::-;;;;-1:-1:-1;;;;;175:30:34;;;;;;;;;;;;;;562:81:40;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;562:81:40;;:::i;814:77:88:-;;;:::i;1165:90::-;;;:::i;:::-;;;;;;;;;;;;;;;;;;387:169:40;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;387:169:40;;;;;;;;;;;;:::i;1885:107:88:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1885:107:88;-1:-1:-1;;;;;1885:107:88;;:::i;1599:137::-;1018:9;:7;:9::i;:::-;1010:54;;;;;;;-1:-1:-1;;;;;1010:54:88;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1697:1;1681:6;;1660:40;;-1:-1:-1;;;;;1681:6:88;;;;1660:40;;1697:1;;1660:40;1727:1;1710:19;;-1:-1:-1;;1710:19:88;;;1599:137::o;175:30:34:-;;;-1:-1:-1;;;;;175:30:34;;:::o;562:81:40:-;623:13;;562:81;:::o;814:77:88:-;852:7;878:6;-1:-1:-1;;;;;878:6:88;814:77;:::o;1165:90::-;1205:4;1242:6;-1:-1:-1;;;;;1242:6:88;1228:10;:20;;1165:90::o;387:169:40:-;1018:9:88;:7;:9::i;:::-;1010:54;;;;;;;-1:-1:-1;;;;;1010:54:88;;;;;;;;;;;;;;;;;;;;;;;;;;;;;490:8:40;;:60;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;490:8:40;;;;:23;;:60;;;;;:8;;:60;;;;;;;;:8;;:60;;;5:2:-1;;;;30:1;27;20:12;5:2;490:60:40;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;490:60:40;;;;387:169;;;:::o;1885:107:88:-;1018:9;:7;:9::i;:::-;1010:54;;;;;;;-1:-1:-1;;;;;1010:54:88;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1957:28;1976:8;-1:-1:-1;;;;;2166:22:88;;;;2158:73;;;;-1:-1:-1;;;;;2158:73:88;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2267:6;;;2246:38;;-1:-1:-1;;;;;2246:38:88;;;;2267:6;;;2246:38;;;2294:6;:17;;-1:-1:-1;;2294:17:88;-1:-1:-1;;;;;2294:17:88;;;;;;;;;;2093:225::o",
+    "sourcePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/OffChainImpactLinker.sol",
+    "compiler": {
+        "name": "solc",
+        "version": "0.5.2+commit.1df8f40c"
+    },
+    "ast": {
+        "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/OffChainImpactLinker.sol",
+        "exportedSymbols": {
+            "OffChainImpactLinker": [
+                5482
+            ]
+        },
+        "id": 5483,
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 5436,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.5",
+                    ".2"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:40"
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/math/SafeMath.sol",
+                "file": "../contracts/openzeppelin-solidity/contracts/math/SafeMath.sol",
+                "id": 5437,
+                "nodeType": "ImportDirective",
+                "scope": 5483,
+                "sourceUnit": 11083,
+                "src": "25:72:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/ownership/Ownable.sol",
+                "file": "../contracts/openzeppelin-solidity/contracts/ownership/Ownable.sol",
+                "id": 5438,
+                "nodeType": "ImportDirective",
+                "scope": 5483,
+                "sourceUnit": 11194,
+                "src": "98:76:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/ImpactRegistry.sol",
+                "file": "./ImpactRegistry.sol",
+                "id": 5439,
+                "nodeType": "ImportDirective",
+                "scope": 5483,
+                "sourceUnit": 5046,
+                "src": "175:30:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/ImpactLinker.sol",
+                "file": "./ImpactLinker.sol",
+                "id": 5440,
+                "nodeType": "ImportDirective",
+                "scope": 5483,
+                "sourceUnit": 4595,
+                "src": "206:28:40",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "baseContracts": [
+                    {
+                        "arguments": null,
+                        "baseName": {
+                            "contractScope": null,
+                            "id": 5441,
+                            "name": "ImpactLinker",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 4594,
+                            "src": "270:12:40",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_ImpactLinker_$4594",
+                                "typeString": "contract ImpactLinker"
+                            }
+                        },
+                        "id": 5442,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "270:12:40"
+                    }
+                ],
+                "contractDependencies": [
+                    11193,
+                    4594
+                ],
+                "contractKind": "contract",
+                "documentation": null,
+                "fullyImplemented": true,
+                "id": 5482,
+                "linearizedBaseContracts": [
+                    5482,
+                    4594,
+                    11193
+                ],
+                "name": "OffChainImpactLinker",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "body": {
+                            "id": 5450,
+                            "nodeType": "Block",
+                            "src": "375:7:40",
+                            "statements": []
+                        },
+                        "documentation": null,
+                        "id": 5451,
+                        "implemented": true,
+                        "kind": "constructor",
+                        "modifiers": [
+                            {
+                                "arguments": [
+                                    {
+                                        "argumentTypes": null,
+                                        "id": 5447,
+                                        "name": "_impactRegistry",
+                                        "nodeType": "Identifier",
+                                        "overloadedDeclarations": [],
+                                        "referencedDeclaration": 5444,
+                                        "src": "351:15:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_contract$_ImpactRegistry_$5045",
+                                            "typeString": "contract ImpactRegistry"
+                                        }
+                                    }
+                                ],
+                                "id": 5448,
+                                "modifierName": {
+                                    "argumentTypes": null,
+                                    "id": 5446,
+                                    "name": "ImpactLinker",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 4594,
+                                    "src": "338:12:40",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_type$_t_contract$_ImpactLinker_$4594_$",
+                                        "typeString": "type(contract ImpactLinker)"
+                                    }
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "338:29:40"
+                            }
+                        ],
+                        "name": "",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5445,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5444,
+                                    "name": "_impactRegistry",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5451,
+                                    "src": "302:30:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_contract$_ImpactRegistry_$5045",
+                                        "typeString": "contract ImpactRegistry"
+                                    },
+                                    "typeName": {
+                                        "contractScope": null,
+                                        "id": 5443,
+                                        "name": "ImpactRegistry",
+                                        "nodeType": "UserDefinedTypeName",
+                                        "referencedDeclaration": 5045,
+                                        "src": "302:14:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_contract$_ImpactRegistry_$5045",
+                                            "typeString": "contract ImpactRegistry"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "301:32:40"
+                        },
+                        "returnParameters": {
+                            "id": 5449,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "375:0:40"
+                        },
+                        "scope": 5482,
+                        "src": "290:92:40",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 5470,
+                            "nodeType": "Block",
+                            "src": "483:73:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 5465,
+                                                "name": "_claimId",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 5453,
+                                                "src": "514:8:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bytes32",
+                                                    "typeString": "bytes32"
+                                                }
+                                            },
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 5466,
+                                                "name": "_accountIndex",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 5455,
+                                                "src": "524:13:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            },
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 5467,
+                                                "name": "_impactVal",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 5457,
+                                                "src": "539:10:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bytes32",
+                                                    "typeString": "bytes32"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_uint256",
+                                                    "typeString": "uint256"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": null,
+                                                "id": 5462,
+                                                "name": "registry",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 4565,
+                                                "src": "490:8:40",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_contract$_ImpactRegistry_$5045",
+                                                    "typeString": "contract ImpactRegistry"
+                                                }
+                                            },
+                                            "id": 5464,
+                                            "isConstant": false,
+                                            "isLValue": false,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "registerImpact",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 4863,
+                                            "src": "490:23:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_external_nonpayable$_t_bytes32_$_t_uint256_$_t_uint256_$returns$__$",
+                                                "typeString": "function (bytes32,uint256,uint256) external"
+                                            }
+                                        },
+                                        "id": 5468,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "490:60:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 5469,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "490:60:40"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 5471,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [
+                            {
+                                "arguments": null,
+                                "id": 5460,
+                                "modifierName": {
+                                    "argumentTypes": null,
+                                    "id": 5459,
+                                    "name": "onlyOwner",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 11126,
+                                    "src": "473:9:40",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_modifier$__$",
+                                        "typeString": "modifier ()"
+                                    }
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "473:9:40"
+                            }
+                        ],
+                        "name": "linkDirectly",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5458,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5453,
+                                    "name": "_claimId",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5471,
+                                    "src": "409:16:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes32",
+                                        "typeString": "bytes32"
+                                    },
+                                    "typeName": {
+                                        "id": 5452,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "409:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5455,
+                                    "name": "_accountIndex",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5471,
+                                    "src": "427:18:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5454,
+                                        "name": "uint",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "427:4:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                },
+                                {
+                                    "constant": false,
+                                    "id": 5457,
+                                    "name": "_impactVal",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5471,
+                                    "src": "447:15:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                    },
+                                    "typeName": {
+                                        "id": 5456,
+                                        "name": "uint",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "447:4:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_uint256",
+                                            "typeString": "uint256"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "408:55:40"
+                        },
+                        "returnParameters": {
+                            "id": 5461,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "483:0:40"
+                        },
+                        "scope": 5482,
+                        "src": "387:169:40",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "external"
+                    },
+                    {
+                        "body": {
+                            "id": 5480,
+                            "nodeType": "Block",
+                            "src": "613:30:40",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "hexValue": "66616c7365",
+                                                "id": 5477,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "bool",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "630:5:40",
+                                                "subdenomination": null,
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                "value": "false"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            ],
+                                            "id": 5476,
+                                            "name": "assert",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 15667,
+                                            "src": "623:6:40",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_assert_pure$_t_bool_$returns$__$",
+                                                "typeString": "function (bool) pure"
+                                            }
+                                        },
+                                        "id": 5478,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "623:13:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 5479,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "623:13:40"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 5481,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "linkImpact",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 5474,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 5473,
+                                    "name": "",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 5481,
+                                    "src": "582:7:40",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes32",
+                                        "typeString": "bytes32"
+                                    },
+                                    "typeName": {
+                                        "id": 5472,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "582:7:40",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "581:22:40"
+                        },
+                        "returnParameters": {
+                            "id": 5475,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "613:0:40"
+                        },
+                        "scope": 5482,
+                        "src": "562:81:40",
+                        "stateMutability": "nonpayable",
+                        "superFunction": 4593,
+                        "visibility": "external"
+                    }
+                ],
+                "scope": 5483,
+                "src": "237:410:40"
+            }
+        ],
+        "src": "0:648:40"
+    },
+    "functionHashes": {
+        "isOwner()": "8f32d59b",
+        "linkDirectly(bytes32,uint256,uint256)": "c06b730f",
+        "linkImpact(bytes32)": "86e875e3",
+        "owner()": "8da5cb5b",
+        "registry()": "7b103999",
+        "renounceOwnership()": "715018a6",
+        "transferOwnership(address)": "f2fde38b"
+    },
+    "gasEstimates": {
+        "creation": {
+            "codeDepositCost": "235800",
+            "executionCost": "42639",
+            "totalCost": "278439"
+        },
+        "external": {
+            "isOwner()": "511",
+            "linkDirectly(bytes32,uint256,uint256)": "infinite",
+            "linkImpact(bytes32)": "227",
+            "owner()": "556",
+            "registry()": "579",
+            "renounceOwnership()": "22506",
+            "transferOwnership(address)": "infinite"
+        }
+    }
+}

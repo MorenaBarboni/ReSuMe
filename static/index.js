@@ -1,17 +1,15 @@
+const fSys = require("./src/utils/fSys");
 const loader = require("./src/utils/loader");
 const dependenciesCalc = require("./src/dependencies/dependenciesCalc");
 const checksumCalc = require("./src/checksum/checksumCalc");
 const firewallCalc = require("./src/firewall/firewallCalc");
 
-const fs = require("fs");
-const path = require("path");
-if (!fs.existsSync(path.join(__dirname, "results")))
-  fs.mkdirSync(path.join(__dirname, "results"));
+fSys.createAmbient();
 
-const contracts = loader.loadContracts("./example_content/contracts");
+const contracts = loader.loadContracts();
 const changedContracts = checksumCalc.checkContracts(contracts);
 
-const tests = loader.loadTests("./example_content/tests");
+const tests = loader.loadTests();
 const changedTests = checksumCalc.checkTests(tests);
 
 // const dangerousContracts = firewallCalc.getDangerousContracts(

@@ -1,29 +1,50 @@
 const path = require("path");
 const fs = require("fs");
+const config = require("../config");
 
-function loadTests(testsDir) {
+function loadTests() {
+  const paths = getAllFiles(config.testsDir);
   var tests = new Array();
-  fs.readdirSync(testsDir).forEach((test) => {
+  paths.forEach((test) => {
     tests.push({
-      name: test,
-      content: fs.readFileSync(path.join(testsDir, test)),
+      path: test,
+      name: path.parse(test).base,
+      content: fs.readFileSync(test),
     });
   });
 
   return tests;
 }
 
-function loadContracts(contractsDir) {
+function loadContracts() {
+  const paths = getAllFiles(config.contractsDir).filter((c) => c.endsWith(".sol"));
   var contracts = new Array();
-  fs.readdirSync(contractsDir).forEach((contract) => {
+  paths.forEach((contract) => {
     contracts.push({
-      name: contract,
-      content: fs.readFileSync(path.join(contractsDir, contract)),
+      path: contract,
+      name: path.parse(contract).base,
+      content: fs.readFileSync(contract),
     });
   });
 
   return contracts;
 }
+
+const getAllFiles = function (dirPath, arrayOfFiles) {
+  const files = fs.readdirSync(dirPath);
+
+  arrayOfFiles = arrayOfFiles || [];
+
+  files.forEach(function (file) {
+    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
+    } else {
+      arrayOfFiles.push(path.join(dirPath, "/", file));
+    }
+  });
+
+  return arrayOfFiles;
+};
 
 module.exports = {
   loadTests: loadTests,

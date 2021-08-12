@@ -177,7 +177,7 @@ function findAndAddDependenciesBetweenTests(test1, test2, graph) {
                   line[occurrenceIndex + name2.length] == '"' ||
                   line[occurrenceIndex + name2.length] == "'"
                 ) {
-                  graph.addDependency(test1.name, test2.name);
+                  graph.addDependency(test1.path, test2.path);
                   return;
                 }
               }
@@ -242,7 +242,7 @@ function findAndAddDependenciesBetweenContracts(contract1, contract2, graph) {
               //occurrence is not part of another occurrence
               const slashIndex = occurrenceIndex - 1;
               if (line[slashIndex] == "/") {
-                graph.addDependency(contract1.name, contract2.name);
+                graph.addDependency(contract1.path, contract2.path);
                 return;
               }
             }
@@ -314,7 +314,7 @@ function findAndAddDependenciesBetweenTestsAndContracts(
                   (line[occurrenceIndex + name2.length] == "'" ||
                     line[occurrenceIndex + name2.length] == '"')
                 ) {
-                  graph.addDependency(test1.name, contract2.name);
+                  graph.addDependency(test1.path, contract2.path);
                   return;
                 }
               }
@@ -330,10 +330,10 @@ function buildAllDependenciesGraph(contracts, tests) {
   var graph = new DepGraph({ circular: true });
 
   contracts.forEach((c) => {
-    graph.addNode(c.name);
+    graph.addNode(c.path);
   });
   tests.forEach((t) => {
-    graph.addNode(t.name);
+    graph.addNode(t.path);
   });
 
   //contracts that use contracts (import statement)
@@ -378,9 +378,9 @@ function buildAllDependenciesGraph(contracts, tests) {
     // };
 
     const dep = {
-      name: file.name,
+      file: file.path,
       //uses: graph.dependenciesOf(file.name),
-      isUsedBy: graph.dependantsOf(file.name),
+      isUsedBy: graph.dependantsOf(file.path),
     };
 
     allDependencies.push(dep);
@@ -391,7 +391,7 @@ function buildAllDependenciesGraph(contracts, tests) {
   var contractDependencies = new Array();
   var testDependencies = new Array();
   allDependencies.forEach((dep) => {
-    if (dep.name.includes(".js")) testDependencies.push(dep);
+    if (dep.file.endsWith(".js")) testDependencies.push(dep);
     else contractDependencies.push(dep);
   });
 

@@ -1,0 +1,161 @@
+{
+    "contractName": "ContractProvider",
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "contractName",
+                    "type": "bytes32"
+                }
+            ],
+            "name": "contracts",
+            "outputs": [
+                {
+                    "name": "addr",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ],
+    "metadata": "",
+    "bytecode": "",
+    "deployedBytecode": "",
+    "sourceMap": "",
+    "deployedSourceMap": "",
+    "sourcePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/ContractProvider.sol",
+    "compiler": {
+        "name": "solc",
+        "version": ""
+    },
+    "ast": {
+        "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/ContractProvider.sol",
+        "exportedSymbols": {
+            "ContractProvider": [
+                3854
+            ]
+        },
+        "id": 3855,
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 3846,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.5",
+                    ".2"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:23"
+            },
+            {
+                "baseContracts": [],
+                "contractDependencies": [],
+                "contractKind": "contract",
+                "documentation": null,
+                "fullyImplemented": false,
+                "id": 3854,
+                "linearizedBaseContracts": [
+                    3854
+                ],
+                "name": "ContractProvider",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "body": null,
+                        "documentation": null,
+                        "id": 3853,
+                        "implemented": false,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "contracts",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 3849,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 3848,
+                                    "name": "contractName",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 3853,
+                                    "src": "76:20:23",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bytes32",
+                                        "typeString": "bytes32"
+                                    },
+                                    "typeName": {
+                                        "id": 3847,
+                                        "name": "bytes32",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "76:7:23",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bytes32",
+                                            "typeString": "bytes32"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "75:22:23"
+                        },
+                        "returnParameters": {
+                            "id": 3852,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 3851,
+                                    "name": "addr",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 3853,
+                                    "src": "114:12:23",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 3850,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "114:7:23",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "113:14:23"
+                        },
+                        "scope": 3854,
+                        "src": "57:71:23",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "public"
+                    }
+                ],
+                "scope": 3855,
+                "src": "25:105:23"
+            }
+        ],
+        "src": "0:131:23"
+    },
+    "functionHashes": {
+        "contracts(bytes32)": "ec56a373"
+    },
+    "gasEstimates": null
+}

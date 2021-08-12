@@ -1,29 +1,27 @@
 const fs = require("fs");
 const writer = require("../utils/writer");
 const path = require("path");
+const fSys = require("../utils/fSys");
 const checksum = require("checksum");
 
 function checkContracts(contracts) {
-  const checksumsPath = path.join(
-    writer.resultsPath,
-    "contractsChecksums.json"
-  );
-  const changedPaths = path.join(writer.resultsPath, "changedContracts.json");
+  const checksumsPath = path.join(fSys.resDir, "contractsChecksums.json");
 
-  var oldChecksums = fs.existsSync(checksumsPath);
+  var oldChecksumsExists = fs.existsSync(checksumsPath);
   var oldFilesChecksums;
-  if (oldChecksums) oldFilesChecksums = require(checksumsPath);
+  if (oldChecksumsExists) oldFilesChecksums = require(checksumsPath);
 
   var newFilesChecksums = new Array();
   contracts.forEach((contract) => {
     var current = {
+      filePath: contract.path,
       fileName: contract.name,
       checksum: checksum(contract.content),
       lastChecksum: null,
     };
-    if (oldChecksums) {
+    if (oldChecksumsExists) {
       var old = oldFilesChecksums.find(
-        ({ fileName }) => fileName === contract.name
+        ({ filePath }) => filePath === contract.path
       );
       if (old != undefined) current.lastChecksum = old.checksum;
     }
@@ -35,7 +33,7 @@ function checkContracts(contracts) {
   var changedFilesNames = new Array();
   newFilesChecksums.forEach((element) => {
     if (element.checksum != element.lastChecksum)
-      changedFilesNames.push(element.fileName);
+      changedFilesNames.push(element.filePath);
   });
   //if (changedFilesNames.length == 0) changedFilesNames.push("none");
 
@@ -45,23 +43,23 @@ function checkContracts(contracts) {
 }
 
 function checkTests(tests) {
-  const checksumsPath = path.join(writer.resultsPath, "testsChecksums.json");
-  const changedPaths = path.join(writer.resultsPath, "changedTests.json");
+  const checksumsPath = path.join(fSys.resDir, "testsChecksums.json");
 
-  var oldChecksums = fs.existsSync(checksumsPath);
+  var oldChecksumsExists = fs.existsSync(checksumsPath);
   var oldFilesChecksums;
-  if (oldChecksums) oldFilesChecksums = require(checksumsPath);
+  if (oldChecksumsExists) oldFilesChecksums = require(checksumsPath);
 
   var newFilesChecksums = new Array();
   tests.forEach((test) => {
     var current = {
       fileName: test.name,
+      filePath: test.path,
       checksum: checksum(test.content),
       lastChecksum: null,
     };
-    if (oldChecksums) {
+    if (oldChecksumsExists) {
       var old = oldFilesChecksums.find(
-        ({ fileName }) => fileName === test.name
+        ({ filePath }) => filePath === test.path
       );
       if (old != undefined) current.lastChecksum = old.checksum;
     }
@@ -73,7 +71,7 @@ function checkTests(tests) {
   var changedFilesNames = new Array();
   newFilesChecksums.forEach((element) => {
     if (element.checksum != element.lastChecksum)
-      changedFilesNames.push(element.fileName);
+      changedFilesNames.push(element.filePath);
   });
   //if (changedFilesNames.length == 0) changedFilesNames.push("none");
 

@@ -1,14 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+const config = require("../config")
+const fSys = require("../utils/fSys");
 
-const resultsPath = path.join(
-  path.resolve(path.resolve(__dirname, ".."), ".."),
-  "results"
-);
 
 function writeJsonToFile(fileName, json) {
   fs.writeFileSync(
-    path.join(resultsPath, fileName),
+    path.join(fSys.resDir, fileName),
     JSON.stringify(json, null, "\t"),
     (err) => {
       if (err) throw err;
@@ -16,4 +14,4 @@ function writeJsonToFile(fileName, json) {
   );
 }
 
-module.exports = { writeJsonToFile: writeJsonToFile, resultsPath: resultsPath };
+module.exports = { writeJsonToFile: writeJsonToFile };

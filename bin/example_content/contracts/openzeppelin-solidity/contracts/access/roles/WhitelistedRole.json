@@ -1,0 +1,1477 @@
+{
+    "contractName": "WhitelistedRole",
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "addWhitelisted",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "removeWhitelisted",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "isWhitelisted",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "renounceWhitelistAdmin",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "addWhitelistAdmin",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [
+                {
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "isWhitelistAdmin",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "renounceWhitelisted",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "WhitelistedAdded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "WhitelistedRemoved",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "WhitelistAdminAdded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "name": "account",
+                    "type": "address"
+                }
+            ],
+            "name": "WhitelistAdminRemoved",
+            "type": "event"
+        }
+    ],
+    "metadata": "{\"compiler\":{\"version\":\"0.5.2+commit.1df8f40c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelisted\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceWhitelistAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelistAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelistAdmin\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceWhitelisted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistedAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistedRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistAdminAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistAdminRemoved\",\"type\":\"event\"}],\"devdoc\":{\"details\":\"Whitelisted accounts have been approved by a WhitelistAdmin to perform certain actions (e.g. participate in a crowdsale). This role is special in that the only accounts that can add it are WhitelistAdmins (who can also remove it), and not Whitelisteds themselves.\",\"methods\":{},\"title\":\"WhitelistedRole\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol\":\"WhitelistedRole\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzzr://bd34c1ce05b5b2b3a62fc02e160f6805b1cadd476854664f433c685b2fda8dad\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/roles/WhitelistAdminRole.sol\":{\"keccak256\":\"0xd2c87384e7346f702df3be70e99fff30f22f7b9767a9502afb345f0457ddf36f\",\"urls\":[\"bzzr://3f300be02f06cae39a29cdf6d4f1d6b3faedf818c83c5623a512e189bdad690a\"]},\"c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol\":{\"keccak256\":\"0x110b2fab50ea257de28a8d2b03e05dc11b9e5213841dabfe784aacca8c109cda\",\"urls\":[\"bzzr://a7085973dd319349c9cfd1323e560bddc5e1db25959fd0198b2db1bd02631f72\"]}},\"version\":1}",
+    "bytecode": "60806040526100163364010000000061001b810204565b610191565b61003360008264010000000061044761006a82021704565b604051600160a060020a038216907f22380c05984257a1cb900161c713dd71d39e74820f1aea43bd3f1bdd2096129990600090a250565b61007d828264010000000061010e810204565b156100e957604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601f60248201527f526f6c65733a206163636f756e7420616c72656164792068617320726f6c6500604482015290519081900360640190fd5b600160a060020a0316600090815260209190915260409020805460ff19166001179055565b6000600160a060020a0382161515610171576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001806107866022913960400191505060405180910390fd5b50600160a060020a03166000908152602091909152604090205460ff1690565b6105e6806101a06000396000f3fe608060405234801561001057600080fd5b506004361061009a576000357c0100000000000000000000000000000000000000000000000000000000900480634c5a628c116100785780634c5a628c146101275780637362d9c81461012f578063bb5f747b14610155578063d6cd94731461017b5761009a565b806310154bad1461009f578063291d9549146100c75780633af32abf146100ed575b600080fd5b6100c5600480360360208110156100b557600080fd5b5035600160a060020a0316610183565b005b6100c5600480360360208110156100dd57600080fd5b5035600160a060020a03166101d8565b6101136004803603602081101561010357600080fd5b5035600160a060020a031661022a565b604080519115158252519081900360200190f35b6100c5610243565b6100c56004803603602081101561014557600080fd5b5035600160a060020a031661024e565b6101136004803603602081101561016b57600080fd5b5035600160a060020a03166102a0565b6100c56102b2565b61018c336102a0565b15156101cc5760405160e560020a62461bcd02815260040180806020018281038252604081526020018061057b6040913960400191505060405180910390fd5b6101d5816102bb565b50565b6101e1336102a0565b15156102215760405160e560020a62461bcd02815260040180806020018281038252604081526020018061057b6040913960400191505060405180910390fd5b6101d581610303565b600061023d60018363ffffffff61034b16565b92915050565b61024c336103b7565b565b610257336102a0565b15156102975760405160e560020a62461bcd02815260040180806020018281038252604081526020018061057b6040913960400191505060405180910390fd5b6101d5816103ff565b600061023d818363ffffffff61034b16565b61024c33610303565b6102cc60018263ffffffff61044716565b604051600160a060020a038216907fee1504a83b6d4a361f4c1dc78ab59bfa30d6a3b6612c403e86bb01ef2984295f90600090a250565b61031460018263ffffffff6104cb16565b604051600160a060020a038216907f270d9b30cf5b0793bbfd54c9d5b94aeb49462b8148399000265144a8722da6b690600090a250565b6000600160a060020a03821615156103975760405160e560020a62461bcd0281526004018080602001828103825260228152602001806105596022913960400191505060405180910390fd5b50600160a060020a03166000908152602091909152604090205460ff1690565b6103c860008263ffffffff6104cb16565b604051600160a060020a038216907f0a8eb35e5ca14b3d6f28e4abf2f128dbab231a58b56e89beb5d636115001e16590600090a250565b61041060008263ffffffff61044716565b604051600160a060020a038216907f22380c05984257a1cb900161c713dd71d39e74820f1aea43bd3f1bdd2096129990600090a250565b610451828261034b565b156104a6576040805160e560020a62461bcd02815260206004820152601f60248201527f526f6c65733a206163636f756e7420616c72656164792068617320726f6c6500604482015290519081900360640190fd5b600160a060020a0316600090815260209190915260409020805460ff19166001179055565b6104d5828261034b565b15156105155760405160e560020a62461bcd0281526004018080602001828103825260218152602001806105386021913960400191505060405180910390fd5b600160a060020a0316600090815260209190915260409020805460ff1916905556fe526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f206164647265737357686974656c69737441646d696e526f6c653a2063616c6c657220646f6573206e6f742068617665207468652057686974656c69737441646d696e20726f6c65a165627a7a723058207857cca4799dec91da9d0951190fccedc2fa70577cf4f047ca0edc5a02a7490b0029526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373",
+    "deployedBytecode": "608060405234801561001057600080fd5b506004361061009a576000357c0100000000000000000000000000000000000000000000000000000000900480634c5a628c116100785780634c5a628c146101275780637362d9c81461012f578063bb5f747b14610155578063d6cd94731461017b5761009a565b806310154bad1461009f578063291d9549146100c75780633af32abf146100ed575b600080fd5b6100c5600480360360208110156100b557600080fd5b5035600160a060020a0316610183565b005b6100c5600480360360208110156100dd57600080fd5b5035600160a060020a03166101d8565b6101136004803603602081101561010357600080fd5b5035600160a060020a031661022a565b604080519115158252519081900360200190f35b6100c5610243565b6100c56004803603602081101561014557600080fd5b5035600160a060020a031661024e565b6101136004803603602081101561016b57600080fd5b5035600160a060020a03166102a0565b6100c56102b2565b61018c336102a0565b15156101cc5760405160e560020a62461bcd02815260040180806020018281038252604081526020018061057b6040913960400191505060405180910390fd5b6101d5816102bb565b50565b6101e1336102a0565b15156102215760405160e560020a62461bcd02815260040180806020018281038252604081526020018061057b6040913960400191505060405180910390fd5b6101d581610303565b600061023d60018363ffffffff61034b16565b92915050565b61024c336103b7565b565b610257336102a0565b15156102975760405160e560020a62461bcd02815260040180806020018281038252604081526020018061057b6040913960400191505060405180910390fd5b6101d5816103ff565b600061023d818363ffffffff61034b16565b61024c33610303565b6102cc60018263ffffffff61044716565b604051600160a060020a038216907fee1504a83b6d4a361f4c1dc78ab59bfa30d6a3b6612c403e86bb01ef2984295f90600090a250565b61031460018263ffffffff6104cb16565b604051600160a060020a038216907f270d9b30cf5b0793bbfd54c9d5b94aeb49462b8148399000265144a8722da6b690600090a250565b6000600160a060020a03821615156103975760405160e560020a62461bcd0281526004018080602001828103825260228152602001806105596022913960400191505060405180910390fd5b50600160a060020a03166000908152602091909152604090205460ff1690565b6103c860008263ffffffff6104cb16565b604051600160a060020a038216907f0a8eb35e5ca14b3d6f28e4abf2f128dbab231a58b56e89beb5d636115001e16590600090a250565b61041060008263ffffffff61044716565b604051600160a060020a038216907f22380c05984257a1cb900161c713dd71d39e74820f1aea43bd3f1bdd2096129990600090a250565b610451828261034b565b156104a6576040805160e560020a62461bcd02815260206004820152601f60248201527f526f6c65733a206163636f756e7420616c72656164792068617320726f6c6500604482015290519081900360640190fd5b600160a060020a0316600090815260209190915260409020805460ff19166001179055565b6104d5828261034b565b15156105155760405160e560020a62461bcd0281526004018080602001828103825260218152602001806105386021913960400191505060405180910390fd5b600160a060020a0316600090815260209190915260409020805460ff1916905556fe526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65526f6c65733a206163636f756e7420697320746865207a65726f206164647265737357686974656c69737441646d696e526f6c653a2063616c6c657220646f6573206e6f742068617665207468652057686974656c69737441646d696e20726f6c65a165627a7a723058207857cca4799dec91da9d0951190fccedc2fa70577cf4f047ca0edc5a02a7490b0029",
+    "sourceMap": "396:1123:56:-;;;433:30:55;452:10;433:18;;;;:30;:::i;:::-;396:1123:56;;991:143:55;1055:29;:16;1076:7;1055:20;;;;;;:29;:::i;:::-;1099:28;;-1:-1:-1;;;;;1099:28:55;;;;;;;;991:143;:::o;260:175:50:-;337:18;341:4;347:7;337:3;;;;:18;:::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;401:20:50;:11;:20;;;;;;;;;;;:27;;-1:-1:-1;;401:27:50;424:4;401:27;;;260:175::o;779:200::-;851:4;-1:-1:-1;;;;;875:21:50;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;952:20:50;:11;:20;;;;;;;;;;;;;;;779:200::o;396:1123:56:-;;;;;;;",
+    "deployedSourceMap": "396:1123:56:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;396:1123:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;910:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;910:108:56;-1:-1:-1;;;;;910:108:56;;:::i;:::-;;1024:114;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1024:114:56;-1:-1:-1;;;;;1024:114:56;;:::i;787:117::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;787:117:56;-1:-1:-1;;;;;787:117:56;;:::i;:::-;;;;;;;;;;;;;;;;;;894:91:55;;;:::i;774:114::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;774:114:55;-1:-1:-1;;;;;774:114:55;;:::i;645:123::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;645:123:55;-1:-1:-1;;;;;645:123:55;;:::i;1144:85:56:-;;;:::i;910:108::-;524:28:55;541:10;524:16;:28::i;:::-;516:105;;;;;;-1:-1:-1;;;;;516:105:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;987:24:56;1003:7;987:15;:24::i;:::-;910:108;:::o;1024:114::-;524:28:55;541:10;524:16;:28::i;:::-;516:105;;;;;;-1:-1:-1;;;;;516:105:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1104:27:56;1123:7;1104:18;:27::i;787:117::-;848:4;871:26;:13;889:7;871:26;:17;:26;:::i;:::-;864:33;787:117;-1:-1:-1;;787:117:56:o;894:91:55:-;945:33;967:10;945:21;:33::i;:::-;894:91::o;774:114::-;524:28;541:10;524:16;:28::i;:::-;516:105;;;;;;-1:-1:-1;;;;;516:105:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;854:27;873:7;854:18;:27::i;645:123::-;709:4;732:29;709:4;753:7;732:29;:20;:29;:::i;1144:85:56:-;1192:30;1211:10;1192:18;:30::i;1235:134::-;1296:26;:13;1314:7;1296:26;:17;:26;:::i;:::-;1337:25;;-1:-1:-1;;;;;1337:25:56;;;;;;;;1235:134;:::o;1375:142::-;1439:29;:13;1460:7;1439:29;:20;:29;:::i;:::-;1483:27;;-1:-1:-1;;;;;1483:27:56;;;;;;;;1375:142;:::o;779:200:50:-;851:4;-1:-1:-1;;;;;875:21:50;;;;867:68;;;;-1:-1:-1;;;;;867:68:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;;952:20:50;:11;:20;;;;;;;;;;;;;;;779:200::o;1140:151:55:-;1207:32;:16;1231:7;1207:32;:23;:32;:::i;:::-;1254:30;;-1:-1:-1;;;;;1254:30:55;;;;;;;;1140:151;:::o;991:143::-;1055:29;:16;1076:7;1055:29;:20;:29;:::i;:::-;1099:28;;-1:-1:-1;;;;;1099:28:55;;;;;;;;991:143;:::o;260:175:50:-;337:18;341:4;347:7;337:3;:18::i;:::-;336:19;328:63;;;;;-1:-1:-1;;;;;328:63:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;401:20:50;:11;:20;;;;;;;;;;;:27;;-1:-1:-1;;401:27:50;424:4;401:27;;;260:175::o;510:180::-;589:18;593:4;599:7;589:3;:18::i;:::-;581:64;;;;;;-1:-1:-1;;;;;581:64:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;655:20:50;678:5;655:20;;;;;;;;;;;:28;;-1:-1:-1;;655:28:50;;;510:180::o",
+    "sourcePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol",
+    "compiler": {
+        "name": "solc",
+        "version": "0.5.2+commit.1df8f40c"
+    },
+    "ast": {
+        "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol",
+        "exportedSymbols": {
+            "WhitelistedRole": [
+                7668
+            ]
+        },
+        "id": 7669,
+        "nodeType": "SourceUnit",
+        "nodes": [
+            {
+                "id": 7560,
+                "literals": [
+                    "solidity",
+                    "^",
+                    "0.5",
+                    ".0"
+                ],
+                "nodeType": "PragmaDirective",
+                "src": "0:23:56"
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/Roles.sol",
+                "file": "../Roles.sol",
+                "id": 7561,
+                "nodeType": "ImportDirective",
+                "scope": 7669,
+                "sourceUnit": 7039,
+                "src": "25:22:56",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "absolutePath": "c:/Users/franc/Desktop/ReMuS/example_content/contracts/openzeppelin-solidity/contracts/access/roles/WhitelistAdminRole.sol",
+                "file": "./WhitelistAdminRole.sol",
+                "id": 7562,
+                "nodeType": "ImportDirective",
+                "scope": 7669,
+                "sourceUnit": 7559,
+                "src": "48:34:56",
+                "symbolAliases": [],
+                "unitAlias": ""
+            },
+            {
+                "baseContracts": [
+                    {
+                        "arguments": null,
+                        "baseName": {
+                            "contractScope": null,
+                            "id": 7563,
+                            "name": "WhitelistAdminRole",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 7558,
+                            "src": "424:18:56",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_WhitelistAdminRole_$7558",
+                                "typeString": "contract WhitelistAdminRole"
+                            }
+                        },
+                        "id": 7564,
+                        "nodeType": "InheritanceSpecifier",
+                        "src": "424:18:56"
+                    }
+                ],
+                "contractDependencies": [
+                    7558
+                ],
+                "contractKind": "contract",
+                "documentation": "@title WhitelistedRole\n@dev Whitelisted accounts have been approved by a WhitelistAdmin to perform certain actions (e.g. participate in a\ncrowdsale). This role is special in that the only accounts that can add it are WhitelistAdmins (who can also remove\nit), and not Whitelisteds themselves.",
+                "fullyImplemented": true,
+                "id": 7668,
+                "linearizedBaseContracts": [
+                    7668,
+                    7558
+                ],
+                "name": "WhitelistedRole",
+                "nodeType": "ContractDefinition",
+                "nodes": [
+                    {
+                        "id": 7567,
+                        "libraryName": {
+                            "contractScope": null,
+                            "id": 7565,
+                            "name": "Roles",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 7038,
+                            "src": "455:5:56",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_contract$_Roles_$7038",
+                                "typeString": "library Roles"
+                            }
+                        },
+                        "nodeType": "UsingForDirective",
+                        "src": "449:27:56",
+                        "typeName": {
+                            "contractScope": null,
+                            "id": 7566,
+                            "name": "Roles.Role",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 6964,
+                            "src": "465:10:56",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Role_$6964_storage_ptr",
+                                "typeString": "struct Roles.Role"
+                            }
+                        }
+                    },
+                    {
+                        "anonymous": false,
+                        "documentation": null,
+                        "id": 7571,
+                        "name": "WhitelistedAdded",
+                        "nodeType": "EventDefinition",
+                        "parameters": {
+                            "id": 7570,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7569,
+                                    "indexed": true,
+                                    "name": "account",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7571,
+                                    "src": "505:23:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7568,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "505:7:56",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "504:25:56"
+                        },
+                        "src": "482:48:56"
+                    },
+                    {
+                        "anonymous": false,
+                        "documentation": null,
+                        "id": 7575,
+                        "name": "WhitelistedRemoved",
+                        "nodeType": "EventDefinition",
+                        "parameters": {
+                            "id": 7574,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7573,
+                                    "indexed": true,
+                                    "name": "account",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7575,
+                                    "src": "560:23:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7572,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "560:7:56",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "559:25:56"
+                        },
+                        "src": "535:50:56"
+                    },
+                    {
+                        "constant": false,
+                        "id": 7577,
+                        "name": "_whitelisteds",
+                        "nodeType": "VariableDeclaration",
+                        "scope": 7668,
+                        "src": "591:32:56",
+                        "stateVariable": true,
+                        "storageLocation": "default",
+                        "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Role_$6964_storage",
+                            "typeString": "struct Roles.Role"
+                        },
+                        "typeName": {
+                            "contractScope": null,
+                            "id": 7576,
+                            "name": "Roles.Role",
+                            "nodeType": "UserDefinedTypeName",
+                            "referencedDeclaration": 6964,
+                            "src": "591:10:56",
+                            "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Role_$6964_storage_ptr",
+                                "typeString": "struct Roles.Role"
+                            }
+                        },
+                        "value": null,
+                        "visibility": "private"
+                    },
+                    {
+                        "body": {
+                            "id": 7588,
+                            "nodeType": "Block",
+                            "src": "657:124:56",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "arguments": [
+                                                    {
+                                                        "argumentTypes": null,
+                                                        "expression": {
+                                                            "argumentTypes": null,
+                                                            "id": 7581,
+                                                            "name": "msg",
+                                                            "nodeType": "Identifier",
+                                                            "overloadedDeclarations": [],
+                                                            "referencedDeclaration": 15678,
+                                                            "src": "689:3:56",
+                                                            "typeDescriptions": {
+                                                                "typeIdentifier": "t_magic_message",
+                                                                "typeString": "msg"
+                                                            }
+                                                        },
+                                                        "id": 7582,
+                                                        "isConstant": false,
+                                                        "isLValue": false,
+                                                        "isPure": false,
+                                                        "lValueRequested": false,
+                                                        "memberName": "sender",
+                                                        "nodeType": "MemberAccess",
+                                                        "referencedDeclaration": null,
+                                                        "src": "689:10:56",
+                                                        "typeDescriptions": {
+                                                            "typeIdentifier": "t_address_payable",
+                                                            "typeString": "address payable"
+                                                        }
+                                                    }
+                                                ],
+                                                "expression": {
+                                                    "argumentTypes": [
+                                                        {
+                                                            "typeIdentifier": "t_address_payable",
+                                                            "typeString": "address payable"
+                                                        }
+                                                    ],
+                                                    "id": 7580,
+                                                    "name": "isWhitelisted",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 7602,
+                                                    "src": "675:13:56",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
+                                                        "typeString": "function (address) view returns (bool)"
+                                                    }
+                                                },
+                                                "id": 7583,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "kind": "functionCall",
+                                                "lValueRequested": false,
+                                                "names": [],
+                                                "nodeType": "FunctionCall",
+                                                "src": "675:25:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                }
+                                            },
+                                            {
+                                                "argumentTypes": null,
+                                                "hexValue": "57686974656c6973746564526f6c653a2063616c6c657220646f6573206e6f742068617665207468652057686974656c697374656420726f6c65",
+                                                "id": 7584,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": true,
+                                                "kind": "string",
+                                                "lValueRequested": false,
+                                                "nodeType": "Literal",
+                                                "src": "702:60:56",
+                                                "subdenomination": null,
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_stringliteral_b20a1f25865e8f5d2779ba35c957f8e1d9075dc232d06cbb1a28b870695507ac",
+                                                    "typeString": "literal_string \"WhitelistedRole: caller does not have the Whitelisted role\""
+                                                },
+                                                "value": "WhitelistedRole: caller does not have the Whitelisted role"
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_bool",
+                                                    "typeString": "bool"
+                                                },
+                                                {
+                                                    "typeIdentifier": "t_stringliteral_b20a1f25865e8f5d2779ba35c957f8e1d9075dc232d06cbb1a28b870695507ac",
+                                                    "typeString": "literal_string \"WhitelistedRole: caller does not have the Whitelisted role\""
+                                                }
+                                            ],
+                                            "id": 7579,
+                                            "name": "require",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [
+                                                15681,
+                                                15682
+                                            ],
+                                            "referencedDeclaration": 15682,
+                                            "src": "667:7:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                                                "typeString": "function (bool,string memory) pure"
+                                            }
+                                        },
+                                        "id": 7585,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "667:96:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7586,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "667:96:56"
+                                },
+                                {
+                                    "id": 7587,
+                                    "nodeType": "PlaceholderStatement",
+                                    "src": "773:1:56"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 7589,
+                        "name": "onlyWhitelisted",
+                        "nodeType": "ModifierDefinition",
+                        "parameters": {
+                            "id": 7578,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "654:2:56"
+                        },
+                        "src": "630:151:56",
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 7601,
+                            "nodeType": "Block",
+                            "src": "854:50:56",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 7598,
+                                                "name": "account",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7591,
+                                                "src": "889:7:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": null,
+                                                "id": 7596,
+                                                "name": "_whitelisteds",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7577,
+                                                "src": "871:13:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_struct$_Role_$6964_storage",
+                                                    "typeString": "struct Roles.Role storage ref"
+                                                }
+                                            },
+                                            "id": 7597,
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "has",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 7037,
+                                            "src": "871:17:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$6964_storage_ptr_$_t_address_$returns$_t_bool_$bound_to$_t_struct$_Role_$6964_storage_ptr_$",
+                                                "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
+                                            }
+                                        },
+                                        "id": 7599,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "871:26:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "functionReturnParameters": 7595,
+                                    "id": 7600,
+                                    "nodeType": "Return",
+                                    "src": "864:33:56"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 7602,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "isWhitelisted",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7592,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7591,
+                                    "name": "account",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7602,
+                                    "src": "810:15:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7590,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "810:7:56",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "809:17:56"
+                        },
+                        "returnParameters": {
+                            "id": 7595,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7594,
+                                    "name": "",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7602,
+                                    "src": "848:4:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_bool",
+                                        "typeString": "bool"
+                                    },
+                                    "typeName": {
+                                        "id": 7593,
+                                        "name": "bool",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "848:4:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_bool",
+                                            "typeString": "bool"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "847:6:56"
+                        },
+                        "scope": 7668,
+                        "src": "787:117:56",
+                        "stateMutability": "view",
+                        "superFunction": null,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 7613,
+                            "nodeType": "Block",
+                            "src": "977:41:56",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 7610,
+                                                "name": "account",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7604,
+                                                "src": "1003:7:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            ],
+                                            "id": 7609,
+                                            "name": "_addWhitelisted",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 7651,
+                                            "src": "987:15:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                                                "typeString": "function (address)"
+                                            }
+                                        },
+                                        "id": 7611,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "987:24:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7612,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "987:24:56"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 7614,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [
+                            {
+                                "arguments": null,
+                                "id": 7607,
+                                "modifierName": {
+                                    "argumentTypes": null,
+                                    "id": 7606,
+                                    "name": "onlyWhitelistAdmin",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 7491,
+                                    "src": "958:18:56",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_modifier$__$",
+                                        "typeString": "modifier ()"
+                                    }
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "958:18:56"
+                            }
+                        ],
+                        "name": "addWhitelisted",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7605,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7604,
+                                    "name": "account",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7614,
+                                    "src": "934:15:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7603,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "934:7:56",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "933:17:56"
+                        },
+                        "returnParameters": {
+                            "id": 7608,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "977:0:56"
+                        },
+                        "scope": 7668,
+                        "src": "910:108:56",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 7625,
+                            "nodeType": "Block",
+                            "src": "1094:44:56",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 7622,
+                                                "name": "account",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7616,
+                                                "src": "1123:7:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            ],
+                                            "id": 7621,
+                                            "name": "_removeWhitelisted",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 7667,
+                                            "src": "1104:18:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                                                "typeString": "function (address)"
+                                            }
+                                        },
+                                        "id": 7623,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1104:27:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7624,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "1104:27:56"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 7626,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [
+                            {
+                                "arguments": null,
+                                "id": 7619,
+                                "modifierName": {
+                                    "argumentTypes": null,
+                                    "id": 7618,
+                                    "name": "onlyWhitelistAdmin",
+                                    "nodeType": "Identifier",
+                                    "overloadedDeclarations": [],
+                                    "referencedDeclaration": 7491,
+                                    "src": "1075:18:56",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_modifier$__$",
+                                        "typeString": "modifier ()"
+                                    }
+                                },
+                                "nodeType": "ModifierInvocation",
+                                "src": "1075:18:56"
+                            }
+                        ],
+                        "name": "removeWhitelisted",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7617,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7616,
+                                    "name": "account",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7626,
+                                    "src": "1051:15:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7615,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1051:7:56",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1050:17:56"
+                        },
+                        "returnParameters": {
+                            "id": 7620,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1094:0:56"
+                        },
+                        "scope": 7668,
+                        "src": "1024:114:56",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 7634,
+                            "nodeType": "Block",
+                            "src": "1182:47:56",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "expression": {
+                                                    "argumentTypes": null,
+                                                    "id": 7630,
+                                                    "name": "msg",
+                                                    "nodeType": "Identifier",
+                                                    "overloadedDeclarations": [],
+                                                    "referencedDeclaration": 15678,
+                                                    "src": "1211:3:56",
+                                                    "typeDescriptions": {
+                                                        "typeIdentifier": "t_magic_message",
+                                                        "typeString": "msg"
+                                                    }
+                                                },
+                                                "id": 7631,
+                                                "isConstant": false,
+                                                "isLValue": false,
+                                                "isPure": false,
+                                                "lValueRequested": false,
+                                                "memberName": "sender",
+                                                "nodeType": "MemberAccess",
+                                                "referencedDeclaration": null,
+                                                "src": "1211:10:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address_payable",
+                                                    "typeString": "address payable"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address_payable",
+                                                    "typeString": "address payable"
+                                                }
+                                            ],
+                                            "id": 7629,
+                                            "name": "_removeWhitelisted",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 7667,
+                                            "src": "1192:18:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_nonpayable$_t_address_$returns$__$",
+                                                "typeString": "function (address)"
+                                            }
+                                        },
+                                        "id": 7632,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1192:30:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7633,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "1192:30:56"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 7635,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "renounceWhitelisted",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7627,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1172:2:56"
+                        },
+                        "returnParameters": {
+                            "id": 7628,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1182:0:56"
+                        },
+                        "scope": 7668,
+                        "src": "1144:85:56",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "public"
+                    },
+                    {
+                        "body": {
+                            "id": 7650,
+                            "nodeType": "Block",
+                            "src": "1286:83:56",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 7643,
+                                                "name": "account",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7637,
+                                                "src": "1314:7:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": null,
+                                                "id": 7640,
+                                                "name": "_whitelisteds",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7577,
+                                                "src": "1296:13:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_struct$_Role_$6964_storage",
+                                                    "typeString": "struct Roles.Role storage ref"
+                                                }
+                                            },
+                                            "id": 7642,
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "add",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 6989,
+                                            "src": "1296:17:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$6964_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$6964_storage_ptr_$",
+                                                "typeString": "function (struct Roles.Role storage pointer,address)"
+                                            }
+                                        },
+                                        "id": 7644,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1296:26:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7645,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "1296:26:56"
+                                },
+                                {
+                                    "eventCall": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 7647,
+                                                "name": "account",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7637,
+                                                "src": "1354:7:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            ],
+                                            "id": 7646,
+                                            "name": "WhitelistedAdded",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 7571,
+                                            "src": "1337:16:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                                                "typeString": "function (address)"
+                                            }
+                                        },
+                                        "id": 7648,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1337:25:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7649,
+                                    "nodeType": "EmitStatement",
+                                    "src": "1332:30:56"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 7651,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "_addWhitelisted",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7638,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7637,
+                                    "name": "account",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7651,
+                                    "src": "1260:15:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7636,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1260:7:56",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1259:17:56"
+                        },
+                        "returnParameters": {
+                            "id": 7639,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1286:0:56"
+                        },
+                        "scope": 7668,
+                        "src": "1235:134:56",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "internal"
+                    },
+                    {
+                        "body": {
+                            "id": 7666,
+                            "nodeType": "Block",
+                            "src": "1429:88:56",
+                            "statements": [
+                                {
+                                    "expression": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 7659,
+                                                "name": "account",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7653,
+                                                "src": "1460:7:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            ],
+                                            "expression": {
+                                                "argumentTypes": null,
+                                                "id": 7656,
+                                                "name": "_whitelisteds",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7577,
+                                                "src": "1439:13:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_struct$_Role_$6964_storage",
+                                                    "typeString": "struct Roles.Role storage ref"
+                                                }
+                                            },
+                                            "id": 7658,
+                                            "isConstant": false,
+                                            "isLValue": true,
+                                            "isPure": false,
+                                            "lValueRequested": false,
+                                            "memberName": "remove",
+                                            "nodeType": "MemberAccess",
+                                            "referencedDeclaration": 7013,
+                                            "src": "1439:20:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_Role_$6964_storage_ptr_$_t_address_$returns$__$bound_to$_t_struct$_Role_$6964_storage_ptr_$",
+                                                "typeString": "function (struct Roles.Role storage pointer,address)"
+                                            }
+                                        },
+                                        "id": 7660,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1439:29:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7661,
+                                    "nodeType": "ExpressionStatement",
+                                    "src": "1439:29:56"
+                                },
+                                {
+                                    "eventCall": {
+                                        "argumentTypes": null,
+                                        "arguments": [
+                                            {
+                                                "argumentTypes": null,
+                                                "id": 7663,
+                                                "name": "account",
+                                                "nodeType": "Identifier",
+                                                "overloadedDeclarations": [],
+                                                "referencedDeclaration": 7653,
+                                                "src": "1502:7:56",
+                                                "typeDescriptions": {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            }
+                                        ],
+                                        "expression": {
+                                            "argumentTypes": [
+                                                {
+                                                    "typeIdentifier": "t_address",
+                                                    "typeString": "address"
+                                                }
+                                            ],
+                                            "id": 7662,
+                                            "name": "WhitelistedRemoved",
+                                            "nodeType": "Identifier",
+                                            "overloadedDeclarations": [],
+                                            "referencedDeclaration": 7575,
+                                            "src": "1483:18:56",
+                                            "typeDescriptions": {
+                                                "typeIdentifier": "t_function_event_nonpayable$_t_address_$returns$__$",
+                                                "typeString": "function (address)"
+                                            }
+                                        },
+                                        "id": 7664,
+                                        "isConstant": false,
+                                        "isLValue": false,
+                                        "isPure": false,
+                                        "kind": "functionCall",
+                                        "lValueRequested": false,
+                                        "names": [],
+                                        "nodeType": "FunctionCall",
+                                        "src": "1483:27:56",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_tuple$__$",
+                                            "typeString": "tuple()"
+                                        }
+                                    },
+                                    "id": 7665,
+                                    "nodeType": "EmitStatement",
+                                    "src": "1478:32:56"
+                                }
+                            ]
+                        },
+                        "documentation": null,
+                        "id": 7667,
+                        "implemented": true,
+                        "kind": "function",
+                        "modifiers": [],
+                        "name": "_removeWhitelisted",
+                        "nodeType": "FunctionDefinition",
+                        "parameters": {
+                            "id": 7654,
+                            "nodeType": "ParameterList",
+                            "parameters": [
+                                {
+                                    "constant": false,
+                                    "id": 7653,
+                                    "name": "account",
+                                    "nodeType": "VariableDeclaration",
+                                    "scope": 7667,
+                                    "src": "1403:15:56",
+                                    "stateVariable": false,
+                                    "storageLocation": "default",
+                                    "typeDescriptions": {
+                                        "typeIdentifier": "t_address",
+                                        "typeString": "address"
+                                    },
+                                    "typeName": {
+                                        "id": 7652,
+                                        "name": "address",
+                                        "nodeType": "ElementaryTypeName",
+                                        "src": "1403:7:56",
+                                        "stateMutability": "nonpayable",
+                                        "typeDescriptions": {
+                                            "typeIdentifier": "t_address",
+                                            "typeString": "address"
+                                        }
+                                    },
+                                    "value": null,
+                                    "visibility": "internal"
+                                }
+                            ],
+                            "src": "1402:17:56"
+                        },
+                        "returnParameters": {
+                            "id": 7655,
+                            "nodeType": "ParameterList",
+                            "parameters": [],
+                            "src": "1429:0:56"
+                        },
+                        "scope": 7668,
+                        "src": "1375:142:56",
+                        "stateMutability": "nonpayable",
+                        "superFunction": null,
+                        "visibility": "internal"
+                    }
+                ],
+                "scope": 7669,
+                "src": "396:1123:56"
+            }
+        ],
+        "src": "0:1520:56"
+    },
+    "functionHashes": {
+        "addWhitelistAdmin(address)": "7362d9c8",
+        "addWhitelisted(address)": "10154bad",
+        "isWhitelistAdmin(address)": "bb5f747b",
+        "isWhitelisted(address)": "3af32abf",
+        "removeWhitelisted(address)": "291d9549",
+        "renounceWhitelistAdmin()": "4c5a628c",
+        "renounceWhitelisted()": "d6cd9473"
+    },
+    "gasEstimates": {
+        "creation": {
+            "codeDepositCost": "302000",
+            "executionCost": "infinite",
+            "totalCost": "infinite"
+        },
+        "external": {
+            "addWhitelistAdmin(address)": "infinite",
+            "addWhitelisted(address)": "infinite",
+            "isWhitelistAdmin(address)": "infinite",
+            "isWhitelisted(address)": "infinite",
+            "removeWhitelisted(address)": "infinite",
+            "renounceWhitelistAdmin()": "infinite",
+            "renounceWhitelisted()": "infinite"
+        },
+        "internal": {
+            "_addWhitelisted(address)": "infinite",
+            "_removeWhitelisted(address)": "infinite"
+        }
+    }
+}

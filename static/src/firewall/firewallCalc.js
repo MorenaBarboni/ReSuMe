@@ -21,7 +21,7 @@ function getDangerousFiles(changedContracts, changedTests, dependencies) {
 }
 
 function getAffectedTests(dangerousFiles, tests, dependencies) {
-  tests = tests.map((t) => t.name);
+  tests = tests.map((t) => t.path);
   const affectedTests = dangerousFiles
     .filter((file) => tests.includes(file))
     .sort();
