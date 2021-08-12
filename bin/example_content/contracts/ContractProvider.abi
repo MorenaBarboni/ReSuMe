@@ -1,1 +1,0 @@
-[{"constant":false,"inputs":[{"name":"contractName","type":"bytes32"}],"name":"contracts","outputs":[{"name":"addr","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]
