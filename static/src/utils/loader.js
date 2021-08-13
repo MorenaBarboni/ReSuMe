@@ -1,9 +1,12 @@
 const path = require("path");
 const fs = require("fs");
 const config = require("../config");
+const glob = require("glob");
+const fileSys = require("./fileSys");
 
 function loadTests() {
-  const paths = getAllFiles(config.testsDir);
+  const paths = glob.sync(fileSys.testsDir);
+
   var tests = new Array();
   paths.forEach((test) => {
     tests.push({
@@ -17,7 +20,8 @@ function loadTests() {
 }
 
 function loadContracts() {
-  const paths = getAllFiles(config.contractsDir).filter((c) => c.endsWith(".sol"));
+  const paths = glob.sync(fileSys.contractsDir);
+
   var contracts = new Array();
   paths.forEach((contract) => {
     contracts.push({
@@ -26,7 +30,6 @@ function loadContracts() {
       content: fs.readFileSync(contract),
     });
   });
-
   return contracts;
 }
 

@@ -5,7 +5,9 @@ module.exports = {
     "C:/Users/franc/Desktop/alice-v1-monorepo-master/packages/contracts/contracts",
   testsDir:
     "C:/Users/franc/Desktop/alice-v1-monorepo-master/packages/contracts/test",
-  skipConrracts: [""],
+  skipContracts: [""],
   skipTets: [""],
-  resultsDir: "C:/Users/franc/Desktop",
+  remusDir: "",
+  contractsGlob: "/**/*.sol",
+  testsGlob: "/**/*.js",
 };

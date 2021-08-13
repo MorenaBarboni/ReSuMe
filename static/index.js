@@ -1,31 +1,16 @@
-const fSys = require("./src/utils/fSys");
+const fileSys = require("./src/utils/fileSys");
 const loader = require("./src/utils/loader");
 const dependenciesCalc = require("./src/dependencies/dependenciesCalc");
 const checksumCalc = require("./src/checksum/checksumCalc");
 const firewallCalc = require("./src/firewall/firewallCalc");
 
-fSys.createAmbient();
+fileSys.createAmbient();
 
 const contracts = loader.loadContracts();
 const changedContracts = checksumCalc.checkContracts(contracts);
 
 const tests = loader.loadTests();
 const changedTests = checksumCalc.checkTests(tests);
-
-// const dangerousContracts = firewallCalc.getDangerousContracts(
-//   contracts,
-//   changedContracts
-// );
-// const dangerousTests = firewallCalc.getDangerousTests(
-//   tests,
-//   changedContracts,
-//   dangerousContracts
-// );
-
-// const dependencies =
-//   dependenciesCalc.buildContractsDependencyCircularGraph(contracts);
-// const dependenciesTest =
-//   dependenciesCalc.buildTestsDependencyCircularGraph(tests);
 
 const allDependencies = dependenciesCalc.buildAllDependenciesGraph(
   contracts,

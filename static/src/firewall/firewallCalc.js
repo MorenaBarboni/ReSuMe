@@ -1,4 +1,4 @@
-const writer = require("../utils/writer");
+const fileSys = require("../utils/fileSys");
 
 const unique = (value, index, self) => {
   return self.indexOf(value) === index;
@@ -15,7 +15,7 @@ function getDangerousFiles(changedContracts, changedTests, dependencies) {
 
   const result = dangerousFiles.filter(unique).sort();
 
-  writer.writeJsonToFile("firewall.json", result);
+  fileSys.writeFile(fileSys.types.firewall, result);
 
   return result;
 }
@@ -32,9 +32,12 @@ function getAffectedTests(dangerousFiles, tests, dependencies) {
     result = result.concat(dep);
   });
 
-  result = result.filter((file) => tests.includes(file)).sort().filter(unique);
+  result = result
+    .filter((file) => tests.includes(file))
+    .sort()
+    .filter(unique);
 
-  writer.writeJsonToFile("testsToRerun.json", result);
+  fileSys.writeFile(fileSys.types.regression_tests, result);
 
   return result;
 }

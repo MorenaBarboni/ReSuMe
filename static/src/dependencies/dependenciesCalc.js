@@ -1,5 +1,5 @@
 const path = require("path");
-const writer = require("../utils/writer");
+const fileSys = require("../utils/fileSys");
 var DepGraph = require("dependency-graph").DepGraph;
 
 function buildContractsDependencyCircularGraph(contracts) {
@@ -386,7 +386,7 @@ function buildAllDependenciesGraph(contracts, tests) {
     allDependencies.push(dep);
   });
 
-  writer.writeJsonToFile("dependencies.json", allDependencies);
+  fileSys.writeFile(fileSys.types.all_dependencies, allDependencies);
 
   var contractDependencies = new Array();
   var testDependencies = new Array();
@@ -395,8 +395,8 @@ function buildAllDependenciesGraph(contracts, tests) {
     else contractDependencies.push(dep);
   });
 
-  writer.writeJsonToFile("testDependencies.json", testDependencies);
-  writer.writeJsonToFile("contractDependencies.json", contractDependencies);
+  fileSys.writeFile(fileSys.types.contracts_deps, contractDependencies);
+  fileSys.writeFile(fileSys.types.tests_deps, testDependencies);
 
   return graph;
 }

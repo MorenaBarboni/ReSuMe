@@ -1,15 +1,12 @@
 const fs = require("fs");
-const writer = require("../utils/writer");
+const fileSys = require("../utils/fileSys");
 const path = require("path");
-const fSys = require("../utils/fSys");
 const checksum = require("checksum");
 
 function checkContracts(contracts) {
-  const checksumsPath = path.join(fSys.resDir, "contractsChecksums.json");
-
-  var oldChecksumsExists = fs.existsSync(checksumsPath);
+  var oldChecksumsExists = fileSys.existsContractsChecksums();
   var oldFilesChecksums;
-  if (oldChecksumsExists) oldFilesChecksums = require(checksumsPath);
+  if (oldChecksumsExists) oldFilesChecksums = fileSys.loadContractsChecksums();
 
   var newFilesChecksums = new Array();
   contracts.forEach((contract) => {
@@ -28,7 +25,7 @@ function checkContracts(contracts) {
     newFilesChecksums.push(current);
   });
 
-  writer.writeJsonToFile("contractsChecksums.json", newFilesChecksums);
+  fileSys.writeFile(fileSys.types.contracts_checksums, newFilesChecksums);
 
   var changedFilesNames = new Array();
   newFilesChecksums.forEach((element) => {
@@ -37,18 +34,15 @@ function checkContracts(contracts) {
   });
   //if (changedFilesNames.length == 0) changedFilesNames.push("none");
 
-  writer.writeJsonToFile("changedContracts.json", changedFilesNames);
+  fileSys.writeFile(fileSys.types.contracts_changed, changedFilesNames);
 
   return changedFilesNames;
 }
 
 function checkTests(tests) {
-  const checksumsPath = path.join(fSys.resDir, "testsChecksums.json");
-
-  var oldChecksumsExists = fs.existsSync(checksumsPath);
+  var oldChecksumsExists = fileSys.existsTestsChecksums();
   var oldFilesChecksums;
-  if (oldChecksumsExists) oldFilesChecksums = require(checksumsPath);
-
+  if (oldChecksumsExists) oldFilesChecksums = fileSys.loadTestsChecksums();
   var newFilesChecksums = new Array();
   tests.forEach((test) => {
     var current = {
@@ -66,7 +60,7 @@ function checkTests(tests) {
     newFilesChecksums.push(current);
   });
 
-  writer.writeJsonToFile("testsChecksums.json", newFilesChecksums);
+  fileSys.writeFile(fileSys.types.tests_checksums, newFilesChecksums);
 
   var changedFilesNames = new Array();
   newFilesChecksums.forEach((element) => {
@@ -75,7 +69,7 @@ function checkTests(tests) {
   });
   //if (changedFilesNames.length == 0) changedFilesNames.push("none");
 
-  writer.writeJsonToFile("changedTests.json", changedFilesNames);
+  fileSys.writeFile(fileSys.types.tests_changed, changedFilesNames);
 
   return changedFilesNames;
 }
