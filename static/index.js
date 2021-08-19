@@ -1,66 +1,47 @@
 const fileSys = require("./src/utils/fileSys");
 const loader = require("./src/utils/loader");
+const logger = require("./src/utils/logger");
 const dependenciesCalc = require("./src/dependencies/dependenciesCalc");
 const checksumCalc = require("./src/checksum/checksumCalc");
 const firewallCalc = require("./src/firewall/firewallCalc");
+const chalk = require("chalk");
 
+//.remus dir
 fileSys.createAmbient();
 
+//load files
 const contracts = loader.loadContracts();
-const changedContracts = checksumCalc.checkContracts(contracts);
-
 const tests = loader.loadTests();
-const changedTests = checksumCalc.checkTests(tests);
 
-const allDependencies = dependenciesCalc.buildAllDependenciesGraph(
+//files dependencies (C-use-C, T-use-C, T-use-T)
+const dependencyGraph = dependenciesCalc.buildAllDependenciesGraph(
   contracts,
   tests
 );
 
+//changed files (+ newly added files) since last execution
+const changedContracts = checksumCalc.checkContracts(contracts);
+const changedTests = checksumCalc.checkTests(tests);
+
+//file firewall around dangerous files (contracts and tests)
 const dangerousFiles = firewallCalc.getDangerousFiles(
   changedContracts,
   changedTests,
-  allDependencies
+  dependencyGraph
 );
 
+//regression tests
 const testsToRerun = firewallCalc.getAffectedTests(
   dangerousFiles,
   tests,
-  allDependencies
+  dependencyGraph
 );
 
-console.log(
-  "Changed contracts" +
-    (changedContracts.length == 0
-      ? ": "
-      : " (" + changedContracts.length + "):") +
-    (changedContracts.length == 0
-      ? "none"
-      : JSON.stringify(changedContracts, null, "\t"))
-);
 
-console.log(
-  "Changed tests" +
-    (changedTests.length == 0 ? ": " : " (" + changedTests.length + "):") +
-    (changedTests.length == 0
-      ? "none"
-      : JSON.stringify(changedTests, null, "\t"))
-);
+logger.logPaths("Changed contracts", changedContracts);
 
-console.log(
-  "Firewall around" +
-    (dangerousFiles.length == 0 ? ": " : " (" + dangerousFiles.length + "):") +
-    (dangerousFiles.length == 0
-      ? "none"
-      : JSON.stringify(dangerousFiles, null, "\t"))
-);
+logger.logPaths("Changed tests", changedTests);
 
-console.log(
-  "Tests to rerun" +
-    (testsToRerun.length == 0 ? ": " : " (" + testsToRerun.length + "):") +
-    (testsToRerun.length == 0
-      ? "none"
-      : JSON.stringify(testsToRerun, null, "\t"))
-);
+logger.logPaths("Files firewall", dangerousFiles);
 
-console.log();
+logger.logPaths("Regression tests", testsToRerun);

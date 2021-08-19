@@ -1,13 +1,17 @@
-const fs = require("fs");
+const fs = require("fs-extra");
 const path = require("path");
 const config = require("../config");
 
-const contractsDir = config.contractsDir + config.contractsGlob;
-const testsDir = config.testsDir + config.testsGlob;
+const loadContractsDir = config.contractsDir + config.contractsGlob;
+const loadTestsDir = config.testsDir + config.testsGlob;
 
 const remusDir = path.join(config.remusDir, ".remus");
 
-const checksumsDir = path.join(remusDir, "checksums");
+const baselineDir = path.join(remusDir, "baseline");
+const contracts_baseline = path.join(baselineDir, "contracts");
+const tests_baseline = path.join(baselineDir, "tests");
+
+const checksumsDir = path.join(remusDir, ".checksums");
 const contracts_checksums = path.join(checksumsDir, "contracts_checksums.json");
 const tests_checksums = path.join(checksumsDir, "tests_checksums.json");
 
@@ -23,9 +27,7 @@ const all_dependencies = path.join(dependenciesDir, "all_dependencies.json");
 const firewallDir = path.join(remusDir, "firewall");
 const files_firewall = path.join(firewallDir, "files_firewall.json");
 
-const regression_tests = path.join(firewallDir, "regression_tests.json");
-
-const baselineDir = path.join(remusDir, "baseline");
+const regression_tests = path.join(remusDir, "regression_tests.json");
 
 function createAmbient() {
   if (!fs.existsSync(remusDir)) fs.mkdirSync(remusDir);
@@ -33,7 +35,9 @@ function createAmbient() {
   if (!fs.existsSync(changesDir)) fs.mkdirSync(changesDir);
   if (!fs.existsSync(firewallDir)) fs.mkdirSync(firewallDir);
   if (!fs.existsSync(checksumsDir)) fs.mkdirSync(checksumsDir);
+
   if (!fs.existsSync(baselineDir)) fs.mkdirSync(baselineDir);
+  else fs.emptyDirSync(baselineDir);
 }
 
 function writeFile(type, content) {
@@ -100,10 +104,20 @@ function loadTestsChecksums() {
   return require(path.resolve(tests_checksums));
 }
 
+function copyContractsToBaseline() {
+  fs.copySync(config.contractsDir, contracts_baseline);
+}
+
+function copyTestsToBaseline() {
+  fs.copySync(config.testsDir, tests_baseline);
+}
+
 module.exports = {
   createAmbient: createAmbient,
-  contractsDir: contractsDir,
-  testsDir: testsDir,
+  loadContractsDir: loadContractsDir,
+  loadTestsDir: loadTestsDir,
+  copyContractsToBaseline: copyContractsToBaseline,
+  copyTestsToBaseline: copyTestsToBaseline,
   existsContractsChecksums: existsContractsChecksums,
   loadContractsChecksums: loadContractsChecksums,
   existsTestsChecksums: existsTestsChecksums,

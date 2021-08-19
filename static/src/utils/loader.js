@@ -1,11 +1,12 @@
 const path = require("path");
 const fs = require("fs");
-const config = require("../config");
 const glob = require("glob");
 const fileSys = require("./fileSys");
 
 function loadTests() {
-  const paths = glob.sync(fileSys.testsDir);
+  fileSys.copyTestsToBaseline();
+
+  const paths = glob.sync(fileSys.loadTestsDir);
 
   var tests = new Array();
   paths.forEach((test) => {
@@ -20,7 +21,9 @@ function loadTests() {
 }
 
 function loadContracts() {
-  const paths = glob.sync(fileSys.contractsDir);
+  fileSys.copyContractsToBaseline();
+
+  const paths = glob.sync(fileSys.loadContractsDir);
 
   var contracts = new Array();
   paths.forEach((contract) => {

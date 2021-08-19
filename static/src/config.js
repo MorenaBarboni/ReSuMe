@@ -1,10 +1,10 @@
 module.exports = {
   projectDir:
-    "C:/Users/franc/Desktop/alice-v1-monorepo-master/packages/contracts",
+    "C:/Users/franc/Desktop/Ethereum workspace/EtherCrowdfunding-master",
   contractsDir:
-    "C:/Users/franc/Desktop/alice-v1-monorepo-master/packages/contracts/contracts",
+    "C:/Users/franc/Desktop/Ethereum workspace/EtherCrowdfunding-master/contracts",
   testsDir:
-    "C:/Users/franc/Desktop/alice-v1-monorepo-master/packages/contracts/test",
+    "C:/Users/franc/Desktop/Ethereum workspace/EtherCrowdfunding-master/test",
   skipContracts: [""],
   skipTets: [""],
   remusDir: "",
