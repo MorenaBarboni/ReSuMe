@@ -36,23 +36,16 @@ function loadContracts() {
   return contracts;
 }
 
-const getAllFiles = function (dirPath, arrayOfFiles) {
-  const files = fs.readdirSync(dirPath);
+function loadMutationOperators() {
+  fileSys.copyMutationOpertatorsToBaseline();
 
-  arrayOfFiles = arrayOfFiles || [];
+  const ops = require(fileSys.loadMutationOperatorsFile);
 
-  files.forEach(function (file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
-    } else {
-      arrayOfFiles.push(path.join(dirPath, "/", file));
-    }
-  });
-
-  return arrayOfFiles;
-};
+  return ops;
+}
 
 module.exports = {
   loadTests: loadTests,
   loadContracts: loadContracts,
+  loadMutationOperators: loadMutationOperators,
 };

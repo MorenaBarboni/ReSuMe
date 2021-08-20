@@ -20,28 +20,86 @@ const dependencyGraph = dependenciesCalc.buildAllDependenciesGraph(
 );
 
 //changed files (+ newly added files) since last execution
-const changedContracts = checksumCalc.checkContracts(contracts);
-const changedTests = checksumCalc.checkTests(tests);
+const changedContracts_paths = checksumCalc.checkContracts(contracts);
+const changedTests_paths = checksumCalc.checkTests(tests);
 
 //file firewall around dangerous files (contracts and tests)
-const dangerousFiles = firewallCalc.getDangerousFiles(
-  changedContracts,
-  changedTests,
-  dependencyGraph
+const filesFirewall = firewallCalc.computeFirewall(
+  changedContracts_paths,
+  changedTests_paths,
+  dependencyGraph,
+  tests
 );
 
 //regression tests
-const testsToRerun = firewallCalc.getAffectedTests(
-  dangerousFiles,
-  tests,
-  dependencyGraph
+const regressionTests = firewallCalc.extractTestsFromFirewall(
+  filesFirewall,
+  tests
 );
 
+console.log();
+console.log("######### REGRESSION TESTING #########");
+console.log();
 
-logger.logPaths("Changed contracts", changedContracts);
+logger.logPaths("Changed contracts", changedContracts_paths);
 
-logger.logPaths("Changed tests", changedTests);
+logger.logPaths("Changed tests", changedTests_paths);
 
-logger.logPaths("Files firewall", dangerousFiles);
+logger.logPaths("Files firewall", filesFirewall);
 
-logger.logPaths("Regression tests", testsToRerun);
+logger.logPaths("Regression tests", regressionTests);
+
+console.log();
+
+/// MUTATION TESTING STRAT
+console.log("######### REGRESSION MUTATION TESTING #########");
+console.log();
+
+//SE DECIDIAMO DI SFOLTIRE I MUTANTI
+//Genero i mutanti di:
+//contratti alterati +
+//contratti che usano transitivamente i contratti alterati
+//aka: contratti nel firewall
+const contractsFromFirewall = firewallCalc.extractContractsFromFirewall(
+  filesFirewall,
+  contracts
+);
+logger.logPaths("Contracts from firewall", contractsFromFirewall);
+
+//REGRESSION TESTS
+//Fanno parte dei regression tests i test che utilizzano:
+//i contratti da cui genero i mutanti +
+//i test alterati
+//aka: tests nel firewall
+const testsFromFirewall = firewallCalc.extractTestsFromFirewall(
+  filesFirewall,
+  tests
+);
+logger.logPaths("Tests from firewall", testsFromFirewall);
+
+//aggiungo ai mutanti i mutanti generati da:
+//contratti che vengono utilizzati dai test alterati
+const contractsUsedByTests = firewallCalc.getContractsUsedByTests(
+  changedTests_paths,
+  dependencyGraph,
+  contracts
+);
+logger.logPaths("Contracts used by changed tests", contractsUsedByTests);
+
+const unique = (value, index, self) => {
+  return self.indexOf(value) === index;
+};
+const mutatingContracts = contractsUsedByTests.concat(contractsFromFirewall).filter(unique);
+logger.logPaths("Contracts to be mutated", mutatingContracts);
+
+
+logger.logPaths("Regression tests", testsFromFirewall);
+
+//FINE
+
+//se cambiano gli operatori cambiano potenzialmente i mutanti di tutti i contratti
+const operators = loader.loadMutationOperators();
+
+const bool = checksumCalc.mutationOperatorsChanged(operators);
+
+console.log("Mutation operators changhed since last run: " + chalk.green(bool));

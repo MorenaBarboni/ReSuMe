@@ -379,7 +379,7 @@ function buildAllDependenciesGraph(contracts, tests) {
 
     const dep = {
       file: file.path,
-      //uses: graph.dependenciesOf(file.name),
+      uses: graph.dependenciesOf(file.path),
       isUsedBy: graph.dependantsOf(file.path),
     };
 

@@ -4,45 +4,119 @@ const unique = (value, index, self) => {
   return self.indexOf(value) === index;
 };
 
-function getDangerousFiles(changedContracts, changedTests, dependencies) {
-  const changedFiles = changedContracts.concat(changedTests);
-  var dangerousFiles = changedFiles;
+function computeFirewall(
+  changedContracts_paths,
+  changedTests_paths,
+  dependencyGraph,
+  tests
+) {
+  var firewall = changedContracts_paths;
 
-  changedFiles.forEach((file) => {
-    const dep = dependencies.dependantsOf(file);
-    dangerousFiles = dangerousFiles.concat(dep);
+  changedContracts_paths.forEach((path) => {
+    const dep = dependencyGraph.dependantsOf(path);
+    firewall = firewall.concat(dep);
   });
 
-  const result = dangerousFiles.filter(unique).sort();
+  firewall = firewall.concat(changedTests_paths).filter(unique);
 
-  fileSys.writeFile(fileSys.types.firewall, result);
+  const tests_paths = tests.map((t) => t.path);
+  const testsInFirewall = firewall.filter((file) => tests_paths.includes(file));
+  testsInFirewall.forEach((path) => {
+    const dep = dependencyGraph.dependantsOf(path);
+    var depTest = dependencyGraph.dependenciesOf(path);
+    depTest = depTest.filter((file) => tests_paths.includes(file));
+
+    firewall = firewall.concat(dep).concat(depTest);
+  });
+
+  firewall = firewall.filter(unique).sort();
+
+  fileSys.writeFile(fileSys.types.firewall, firewall);
+
+  return firewall;
+
+  // const changedFiles_paths = changedContracts_paths.concat(changedTests_paths);
+  // var firewall = changedFiles_paths;
+
+  // changedFiles_paths.forEach((path) => {
+  //   const dep = dependencies.dependantsOf(path);
+  //   firewall = firewall.concat(dep);
+  // });
+
+  // firewall = firewall.filter(unique).sort();
+
+  // fileSys.writeFile(fileSys.types.firewall, firewall);
+
+  // return firewall;
+}
+
+function extractTestsFromFirewall(filesFirewall, tests) {
+  const tests_paths = tests.map((t) => t.path);
+  const regressionTests = filesFirewall.filter((file) =>
+    tests_paths.includes(file)
+  );
+
+  fileSys.writeFile(fileSys.types.regression_tests, regressionTests);
+
+  return regressionTests;
+}
+
+function extractContractsFromFirewall(filesFirewall, contracts) {
+  const contracts_paths = contracts.map((c) => c.path);
+  const contractsInFirewall = filesFirewall.filter((file) =>
+    contracts_paths.includes(file)
+  );
+
+  return contractsInFirewall;
+}
+
+function getContractsUsedByTests(testsRef, dependencyGraph, contracts) {
+  const contracts_paths = contracts.map((c) => c.path);
+  var result = new Array();
+  testsRef.forEach((path) => {
+    const dep = dependencyGraph
+      .dependenciesOf(path)
+      .filter((file) => contracts_paths.includes(file));
+    result = result.concat(dep);
+  });
+  result = result.filter(unique).sort();
 
   return result;
 }
 
-function getAffectedTests(dangerousFiles, tests, dependencies) {
-  tests = tests.map((t) => t.path);
-  const affectedTests = dangerousFiles
-    .filter((file) => tests.includes(file))
-    .sort();
+function getAffectedContracts(
+  contracts,
+  filesFirewall,
+  changedTests_paths,
+  dependencies
+) {
+  contracts = contracts.map((c) => c.path);
+  var affectedContracts = filesFirewall;
 
-  var result = affectedTests;
-  affectedTests.forEach((test) => {
-    const dep = dependencies.dependenciesOf(test);
-    result = result.concat(dep);
+  changedTests_paths.forEach((path) => {
+    const dep = dependencies.dependenciesOf(path);
+    affectedContracts = affectedContracts.concat(dep);
   });
 
-  result = result
-    .filter((file) => tests.includes(file))
-    .sort()
-    .filter(unique);
+  affectedContracts = affectedContracts
+    .filter((file) => contracts.includes(file))
+    .filter(unique)
+    .sort();
 
-  fileSys.writeFile(fileSys.types.regression_tests, result);
+  // var result = result
+  //   .filter((file) => tests.includes(file))
+  //   .sort()
+  //   .filter(unique);
 
-  return result;
+  //fileSys.writeFile(fileSys.types.regression_tests, result);
+
+  return affectedContracts;
 }
 
 module.exports = {
-  getDangerousFiles: getDangerousFiles,
-  getAffectedTests: getAffectedTests,
+  computeFirewall: computeFirewall,
+  extractTestsFromFirewall: extractTestsFromFirewall,
+  extractContractsFromFirewall: extractContractsFromFirewall,
+  getContractsUsedByTests: getContractsUsedByTests,
+  getAffectedContracts: getAffectedContracts,
 };

@@ -4,16 +4,19 @@ const config = require("../config");
 
 const loadContractsDir = config.contractsDir + config.contractsGlob;
 const loadTestsDir = config.testsDir + config.testsGlob;
+const loadMutationOperatorsFile = config.mutationOpConfig;
 
 const remusDir = path.join(config.remusDir, ".remus");
 
 const baselineDir = path.join(remusDir, "baseline");
 const contracts_baseline = path.join(baselineDir, "contracts");
 const tests_baseline = path.join(baselineDir, "tests");
+const mutation_baseline = path.join(baselineDir, "mutation");
 
 const checksumsDir = path.join(remusDir, ".checksums");
 const contracts_checksums = path.join(checksumsDir, "contracts_checksums.json");
 const tests_checksums = path.join(checksumsDir, "tests_checksums.json");
+const operators_checksums = path.join(checksumsDir, "operators_checksums.json");
 
 const changesDir = path.join(remusDir, "changes");
 const contracts_changed = path.join(changesDir, "contracts_changed.json");
@@ -30,6 +33,8 @@ const files_firewall = path.join(firewallDir, "files_firewall.json");
 const regression_tests = path.join(remusDir, "regression_tests.json");
 
 function createAmbient() {
+  console.log("Project dir: " + config.projectDir);
+
   if (!fs.existsSync(remusDir)) fs.mkdirSync(remusDir);
   if (!fs.existsSync(dependenciesDir)) fs.mkdirSync(dependenciesDir);
   if (!fs.existsSync(changesDir)) fs.mkdirSync(changesDir);
@@ -38,6 +43,8 @@ function createAmbient() {
 
   if (!fs.existsSync(baselineDir)) fs.mkdirSync(baselineDir);
   else fs.emptyDirSync(baselineDir);
+
+  if (!fs.existsSync(mutation_baseline)) fs.mkdirSync(mutation_baseline);
 }
 
 function writeFile(type, content) {
@@ -71,6 +78,8 @@ function adequatePath(type) {
       return remusDir;
     case types.regression_tests:
       return regression_tests;
+    case types.operators_checksums:
+      return operators_checksums;
   }
 }
 
@@ -78,6 +87,7 @@ const types = {
   baseline: 0,
   contracts_checksums: 1,
   tests_checksums: 2,
+  operators_checksums: 11,
   contracts_changed: 3,
   tests_changed: 4,
   contracts_deps: 5,
@@ -104,6 +114,14 @@ function loadTestsChecksums() {
   return require(path.resolve(tests_checksums));
 }
 
+function existsMutationOperators() {
+  return fs.existsSync(operators_checksums);
+}
+
+function loadMutationOperators() {
+  return require(path.resolve(operators_checksums));
+}
+
 function copyContractsToBaseline() {
   fs.copySync(config.contractsDir, contracts_baseline);
 }
@@ -112,16 +130,27 @@ function copyTestsToBaseline() {
   fs.copySync(config.testsDir, tests_baseline);
 }
 
+function copyMutationOpertatorsToBaseline() {
+  fs.copySync(
+    config.mutationOpConfig,
+    path.join(mutation_baseline, path.basename(config.mutationOpConfig))
+  );
+}
+
 module.exports = {
   createAmbient: createAmbient,
   loadContractsDir: loadContractsDir,
   loadTestsDir: loadTestsDir,
+  loadMutationOperatorsFile: loadMutationOperatorsFile,
   copyContractsToBaseline: copyContractsToBaseline,
   copyTestsToBaseline: copyTestsToBaseline,
+  copyMutationOpertatorsToBaseline: copyMutationOpertatorsToBaseline,
   existsContractsChecksums: existsContractsChecksums,
   loadContractsChecksums: loadContractsChecksums,
   existsTestsChecksums: existsTestsChecksums,
   loadTestsChecksums: loadTestsChecksums,
+  existsMutationOperators: existsMutationOperators,
+  loadMutationOperators: loadMutationOperators,
   types: types,
   writeFile: writeFile,
 };

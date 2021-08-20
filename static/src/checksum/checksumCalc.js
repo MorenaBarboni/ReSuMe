@@ -27,16 +27,16 @@ function checkContracts(contracts) {
 
   fileSys.writeFile(fileSys.types.contracts_checksums, newFilesChecksums);
 
-  var changedFilesNames = new Array();
+  var changedFiles_paths = new Array();
   newFilesChecksums.forEach((element) => {
     if (element.checksum != element.lastChecksum)
-      changedFilesNames.push(element.filePath);
+      changedFiles_paths.push(element.filePath);
   });
-  //if (changedFilesNames.length == 0) changedFilesNames.push("none");
+  //if (changedFiles_paths.length == 0) changedFiles_paths.push("none");
 
-  fileSys.writeFile(fileSys.types.contracts_changed, changedFilesNames);
+  fileSys.writeFile(fileSys.types.contracts_changed, changedFiles_paths);
 
-  return changedFilesNames;
+  return changedFiles_paths; 
 }
 
 function checkTests(tests) {
@@ -62,19 +62,37 @@ function checkTests(tests) {
 
   fileSys.writeFile(fileSys.types.tests_checksums, newFilesChecksums);
 
-  var changedFilesNames = new Array();
+  var changedFiles_paths = new Array();
   newFilesChecksums.forEach((element) => {
     if (element.checksum != element.lastChecksum)
-      changedFilesNames.push(element.filePath);
+      changedFiles_paths.push(element.filePath);
   });
-  //if (changedFilesNames.length == 0) changedFilesNames.push("none");
+  //if (changedFiles_paths.length == 0) changedFiles_paths.push("none");
 
-  fileSys.writeFile(fileSys.types.tests_changed, changedFilesNames);
+  fileSys.writeFile(fileSys.types.tests_changed, changedFiles_paths);
 
-  return changedFilesNames;
+  return changedFiles_paths;
+}
+
+function mutationOperatorsChanged(newOperators) {
+  var oldOperatorsExists = fileSys.existsMutationOperators();
+  var oldOperators;
+  var bool = true;
+  if (oldOperatorsExists) {
+    oldOperators = fileSys.loadMutationOperators();
+    bool = false;
+    Object.keys(oldOperators).forEach(function (k) {
+      if (oldOperators[k] != newOperators[k]) bool = true;
+    });
+  }
+
+  fileSys.writeFile(fileSys.types.operators_checksums, newOperators);
+
+  return bool;
 }
 
 module.exports = {
   checkContracts: checkContracts,
   checkTests: checkTests,
+  mutationOperatorsChanged: mutationOperatorsChanged,
 };

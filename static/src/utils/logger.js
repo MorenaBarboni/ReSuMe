@@ -12,8 +12,8 @@ function logPaths(title, paths) {
         "\t" + path.parse(p).dir + "/" + chalk.bold(path.basename(p))
       );
     });
-    console.log();
   }
+  console.log();
 }
 
 module.exports = { logPaths: logPaths };
