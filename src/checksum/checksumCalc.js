@@ -36,7 +36,7 @@ function checkContracts(contracts) {
 
   fileSys.writeFile(fileSys.types.contracts_changed, changedFiles_paths);
 
-  return changedFiles_paths; 
+  return changedFiles_paths;
 }
 
 function checkTests(tests) {

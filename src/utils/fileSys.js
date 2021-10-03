@@ -18,7 +18,7 @@ const contracts_checksums = path.join(checksumsDir, "contracts_checksums.json");
 const tests_checksums = path.join(checksumsDir, "tests_checksums.json");
 const operators_checksums = path.join(checksumsDir, "operators_checksums.json");
 
-const changesDir = path.join(remusDir, "changes");
+const changesDir = path.join(remusDir, "changed_files");
 const contracts_changed = path.join(changesDir, "contracts_changed.json");
 const tests_changed = path.join(changesDir, "tests_changed.json");
 
@@ -31,6 +31,7 @@ const firewallDir = path.join(remusDir, "firewall");
 const files_firewall = path.join(firewallDir, "files_firewall.json");
 
 const regression_tests = path.join(remusDir, "regression_tests.json");
+const regression_contracts = path.join(remusDir, "regression_contracts.json");
 
 function createAmbient() {
   console.log("Project dir: " + config.projectDir);
@@ -76,6 +77,8 @@ function adequatePath(type) {
       return files_firewall;
     case types.result:
       return remusDir;
+    case types.regression_contracts:
+      return regression_contracts;
     case types.regression_tests:
       return regression_tests;
     case types.operators_checksums:
@@ -96,6 +99,7 @@ const types = {
   firewall: 7,
   result: 8,
   regression_tests: 9,
+  regression_contracts: 12,
 };
 
 function existsContractsChecksums() {
@@ -122,6 +126,14 @@ function loadMutationOperators() {
   return require(path.resolve(operators_checksums));
 }
 
+function loadPreviousMatrixFile() {
+  return fs.readFileSync(config.previousMatrixPath);
+}
+
+function loadCurrentMatrixFile() {
+  return fs.readFileSync(config.currentMatrixPath);
+}
+
 function copyContractsToBaseline() {
   fs.copySync(config.contractsDir, contracts_baseline);
 }
@@ -142,6 +154,8 @@ module.exports = {
   loadContractsDir: loadContractsDir,
   loadTestsDir: loadTestsDir,
   loadMutationOperatorsFile: loadMutationOperatorsFile,
+  loadPreviousMatrixFile: loadPreviousMatrixFile,
+  loadCurrentMatrixFile: loadCurrentMatrixFile,
   copyContractsToBaseline: copyContractsToBaseline,
   copyTestsToBaseline: copyTestsToBaseline,
   copyMutationOpertatorsToBaseline: copyMutationOpertatorsToBaseline,
