@@ -9,6 +9,6 @@ module.exports = {
   remusDir: "",
   mutationOpConfig:
     "C:/Users/franc/Desktop/SuMo-SOlidity-MUtator-master/src/operators.config.json",
-  previousMatrixPath: "C:/Users/franc/Desktop/ABC_0_log.txt",
-  currentMatrixPath: "C:/Users/franc/Desktop/ABC_1_partial_log.txt"
+  previousMatrixPath: "C:/Users/franc/Desktop/ABC_0_log - Copia.txt",
+  currentMatrixPath: "C:/Users/franc/Desktop/ABC_1_partial_log - Copia.txt"
 };

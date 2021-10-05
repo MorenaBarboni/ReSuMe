@@ -7,6 +7,7 @@ const loadTestsDir = config.testsDir + config.testsGlob;
 const loadMutationOperatorsFile = config.mutationOpConfig;
 
 const remusDir = path.join(config.remusDir, ".remus");
+const report = path.join(remusDir, "report.txt");
 
 const baselineDir = path.join(remusDir, "baseline");
 const contracts_baseline = path.join(baselineDir, "contracts");
@@ -37,6 +38,8 @@ function createAmbient() {
   console.log("Project dir: " + config.projectDir);
 
   if (!fs.existsSync(remusDir)) fs.mkdirSync(remusDir);
+  fs.createFileSync(report);
+  fs.writeFileSync(report, "########################### REPORT ###########################" + "\n");
   if (!fs.existsSync(dependenciesDir)) fs.mkdirSync(dependenciesDir);
   if (!fs.existsSync(changesDir)) fs.mkdirSync(changesDir);
   if (!fs.existsSync(firewallDir)) fs.mkdirSync(firewallDir);
@@ -167,4 +170,5 @@ module.exports = {
   loadMutationOperators: loadMutationOperators,
   types: types,
   writeFile: writeFile,
+  report: report,
 };

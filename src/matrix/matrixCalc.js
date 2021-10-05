@@ -190,7 +190,9 @@ function updateMutationScoreFromPreviousMatrixJson(
 
 function updateCurrentMatrixFromPreviousMatrixJson(
   previousMatrixJson,
-  currentMatrixJson
+  currentMatrixJson,
+  allContracts,
+  allTests
 ) {
   const currentContracts = getContractsFromMatrixJson(currentMatrixJson);
   const previousContracts = getContractsFromMatrixJson(previousMatrixJson);
@@ -208,38 +210,11 @@ function updateCurrentMatrixFromPreviousMatrixJson(
 
   //step 2: add mutants generated in the previous version from unselected contracts to current mutants
   //(C1,C2,C3,D1,D3,D4,D5,D6,F1,F2,F3,F4,F5 + E1,E2,E3,E4,G1,G2,H1,H2,H3)
-  const currentMutants = currentMatrixJson;
-  // const totalMutants = currentMutants
-  //   .concat(mutantsOfUnselectedContracts)
-  //   .sort(function (a, b) {
-  //     return a.mutant < b.mutant ? -1 : 1;
-  //   });
-
-  // console.log(table(matrixJsonToMatrix(totalMutants)));
-  // console.log(calculateMutationScoreFromMatrixJson(totalMutants));
+  const currentMutants = currentMatrixJson; 
 
   // //step 3: add killed mutants generated in the previous version from unselected contracts to current killed mutants
   // //(C1,D1,D3,D5 + E1,E2,E3,E4,G1,G2)
-  // const currentKilledMutants =
-  //   getKilledMutantsFromMatrixJson(currentMatrixJson);
-  // const previousKilledMutants =
-  //   getKilledMutantsFromMatrixJson(previousMatrixJson);
-  // var previousKilledMutantsOfUnselectedContractsToAdd = [];
-  // mutantsOfUnselectedContracts.forEach((mutantJson) => {
-  //   if (previousKilledMutants.map((j) => j.mutant).includes(mutantJson.mutant))
-  //     previousKilledMutantsOfUnselectedContractsToAdd.push(mutantJson);
-  // });
-  // var totalKilledMutants =
-  //   currentKilledMutants.length +
-  //   previousKilledMutantsOfUnselectedContractsToAdd.length;
-  // console.log(
-  //   "step 1-2-3: " +
-  //     totalKilledMutants +
-  //     "/" +
-  //     totalMutants +
-  //     "=" +
-  //     totalKilledMutants / totalMutants
-  // );
+ 
 
   //step 4: get unselected tests
   //(T2,T3,T4,T5,T7)
@@ -281,12 +256,31 @@ function updateCurrentMatrixFromPreviousMatrixJson(
         currentMutants[c].saviors.concat(unselectedTests);
   });
 
-  const updatedMatrixJson = currentMutants
+  var updatedMatrixJson = currentMutants
     .concat(mutantsOfUnselectedContracts)
     .sort(function (a, b) {
       return a.mutant < b.mutant ? -1 : 1;
     });
-  return updatedMatrixJson;
+
+  const deletedContracts = previousContracts.filter(
+    (p) => !allContracts.map((c) => c.name).includes(p)
+  );
+  const deletedTests = previousTests.filter(
+    (p) => !allTests.map((t) => t.name).includes(p)
+  );
+  
+  var cleanedMatrixJson = [];
+  updatedMatrixJson.forEach((mj) => {
+    if (!deletedContracts.includes(mj.contract)) {
+      deletedTests.forEach((t) => {
+        if (mj.killers.includes(t)) mj.killers.splice(mj.killers.indexOf(t), 1);
+        if (mj.saviors.includes(t)) mj.saviors.splice(mj.saviors.indexOf(t), 1);
+      });
+      cleanedMatrixJson.push(mj);
+    }
+  });
+
+  return cleanedMatrixJson;
 }
 
 module.exports = {

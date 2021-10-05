@@ -1,5 +1,6 @@
 const path = require("path");
 const fileSys = require("../utils/fileSys");
+const logger = require("../utils/logger");
 var DepGraph = require("dependency-graph").DepGraph;
 
 function buildContractsDependencyCircularGraph(contracts) {
@@ -423,10 +424,18 @@ function buildDependencyGraph(contracts, tests) {
 
     const dep = {
       file: file.path,
-      testDependencies: graph.dependenciesOf(file.path).filter(d=>graph.getNodeData(d)=="test"),
-      contractDependencies: graph.dependenciesOf(file.path).filter(d=>graph.getNodeData(d)=="contract"),
-      testDependants: graph.dependantsOf(file.path).filter(d=>graph.getNodeData(d)=="test"),
-      contractDependants: graph.dependantsOf(file.path).filter(d=>graph.getNodeData(d)=="contract"),
+      testDependencies: graph
+        .dependenciesOf(file.path)
+        .filter((d) => graph.getNodeData(d) == "test"),
+      contractDependencies: graph
+        .dependenciesOf(file.path)
+        .filter((d) => graph.getNodeData(d) == "contract"),
+      testDependants: graph
+        .dependantsOf(file.path)
+        .filter((d) => graph.getNodeData(d) == "test"),
+      contractDependants: graph
+        .dependantsOf(file.path)
+        .filter((d) => graph.getNodeData(d) == "contract"),
     };
 
     allDependencies.push(dep);

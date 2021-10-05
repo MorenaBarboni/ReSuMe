@@ -7,10 +7,6 @@ const remusCalc = require("./src/remus/remusCalc");
 const matrixCalc = require("./src/matrix/matrixCalc");
 const chalk = require("chalk");
 const { table } = require("table");
-const { matrixJsonToMatrix } = require("./src/matrix/matrixCalc");
-const unique = (value, index, self) => {
-  return self.indexOf(value) === index;
-};
 
 //.remus dir
 fileSys.createAmbient();
@@ -54,8 +50,9 @@ const changedContracts_paths = checksumCalc.checkContracts(contracts);
 const changedTests_paths = checksumCalc.checkTests(tests);
 // [../T1.js, ../T2.js, ...]
 
-logger.logPaths("Changed contracts", changedContracts_paths);
-logger.logPaths("Changed tests", changedTests_paths);
+logger.logPathsOnConsole("Changed contracts", changedContracts_paths);
+logger.logPathsOnConsole("Changed tests", changedTests_paths);
+logger.logProgramDifferences(changedContracts_paths, changedTests_paths);
 
 console.log("###############################################");
 console.log("######### REGRESSION MUTATION TESTING #########");
@@ -172,8 +169,9 @@ if (contracsHaveChanged && testsHaveChanged) {
 fileSys.writeFile(fileSys.types.regression_tests, regressionTests);
 fileSys.writeFile(fileSys.types.regression_contracts, contractsToBeMutated);
 
-logger.logPaths("Contracts to be mutated", contractsToBeMutated);
-logger.logPaths("Regression tests", regressionTests);
+logger.logPathsOnConsole("Contracts to be mutated", contractsToBeMutated);
+logger.logPathsOnConsole("Regression tests", regressionTests);
+logger.logRTS(contractsToBeMutated, regressionTests);
 
 console.log("#########################################");
 console.log("######### SUMO MUTATION TESTING #########");
@@ -185,6 +183,9 @@ console.log(".");
 console.log(".");
 console.log(".");
 console.log(".");
+
+logger.logSuMo();
+
 console.log("#######################################################");
 console.log("######### REGRESSION MUTATION TESTING RESULTS #########");
 console.log("#######################################################");
@@ -192,13 +193,23 @@ console.log();
 
 const currentMatrixJson = loader.loadCurrentMatrixJson();
 const currentMatrix = matrixCalc.matrixJsonToMatrix(currentMatrixJson);
-const killedMutants = matrixCalc.getKilledMutantsFromMatrixJson(currentMatrixJson);
-const aliveMutants = matrixCalc.getAliveMutantsFromMatrixJson(currentMatrixJson);
 const mutants = matrixCalc.getMutantsFromMatrixJson(currentMatrixJson);
+const killedMutants =
+  matrixCalc.getKilledMutantsFromMatrixJson(currentMatrixJson);
+const aliveMutants =
+  matrixCalc.getAliveMutantsFromMatrixJson(currentMatrixJson);
 const score = killedMutants.length / mutants.length;
 
 console.log("Regression mutants execution matrix:");
 console.log(table(currentMatrix));
+
+logger.logRTSResults(
+  currentMatrix,
+  mutants.length,
+  killedMutants.length,
+  aliveMutants.length,
+  score
+);
 
 console.log("- Mutants -");
 console.log("Generated mutants: " + mutants.length);
@@ -218,9 +229,27 @@ const previousMatrix = matrixCalc.matrixJsonToMatrix(previousMatrixJson);
 console.log("Previous regression mutants execution matrix:");
 console.log(table(previousMatrix));
 
-const updatedMatrixJson = matrixCalc.updateCurrentMatrixFromPreviousMatrixJson(previousMatrixJson, currentMatrixJson);
+const updatedMatrixJson = matrixCalc.updateCurrentMatrixFromPreviousMatrixJson(
+  previousMatrixJson,
+  currentMatrixJson,
+  contracts,
+  tests
+  );
+  const mutantsUp = matrixCalc.getMutantsFromMatrixJson(updatedMatrixJson);
+  const killedMutantsUp =
+    matrixCalc.getKilledMutantsFromMatrixJson(updatedMatrixJson);
+  const aliveMutantsUp =
+    matrixCalc.getAliveMutantsFromMatrixJson(updatedMatrixJson);
+    const scoreUp = matrixCalc.calculateMutationScoreFromMatrixJson(updatedMatrixJson);
+
 const updatedMatrix = matrixCalc.matrixJsonToMatrix(updatedMatrixJson);
 console.log("Updated regression mutants execution matrix:");
 console.log(table(updatedMatrix));
 
-console.log("Updated mutation score: " + matrixCalc.calculateMutationScoreFromMatrixJson(updatedMatrixJson));
+logger.logRTSUpdatedResults(
+  updatedMatrix,
+  mutantsUp.length,
+  killedMutantsUp.length,
+  aliveMutantsUp.length,
+  scoreUp
+);
