@@ -1,4 +1,4 @@
-const fileSys = require("../utils/fileSys");
+const fileSys = require("./utils/fileSys");
 
 const unique = (value, index, self) => {
   return self.indexOf(value) === index;

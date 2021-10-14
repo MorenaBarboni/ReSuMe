@@ -9,7 +9,7 @@ const unique = (value, index, self) => {
   return self.indexOf(value) === index;
 };
 
-//.remus dir
+//.resume dir
 fileSys.createAmbient();
 
 //load files

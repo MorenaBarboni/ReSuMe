@@ -6,49 +6,56 @@ const loadContractsDir = config.contractsDir + config.contractsGlob;
 const loadTestsDir = config.testsDir + config.testsGlob;
 const loadMutationOperatorsFile = config.mutationOpConfig;
 
-const remusDir = path.join(config.remusDir, ".remus");
-const report = path.join(remusDir, "report.txt");
+const resumeDir = path.join(config.resumeDir, ".resume");
+const report = path.join(resumeDir, "report.txt");
 
-const baselineDir = path.join(remusDir, "baseline");
+const baselineDir = path.join(resumeDir, "baseline");
 const contracts_baseline = path.join(baselineDir, "contracts");
 const tests_baseline = path.join(baselineDir, "tests");
 const mutation_baseline = path.join(baselineDir, "mutation");
 
-const checksumsDir = path.join(remusDir, ".checksums");
+const checksumsDir = path.join(resumeDir, "checksums");
 const contracts_checksums = path.join(checksumsDir, "contracts_checksums.json");
 const tests_checksums = path.join(checksumsDir, "tests_checksums.json");
 const operators_checksums = path.join(checksumsDir, "operators_checksums.json");
 
-const changesDir = path.join(remusDir, "changed_files");
+const changesDir = path.join(resumeDir, "changed_files");
 const contracts_changed = path.join(changesDir, "contracts_changed.json");
 const tests_changed = path.join(changesDir, "tests_changed.json");
 
-const dependenciesDir = path.join(remusDir, "dependencies");
+const dependenciesDir = path.join(resumeDir, "dependencies");
 const contracts_deps = path.join(dependenciesDir, "contracts_deps.json");
 const tests_deps = path.join(dependenciesDir, "tests_deps.json");
 const all_dependencies = path.join(dependenciesDir, "all_dependencies.json");
 
-const firewallDir = path.join(remusDir, "firewall");
+const firewallDir = path.join(resumeDir, "firewall");
 const files_firewall = path.join(firewallDir, "files_firewall.json");
 
-const regression_tests = path.join(remusDir, "regression_tests.json");
-const regression_contracts = path.join(remusDir, "regression_contracts.json");
+const regression_tests = path.join(resumeDir, "regression_tests.json");
+const regression_contracts = path.join(resumeDir, "regression_contracts.json");
 
 function createAmbient() {
   console.log("Project dir: " + config.projectDir);
 
-  if (!fs.existsSync(remusDir)) fs.mkdirSync(remusDir);
+  if (!fs.existsSync(resumeDir)) fs.mkdirSync(resumeDir);
   fs.createFileSync(report);
-  fs.writeFileSync(report, "########################### REPORT ###########################" + "\n");
+  fs.writeFileSync(
+    report,
+    "########################### REPORT ###########################" +
+      "\n\n" +
+      "Project under test: " +
+      config.projectDir +
+      "\n"
+  );
   if (!fs.existsSync(dependenciesDir)) fs.mkdirSync(dependenciesDir);
-  if (!fs.existsSync(changesDir)) fs.mkdirSync(changesDir);
-  if (!fs.existsSync(firewallDir)) fs.mkdirSync(firewallDir);
+  //if (!fs.existsSync(changesDir)) fs.mkdirSync(changesDir);
+  //if (!fs.existsSync(firewallDir)) fs.mkdirSync(firewallDir);
   if (!fs.existsSync(checksumsDir)) fs.mkdirSync(checksumsDir);
 
   if (!fs.existsSync(baselineDir)) fs.mkdirSync(baselineDir);
   else fs.emptyDirSync(baselineDir);
 
-  if (!fs.existsSync(mutation_baseline)) fs.mkdirSync(mutation_baseline);
+  //if (!fs.existsSync(mutation_baseline)) fs.mkdirSync(mutation_baseline);
 }
 
 function writeFile(type, content) {
@@ -79,7 +86,7 @@ function adequatePath(type) {
     case types.firewall:
       return files_firewall;
     case types.result:
-      return remusDir;
+      return resumeDir;
     case types.regression_contracts:
       return regression_contracts;
     case types.regression_tests:

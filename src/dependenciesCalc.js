@@ -1,6 +1,5 @@
 const path = require("path");
-const fileSys = require("../utils/fileSys");
-const logger = require("../utils/logger");
+const fileSys = require("./utils/fileSys");
 var DepGraph = require("dependency-graph").DepGraph;
 
 function buildContractsDependencyCircularGraph(contracts) {
@@ -446,8 +445,8 @@ function buildDependencyGraph(contracts, tests) {
   var contractDependencies = new Array();
   var testDependencies = new Array();
   allDependencies.forEach((dep) => {
-    if (dep.file.endsWith(".js")) testDependencies.push(dep);
-    else contractDependencies.push(dep);
+    if (dep.file.endsWith(".sol")) contractDependencies.push(dep);
+    else testDependencies.push(dep);
   });
 
   fileSys.writeFile(fileSys.types.contracts_deps, contractDependencies);

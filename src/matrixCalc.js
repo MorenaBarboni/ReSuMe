@@ -1,5 +1,6 @@
-const loader = require("../utils/loader");
+const loader = require("./utils/loader");
 const { table } = require("table");
+const path = require("path");
 
 const unique = (value, index, self) => {
   return self.indexOf(value) === index;
@@ -210,16 +211,17 @@ function updateCurrentMatrixFromPreviousMatrixJson(
 
   //step 2: add mutants generated in the previous version from unselected contracts to current mutants
   //(C1,C2,C3,D1,D3,D4,D5,D6,F1,F2,F3,F4,F5 + E1,E2,E3,E4,G1,G2,H1,H2,H3)
-  const currentMutants = currentMatrixJson; 
+  const currentMutants = currentMatrixJson;
 
   // //step 3: add killed mutants generated in the previous version from unselected contracts to current killed mutants
   // //(C1,D1,D3,D5 + E1,E2,E3,E4,G1,G2)
- 
 
   //step 4: get unselected tests
   //(T2,T3,T4,T5,T7)
   const previousTests = getTestsFromMatrixJson(previousMatrixJson);
+
   const currentTests = getTestsFromMatrixJson(currentMatrixJson);
+
   var unselectedTests = [];
   previousTests.forEach((test) => {
     if (!currentTests.includes(test)) unselectedTests.push(test);
@@ -259,16 +261,16 @@ function updateCurrentMatrixFromPreviousMatrixJson(
   var updatedMatrixJson = currentMutants
     .concat(mutantsOfUnselectedContracts)
     .sort(function (a, b) {
-      return a.mutant < b.mutant ? -1 : 1;
+      return a.contract < b.contract ? -1 : 1;
     });
 
   const deletedContracts = previousContracts.filter(
     (p) => !allContracts.map((c) => c.name).includes(p)
   );
-  const deletedTests = previousTests.filter(
-    (p) => !allTests.map((t) => t.name).includes(p)
-  );
-  
+  const deletedTests = previousTests
+    .map((pt) => path.basename(pt))
+    .filter((p) => !allTests.map((t) => t.name).includes(p));
+
   var cleanedMatrixJson = [];
   updatedMatrixJson.forEach((mj) => {
     if (!deletedContracts.includes(mj.contract)) {
@@ -280,6 +282,9 @@ function updateCurrentMatrixFromPreviousMatrixJson(
     }
   });
 
+  // return cleanedMatrixJson.sort(function (a, b) {
+  //   return a.mutant < b.mutant ? -1 : 1;
+  // });
   return cleanedMatrixJson;
 }
 

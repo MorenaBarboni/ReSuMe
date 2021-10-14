@@ -1,5 +1,5 @@
 const fs = require("fs");
-const fileSys = require("../utils/fileSys");
+const fileSys = require("./utils/fileSys");
 const path = require("path");
 const checksum = require("checksum");
 
@@ -34,7 +34,7 @@ function checkContracts(contracts) {
   });
   //if (changedFiles_paths.length == 0) changedFiles_paths.push("none");
 
-  fileSys.writeFile(fileSys.types.contracts_changed, changedFiles_paths);
+  //fileSys.writeFile(fileSys.types.contracts_changed, changedFiles_paths);
 
   return changedFiles_paths;
 }
@@ -69,7 +69,7 @@ function checkTests(tests) {
   });
   //if (changedFiles_paths.length == 0) changedFiles_paths.push("none");
 
-  fileSys.writeFile(fileSys.types.tests_changed, changedFiles_paths);
+  //fileSys.writeFile(fileSys.types.tests_changed, changedFiles_paths);
 
   return changedFiles_paths;
 }

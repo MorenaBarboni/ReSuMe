@@ -4,9 +4,6 @@ const glob = require("glob");
 const fileSys = require("./fileSys");
 const sol_parser = require("@solidity-parser/parser");
 const acorn = require("acorn");
-const unique = (value, index, self) => {
-  return self.indexOf(value) === index;
-};
 
 function loadTests() {
   fileSys.copyTestsToBaseline();
@@ -16,40 +13,62 @@ function loadTests() {
   var tests = new Array();
   paths.forEach((test) => {
     const content = fs.readFileSync(test);
-    var ast = acorn.parse(content.toString(), {
-      ecmaVersion: 2020,
-    });
+
     var artifacts = new Array();
     var requires = new Array();
-    ast.body.forEach((node) => {
-      if (node.type == "VariableDeclaration") {
-        if (
-          node.declarations.length > 0 &&
-          node.declarations[0] != undefined &&
-          node.declarations[0].init != undefined &&
-          node.declarations[0].init.arguments != undefined &&
-          node.declarations[0].init.arguments.length > 0 &&
-          node.declarations[0].init.arguments[0].value != undefined &&
-          node.declarations[0].init.callee != undefined &&
-          node.declarations[0].init.callee.object != undefined &&
-          node.declarations[0].init.callee.property != undefined &&
-          node.declarations[0].init.callee.object.name == "artifacts" &&
-          node.declarations[0].init.callee.property.name == "require"
-        )
-          artifacts.push(node.declarations[0].init.arguments[0].value);
-      } else if (node.type == "ExpressionStatement") {
-        if (
-          node.expression != undefined &&
-          node.expression.callee != undefined &&
-          node.expression.callee.name != undefined &&
-          node.expression.callee.name == "require" &&
-          node.expression.arguments != undefined &&
-          node.expression.arguments.length > 0 &&
-          node.expression.arguments[0].value != undefined
-        )
-          requires.push(node.expression.arguments[0].value);
-      }
-    });
+
+    if (test.endsWith(".js")) {
+      var ast = acorn.parse(content.toString(), {
+        ecmaVersion: 2020,
+      });
+      ast.body.forEach((node) => {
+        if (node.type == "VariableDeclaration") {
+          if (
+            node.declarations.length > 0 &&
+            node.declarations[0] != undefined &&
+            node.declarations[0].init != undefined &&
+            node.declarations[0].init.arguments != undefined &&
+            node.declarations[0].init.arguments.length > 0 &&
+            node.declarations[0].init.arguments[0].value != undefined &&
+            node.declarations[0].init.callee != undefined &&
+            node.declarations[0].init.callee.object != undefined &&
+            node.declarations[0].init.callee.property != undefined &&
+            node.declarations[0].init.callee.object.name == "artifacts" &&
+            node.declarations[0].init.callee.property.name == "require"
+          ) {
+            artifacts.push(node.declarations[0].init.arguments[0].value);
+          } else if (
+            node.declarations.length > 0 &&
+            node.declarations[0] != undefined &&
+            node.declarations[0].init != undefined &&
+            node.declarations[0].init.arguments != undefined &&
+            node.declarations[0].init.arguments.length > 0 &&
+            node.declarations[0].init.arguments[0].value != undefined &&
+            node.declarations[0].init.callee != undefined &&
+            node.declarations[0].init.callee.name != undefined &&
+            node.declarations[0].init.callee.name == "require"
+          ) {
+            requires.push(node.declarations[0].init.arguments[0].value);
+          }
+        } else if (node.type == "ExpressionStatement") {
+          if (
+            node.expression != undefined &&
+            node.expression.callee != undefined &&
+            node.expression.callee.name != undefined &&
+            node.expression.callee.name == "require" &&
+            node.expression.arguments != undefined &&
+            node.expression.arguments.length > 0 &&
+            node.expression.arguments[0].value != undefined
+          )
+            requires.push(node.expression.arguments[0].value);
+        }
+      });
+    } else if (test.endsWith(".py")) {
+      var lines = content.toString().split(/(?:\r\n|\r|\n)/g);
+      lines.forEach((l) => {
+        if (l.includes(".sol")) artifacts.push(l.split("'", 2)[1]);
+      });
+    }
 
     tests.push({
       path: test,
@@ -135,10 +154,17 @@ function loadCurrentMatrixJson() {
   return loadMatrixJsonFromFile(fileSys.loadCurrentMatrixFile());
 }
 
+function loadFinalMatrix() {
+  return loadMatrixJsonFromFile(
+    fs.readFileSync(require("../config").finalMatrixPath)
+  );
+}
+
 module.exports = {
   loadTests: loadTests,
   loadContracts: loadContracts,
   loadMutationOperators: loadMutationOperators,
   loadPreviousMatrixJson: loadPreviousMatrixJson,
   loadCurrentMatrixJson: loadCurrentMatrixJson,
+  loadFinalMatrix: loadFinalMatrix,
 };

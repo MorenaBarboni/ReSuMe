@@ -1,14 +1,13 @@
 const fileSys = require("./src/utils/fileSys");
 const loader = require("./src/utils/loader");
 const logger = require("./src/utils/logger");
-const dependenciesCalc = require("./src/dependencies/dependenciesCalc");
-const checksumCalc = require("./src/checksum/checksumCalc");
-const remusCalc = require("./src/remus/remusCalc");
-const matrixCalc = require("./src/matrix/matrixCalc");
+const depCalc = require("./src/dependenciesCalc");
+const diffCalc = require("./src/differencesCalc");
+const remCalc = require("./src/remCalc");
+const matrixCalc = require("./src/matrixCalc");
 const chalk = require("chalk");
 const { table } = require("table");
-
-//.remus dir
+//.resume dir
 fileSys.createAmbient();
 
 //load files
@@ -33,8 +32,10 @@ const tests = loader.loadTests();
 //  }, ...
 // ]
 
+logger.logBaseline(contracts, tests);
+
 //files dependencies (C-uses-C, T-uses-C, T-uses-T)
-const dependencyGraph = dependenciesCalc.buildDependencyGraph(contracts, tests);
+const dependencyGraph = depCalc.buildDependencyGraph(contracts, tests);
 // graph: node: name: ../C.sol,
 //              data: "contract" or "test"
 
@@ -45,9 +46,9 @@ console.log("#####################################");
 console.log();
 
 //changed files (+ newly added files) since last execution
-const changedContracts_paths = checksumCalc.checkContracts(contracts);
+const changedContracts_paths = diffCalc.checkContracts(contracts);
 // [../C.sol, ../D.sol, ...]
-const changedTests_paths = checksumCalc.checkTests(tests);
+const changedTests_paths = diffCalc.checkTests(tests);
 // [../T1.js, ../T2.js, ...]
 
 logger.logPathsOnConsole("Changed contracts", changedContracts_paths);
@@ -86,20 +87,20 @@ if (contracsHaveChanged && !testsHaveChanged) {
 
   //changed contracts + dependant and dependency contracts of changed contracts
   contractsToBeMutated =
-    remusCalc.getChangedContractsPlusDependencyAndDependantContractsOfChangedContracts(
+    remCalc.getChangedContractsPlusDependencyAndDependantContractsOfChangedContracts(
       changedContracts_paths,
       dependencyGraph
     );
 
   //dependant tests of changed contracts
-  regressionTests = remusCalc.getDependantTestsOfChangedContracts(
+  regressionTests = remCalc.getDependantTestsOfChangedContracts(
     changedContracts_paths,
     dependencyGraph
   );
 
   //regression test + dependency tests of regression test
   regressionTests =
-    remusCalc.getRegressionTestsPlusDependencyTestsOfRegressionTests(
+    remCalc.getRegressionTestsPlusDependencyTestsOfRegressionTests(
       regressionTests,
       dependencyGraph
     );
@@ -115,20 +116,20 @@ if (!contracsHaveChanged && testsHaveChanged) {
   console.log();
 
   //dependency contracts of changed tests
-  contractsToBeMutated = remusCalc.getDependencyContractsOfChangedTests(
+  contractsToBeMutated = remCalc.getDependencyContractsOfChangedTests(
     changedTests_paths,
     dependencyGraph
   );
 
   //changed tests + dependant tests of changed tests
-  regressionTests = remusCalc.getChangedTestsPlusDependantTestsOfChangedTests(
+  regressionTests = remCalc.getChangedTestsPlusDependantTestsOfChangedTests(
     changedTests_paths,
     dependencyGraph
   );
 
   //regression test + dependency tests of regression test
   regressionTests =
-    remusCalc.getRegressionTestsPlusDependencyTestsOfRegressionTests(
+    remCalc.getRegressionTestsPlusDependencyTestsOfRegressionTests(
       regressionTests,
       dependencyGraph
     );
@@ -144,7 +145,7 @@ if (contracsHaveChanged && testsHaveChanged) {
 
   //changed contracts + dependant and dependency contracts of changed contracts + dependency contracts of changed tests
   contractsToBeMutated =
-    remusCalc.getChangedContractsPlusDependencyAndDependantContractsOfChangedContractsPlusDependencyContractsOfChangedTests(
+    remCalc.getChangedContractsPlusDependencyAndDependantContractsOfChangedContractsPlusDependencyContractsOfChangedTests(
       changedContracts_paths,
       changedTests_paths,
       dependencyGraph
@@ -152,7 +153,7 @@ if (contracsHaveChanged && testsHaveChanged) {
 
   //changed tests + dependant tests of changed contracts + dependant tests of changed tests
   regressionTests =
-    remusCalc.getChangedTestsPlusDependantTestsOfChangedTestsPlusDependantTestsOfChangedContracts(
+    remCalc.getChangedTestsPlusDependantTestsOfChangedTestsPlusDependantTestsOfChangedContracts(
       changedContracts_paths,
       changedTests_paths,
       dependencyGraph
@@ -160,14 +161,14 @@ if (contracsHaveChanged && testsHaveChanged) {
 
   //regression test + dependency tests of regression test
   regressionTests =
-    remusCalc.getRegressionTestsPlusDependencyTestsOfRegressionTests(
+    remCalc.getRegressionTestsPlusDependencyTestsOfRegressionTests(
       regressionTests,
       dependencyGraph
     );
 }
 
-fileSys.writeFile(fileSys.types.regression_tests, regressionTests);
-fileSys.writeFile(fileSys.types.regression_contracts, contractsToBeMutated);
+// fileSys.writeFile(fileSys.types.regression_tests, regressionTests);
+// fileSys.writeFile(fileSys.types.regression_contracts, contractsToBeMutated);
 
 logger.logPathsOnConsole("Contracts to be mutated", contractsToBeMutated);
 logger.logPathsOnConsole("Regression tests", regressionTests);
@@ -228,28 +229,54 @@ const previousMatrixJson = loader.loadPreviousMatrixJson();
 const previousMatrix = matrixCalc.matrixJsonToMatrix(previousMatrixJson);
 console.log("Previous regression mutants execution matrix:");
 console.log(table(previousMatrix));
+const mutantsPre = matrixCalc.getMutantsFromMatrixJson(previousMatrixJson);
+const killedMutantsPre =
+  matrixCalc.getKilledMutantsFromMatrixJson(previousMatrixJson);
+const aliveMutantsPre =
+  matrixCalc.getAliveMutantsFromMatrixJson(previousMatrixJson);
+const scorePre =
+  matrixCalc.calculateMutationScoreFromMatrixJson(previousMatrixJson);
+
+logger.logPreviousMatrix(
+  previousMatrix,
+  mutantsPre.length,
+  killedMutantsPre.length,
+  aliveMutantsPre.length,
+  scorePre
+);
 
 const updatedMatrixJson = matrixCalc.updateCurrentMatrixFromPreviousMatrixJson(
   previousMatrixJson,
   currentMatrixJson,
   contracts,
   tests
-  );
-  const mutantsUp = matrixCalc.getMutantsFromMatrixJson(updatedMatrixJson);
-  const killedMutantsUp =
-    matrixCalc.getKilledMutantsFromMatrixJson(updatedMatrixJson);
-  const aliveMutantsUp =
-    matrixCalc.getAliveMutantsFromMatrixJson(updatedMatrixJson);
-    const scoreUp = matrixCalc.calculateMutationScoreFromMatrixJson(updatedMatrixJson);
+);
+const mutantsUp = matrixCalc.getMutantsFromMatrixJson(updatedMatrixJson);
+const killedMutantsUp =
+  matrixCalc.getKilledMutantsFromMatrixJson(updatedMatrixJson);
+const aliveMutantsUp =
+  matrixCalc.getAliveMutantsFromMatrixJson(updatedMatrixJson);
+const scoreUp =
+  matrixCalc.calculateMutationScoreFromMatrixJson(updatedMatrixJson);
 
 const updatedMatrix = matrixCalc.matrixJsonToMatrix(updatedMatrixJson);
 console.log("Updated regression mutants execution matrix:");
 console.log(table(updatedMatrix));
 
-logger.logRTSUpdatedResults(
+logger.logRemResults(
   updatedMatrix,
   mutantsUp.length,
   killedMutantsUp.length,
   aliveMutantsUp.length,
   scoreUp
 );
+
+// const fullMatrix = loader.loadFinalMatrix();
+// const killedFull = matrixCalc.getKilledMutantsFromMatrixJson(fullMatrix);
+// const killedFullIds = killedFull.map((k) => k.mutant);
+// const killedUpIds = killedMutantsUp.map((k) => k.mutant);
+// killedFullIds.forEach((j) => {
+//   if (!killedUpIds.includes(j)) {
+//     console.log(j);
+//   }
+// });

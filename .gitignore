@@ -1,8 +1,2 @@
 node_modules
-example_content/contracts/**
-example_content/tests/**
-static/results/**
-dynamic/results/**
-.remus
-
-dynamic
+.resume
