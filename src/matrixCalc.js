@@ -1,5 +1,4 @@
-const loader = require("./utils/loader");
-const { table } = require("table");
+const config = require("./config");
 const path = require("path");
 
 const unique = (value, index, self) => {
@@ -11,34 +10,38 @@ function matrixJsonToMatrix(matrixJson) {
   const mutants = getMutantsFromMatrixJson(matrixJson);
 
   var matrix = [...Array(mutants.length + 1)].map(() =>
-    Array(tests.length + 1).fill("")
+    Array(tests.length + 1 + 1).fill("")
   );
 
   const path = require("path");
   matrix[0][0] = "";
   matrixJson.forEach((mutantJson, i) => {
-    matrix[i + 1][0] =
-      path.basename(mutantJson.contract) + ":" + mutantJson.mutant;
+    matrix[i + 1][0] = path.basename(mutantJson.contract);
+    matrix[i + 1][1] = mutantJson.mutant;
   });
   tests.forEach((t, j) => {
-    matrix[0][j + 1] = path.basename(t);
+    matrix[0][j + 1 + 1] = path.basename(t);
   });
+
+  matrix[0][0] = "Contract";
+  matrix[0][1] = "ID";
 
   matrixJson.forEach((mutantJson, i) => {
     const killers = mutantJson.killers;
     const saviors = mutantJson.saviors;
     tests.forEach((test, j) => {
       var cell;
-      if (killers.includes(test)) cell = "K";
-      if (saviors.includes(test)) cell = "";
-      matrix[i + 1][j + 1] = cell;
+      if (killers.includes(test)) cell = config.killedSymbol;
+      else if (saviors.includes(test)) cell = config.aliveSymbol;
+      else cell = config.unknownSymbol;
+      matrix[i + 1][j + 1 + 1] = cell;
     });
   });
 
   return matrix;
 }
 
-function jsonMatrixFromMatrix(matrix) {
+function matrixToMatrixJson(matrix) {
   var mutants = [];
   for (let i = 1; i < matrix.length; i++) {
     const contract_mutant = matrix[i][0].split(":", 2);
@@ -47,7 +50,7 @@ function jsonMatrixFromMatrix(matrix) {
     var killers = [];
     var saviors = [];
     for (let t = 1; t < matrix[0].length; t++) {
-      if (matrix[i][t] == "K") killers.push(matrix[0][t]);
+      if (matrix[i][t] == config.killedSymbol) killers.push(matrix[0][t]);
       else saviors.push(matrix[0][t]);
     }
     mutants.push({

@@ -43,9 +43,9 @@ function logBaseline(cs, ts) {
   var n = cs.length;
   if (n == 0) s = s + ": none" + "\n";
   else {
-    s = s + " (" + n + ")\n";
+    s = s + " (" + n + "):\n";
     cs.forEach((c) => {
-      s = s + " - " + c.path + "\n";
+      s = s + " - .." + c.path.match(/\/contracts\/.*/) + "\n";
     });
   }
 
@@ -53,9 +53,9 @@ function logBaseline(cs, ts) {
   n = ts.length;
   if (n == 0) s = s + ": none" + "\n";
   else {
-    s = s + " (" + n + ")\n";
+    s = s + " (" + n + "):\n";
     ts.forEach((t) => {
-      s = s + " - " + t.path + "\n";
+      s = s + " - .." + t.path.match(/\/test\/.*/) + "\n";
     });
   }
   s = s + "\n\n";
@@ -73,7 +73,7 @@ function logProgramDifferences(cc, ct) {
   else {
     s = s + " (" + n + "):\n";
     cc.forEach((c) => {
-      s = s + " - " + c + "\n";
+      s = s + " - " + c.match(/\/contracts\/.*/) + "\n";
     });
   }
 
@@ -83,7 +83,7 @@ function logProgramDifferences(cc, ct) {
   else {
     s = s + " (" + n + "):\n";
     ct.forEach((t) => {
-      s = s + " - " + t + "\n";
+      s = s + " - " + t.match(/\/test\/.*/) + "\n";
     });
   }
   s = s + "\n\n";
@@ -101,7 +101,7 @@ function logRTS(cm, rt) {
   else {
     s = s + " (" + n + "):\n";
     cm.forEach((c) => {
-      s = s + " - " + c + "\n";
+      s = s + " - " + c.match(/\/contracts\/.*/) + "\n";
     });
   }
 
@@ -111,7 +111,7 @@ function logRTS(cm, rt) {
   else {
     s = s + " (" + n + "):\n";
     rt.forEach((t) => {
-      s = s + " - " + t + "\n";
+      s = s + " - " + t.match(/\/test\/.*/) + "\n";
     });
   }
   s = s + "\n\n";
