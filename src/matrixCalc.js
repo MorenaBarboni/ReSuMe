@@ -230,16 +230,17 @@ function updateCurrentMatrixFromPreviousMatrixJson(
     if (!currentTests.includes(test)) unselectedTests.push(test);
   });
 
+  //UPDATE CURRENT MUTANTS KILLER AND SAVIORS TAKING THEM FROM PREVIOUS UNSELECTED TESTS RESULTS
   currentMutants.forEach((current, c) => {
-    const previousRef = previousMatrixJson.filter(function (p) {
+    const previousMutant = previousMatrixJson.filter(function (p) {
       return p.mutant == current.mutant;
     })[0];
-    if (previousRef != undefined) {
-      const preKillers = previousRef.killers.filter((t) =>
+    if (previousMutant != undefined) {
+      const preKillers = previousMutant.killers.filter((t) =>
         unselectedTests.includes(t)
       );
 
-      const preSaviors = previousRef.saviors.filter((t) =>
+      const preSaviors = previousMutant.saviors.filter((t) =>
         unselectedTests.includes(t)
       );
 
@@ -255,11 +256,12 @@ function updateCurrentMatrixFromPreviousMatrixJson(
     }
   });
 
-  currentMutants.forEach((current, c) => {
-    if (newMutants.map((j) => j.mutant).includes(current.mutant))
-      currentMutants[c].saviors =
-        currentMutants[c].saviors.concat(unselectedTests);
-  });
+  // ADD UNKNOWN IN SAVIORS
+  // currentMutants.forEach((current, c) => {
+  //   if (newMutants.map((j) => j.mutant).includes(current.mutant))
+  //     currentMutants[c].saviors =
+  //       currentMutants[c].saviors.concat(unselectedTests);
+  // });
 
   var updatedMatrixJson = currentMutants
     .concat(mutantsOfUnselectedContracts)

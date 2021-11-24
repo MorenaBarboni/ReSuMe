@@ -73,7 +73,7 @@ function logProgramDifferences(cc, ct) {
   else {
     s = s + " (" + n + "):\n";
     cc.forEach((c) => {
-      s = s + " - " + c.match(/\/contracts\/.*/) + "\n";
+      s = s + " - .." + c.match(/\/contracts\/.*/) + "\n";
     });
   }
 
@@ -83,7 +83,7 @@ function logProgramDifferences(cc, ct) {
   else {
     s = s + " (" + n + "):\n";
     ct.forEach((t) => {
-      s = s + " - " + t.match(/\/test\/.*/) + "\n";
+      s = s + " - .." + t.match(/\/test\/.*/) + "\n";
     });
   }
   s = s + "\n\n";
@@ -94,24 +94,24 @@ function logRTS(cm, rt) {
   var s =
     "--------- REGRESSION MUTATION SELECTION ---------" +
     "\n\n" +
-    "Contracts to be mutated:";
+    "Contracts to be mutated";
 
   var n = cm.length;
   if (n == 0) s = s + " none" + "\n";
   else {
     s = s + " (" + n + "):\n";
     cm.forEach((c) => {
-      s = s + " - " + c.match(/\/contracts\/.*/) + "\n";
+      s = s + " - .." + c.match(/\/contracts\/.*/) + "\n";
     });
   }
 
-  s = s + "\n" + "Regression tests:";
+  s = s + "\n" + "Regression tests";
   n = rt.length;
   if (n == 0) s = s + " none" + "\n";
   else {
     s = s + " (" + n + "):\n";
     rt.forEach((t) => {
-      s = s + " - " + t.match(/\/test\/.*/) + "\n";
+      s = s + " - .." + t.match(/\/test\/.*/) + "\n";
     });
   }
   s = s + "\n\n";
