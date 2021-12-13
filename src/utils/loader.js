@@ -8,7 +8,17 @@ const acorn = require("acorn");
 function loadTests() {
   fileSys.copyTestsToBaseline();
 
+  if (!fs.existsSync(fileSys.loadTestsDir)) {
+    console.log("Tests directory does not exits!");
+    process.exit(0);
+  }
+
   const paths = glob.sync(fileSys.loadTestsDir);
+
+  if (paths.length == 0) {
+    console.log("Tests directory is empty!");
+    process.exit(0);
+  }
 
   var tests = new Array();
   paths.forEach((test) => {
@@ -74,8 +84,8 @@ function loadTests() {
       path: test,
       name: path.parse(test).base,
       content: content,
-      artifacts: artifacts,
-      requires: requires,
+      used_tests: artifacts,
+      used_contracts: requires,
     });
   });
 
@@ -85,7 +95,17 @@ function loadTests() {
 function loadContracts() {
   fileSys.copyContractsToBaseline();
 
+  if (!fs.existsSync(fileSys.loadContractsDir)) {
+    console.log("Contracts directory does not exits!");
+    process.exit(0);
+  }
+
   const paths = glob.sync(fileSys.loadContractsDir);
+
+  if (paths.length == 0) {
+    console.log("Contracts directory is empty!");
+    process.exit(0);
+  }
 
   var contracts = new Array();
   paths.forEach((contract) => {
@@ -103,7 +123,7 @@ function loadContracts() {
       path: contract,
       name: path.parse(contract).base,
       content: content,
-      imports: imports,
+      used_contracts: imports,
     });
   });
   return contracts;

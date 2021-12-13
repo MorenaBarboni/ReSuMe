@@ -7,6 +7,7 @@ const remCalc = require("./src/remCalc");
 const matrixCalc = require("./src/matrixCalc");
 const chalk = require("chalk");
 const { table } = require("table");
+
 //.resume dir
 fileSys.createAmbient();
 
@@ -17,7 +18,7 @@ const contracts = loader.loadContracts();
 //    path: ../C.sol,
 //    name: C.sol,
 //    content: ...,
-//    imports: [../D.sol, ../E.sol, ...]
+//    used_contracts: [../D.sol, ../E.sol, ...]
 //  }, ...
 // ]
 
@@ -27,8 +28,8 @@ const tests = loader.loadTests();
 //    path: ../T1.js,
 //    name: T1.js,
 //    content: ...,
-//    requires: [../T5.js, ../T6.js, ...],
-//    artifacts: [../D.sol, ../E.sol, ...]
+//    used_tests: [../T5.js, ../T6.js, ...],
+//    used_contracts: [../D.sol, ../E.sol, ...]
 //  }, ...
 // ]
 

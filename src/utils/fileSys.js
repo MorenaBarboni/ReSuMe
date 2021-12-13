@@ -35,6 +35,11 @@ const regression_tests = path.join(resumeDir, "regression_tests.json");
 const regression_contracts = path.join(resumeDir, "regression_contracts.json");
 
 function createAmbient() {
+  if (!fs.existsSync(config.projectDir)) {
+    console.log("Project directory does not exits!");
+    process.exit(0);
+  }
+
   console.log("Project dir: " + config.projectDir);
 
   if (!fs.existsSync(resumeDir)) fs.mkdirSync(resumeDir);
