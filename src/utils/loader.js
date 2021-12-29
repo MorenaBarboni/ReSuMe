@@ -13,7 +13,7 @@ function loadTests() {
     process.exit(0);
   }
 
-  const paths = glob.sync(fileSys.loadTestsDir);
+  const paths = glob.sync(fileSys.loadTestsDirGlob);
 
   if (paths.length == 0) {
     console.log("Tests directory is empty!");
@@ -100,7 +100,7 @@ function loadContracts() {
     process.exit(0);
   }
 
-  const paths = glob.sync(fileSys.loadContractsDir);
+  const paths = glob.sync(fileSys.loadContractsDirGlob);
 
   if (paths.length == 0) {
     console.log("Contracts directory is empty!");

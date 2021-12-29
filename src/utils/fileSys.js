@@ -2,8 +2,11 @@ const fs = require("fs-extra");
 const path = require("path");
 const config = require("../config");
 
-const loadContractsDir = config.contractsDir + config.contractsGlob;
-const loadTestsDir = config.testsDir + config.testsGlob;
+const loadContractsDir = config.contractsDir;
+const loadContractsDirGlob = config.contractsDir + config.contractsGlob;
+const loadTestsDir = config.testsDir;
+const loadTestsDirGlob = config.testsDir + config.testsGlob;
+
 const loadMutationOperatorsFile = config.mutationOpConfig;
 
 const resumeDir = path.join(config.resumeDir, ".resume");
@@ -47,10 +50,10 @@ function createAmbient() {
   fs.writeFileSync(
     report,
     "########################### REPORT ###########################" +
-      "\n\n" +
-      "Project under test: " +
-      config.projectDir +
-      "\n"
+    "\n\n" +
+    "Project under test: " +
+    config.projectDir +
+    "\n"
   );
   if (!fs.existsSync(dependenciesDir)) fs.mkdirSync(dependenciesDir);
   //if (!fs.existsSync(changesDir)) fs.mkdirSync(changesDir);
@@ -167,7 +170,9 @@ function copyMutationOpertatorsToBaseline() {
 module.exports = {
   createAmbient: createAmbient,
   loadContractsDir: loadContractsDir,
+  loadContractsDirGlob: loadContractsDirGlob,
   loadTestsDir: loadTestsDir,
+  loadTestsDirGlob: loadTestsDirGlob,
   loadMutationOperatorsFile: loadMutationOperatorsFile,
   loadPreviousMatrixFile: loadPreviousMatrixFile,
   loadCurrentMatrixFile: loadCurrentMatrixFile,

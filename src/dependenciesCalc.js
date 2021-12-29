@@ -124,7 +124,7 @@ function findAndAddDependenciesBetweenTests(test1, test2, graph) {
   if (test1 == test2) return;
 
   var name2 = path.parse(test2.name).name;
-  test1.requires.forEach((re) => {
+  test1.used_tests.forEach((re) => {
     if (re.includes(name2)) {
       //occurrence is not part of another occurrence
       if (re[re.indexOf(name2) - 1] == "/") {
@@ -203,7 +203,7 @@ function findAndAddDependenciesBetweenContracts(contract1, contract2, graph) {
   //self dependency check
   if (contract1 == contract2) return;
 
-  contract1.imports.forEach((im) => {
+  contract1.used_contracts.forEach((im) => {
     if (im.includes(contract2.name)) {
       //occurrence is not part of another occurrence
       if (im[im.indexOf(contract2.name) - 1] == "/") {
@@ -287,7 +287,7 @@ function findAndAddDependenciesBetweenTestsAndContracts(
   graph
 ) {
   var name2 = path.parse(contract2.name).name;
-  test1.artifacts.forEach((ar) => {
+  test1.used_contracts.forEach((ar) => {
     if (ar.includes(name2)) {
       //occurrence is not part of another occurrence
       if (ar.indexOf(name2) == 0) {

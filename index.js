@@ -7,6 +7,8 @@ const remCalc = require("./src/remCalc");
 const matrixCalc = require("./src/matrixCalc");
 const chalk = require("chalk");
 const { table } = require("table");
+const config = require("./src/config");
+const { existsTestsChecksums } = require("./src/utils/fileSys");
 
 //.resume dir
 fileSys.createAmbient();
@@ -71,8 +73,8 @@ var contractsToBeMutated = [];
 if (!contracsHaveChanged && !testsHaveChanged) {
   console.log(
     chalk.red("Case:") +
-      " " +
-      chalk.green("No changed files since last revision")
+    " " +
+    chalk.green("No changed files since last revision")
   );
   console.log();
 }
@@ -81,8 +83,8 @@ if (!contracsHaveChanged && !testsHaveChanged) {
 if (contracsHaveChanged && !testsHaveChanged) {
   console.log(
     chalk.red("Case:") +
-      " " +
-      chalk.green("Only contracts changed since last revision")
+    " " +
+    chalk.green("Only contracts changed since last revision")
   );
   console.log();
 
@@ -111,8 +113,8 @@ if (contracsHaveChanged && !testsHaveChanged) {
 if (!contracsHaveChanged && testsHaveChanged) {
   console.log(
     chalk.red("Case:") +
-      " " +
-      chalk.green("Only tests changed since last revision")
+    " " +
+    chalk.green("Only tests changed since last revision")
   );
   console.log();
 
@@ -140,8 +142,8 @@ if (!contracsHaveChanged && testsHaveChanged) {
 if (contracsHaveChanged && testsHaveChanged) {
   console.log(
     chalk.red("Case:") +
-      " " +
-      chalk.green("Both contracts and tests changed since last revision")
+    " " +
+    chalk.green("Both contracts and tests changed since last revision")
   );
 
   //changed contracts + dependant and dependency contracts of changed contracts + dependency contracts of changed tests
@@ -174,6 +176,8 @@ if (contracsHaveChanged && testsHaveChanged) {
 logger.logPathsOnConsole("Contracts to be mutated", contractsToBeMutated);
 logger.logPathsOnConsole("Regression tests", regressionTests);
 logger.logRTS(contractsToBeMutated, regressionTests);
+
+if (config.onlySelection) process.exit(0);
 
 console.log("#########################################");
 console.log("######### SUMO MUTATION TESTING #########");
