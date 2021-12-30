@@ -2,10 +2,22 @@ const fs = require("fs-extra");
 const path = require("path");
 const config = require("../config");
 
-const loadContractsDir = config.contractsDir;
-const loadContractsDirGlob = config.contractsDir + config.contractsGlob;
-const loadTestsDir = config.testsDir;
-const loadTestsDirGlob = config.testsDir + config.testsGlob;
+const config_projectDir = path.isAbsolute(config.projectDir)
+  ? config.projectDir
+  : path.resolve("ReSuMe", config.projectDir);
+
+const config_contractsDir = path.isAbsolute(config.contractsDir)
+  ? config.contractsDir
+  : path.resolve("ReSuMe", config.contractsDir);
+
+const config_testsDir = path.isAbsolute(config.testsDir)
+  ? config.testsDir
+  : path.resolve("ReSuMe", config.testsDir);
+
+const loadContractsDir = config_contractsDir;
+const loadContractsDirGlob = config_contractsDir + config.contractsGlob;
+const loadTestsDir = config_testsDir;
+const loadTestsDirGlob = config_testsDir + config.testsGlob;
 
 const loadMutationOperatorsFile = config.mutationOpConfig;
 
@@ -38,7 +50,7 @@ const regression_tests = path.join(resumeDir, "regression_tests.json");
 const regression_contracts = path.join(resumeDir, "regression_contracts.json");
 
 function createAmbient() {
-  if (!fs.existsSync(config.projectDir)) {
+  if (!fs.existsSync(config_projectDir)) {
     console.log("Project directory does not exits!");
     process.exit(0);
   }
@@ -50,10 +62,10 @@ function createAmbient() {
   fs.writeFileSync(
     report,
     "########################### REPORT ###########################" +
-    "\n\n" +
-    "Project under test: " +
-    config.projectDir +
-    "\n"
+      "\n\n" +
+      "Project under test: " +
+      config.projectDir +
+      "\n"
   );
   if (!fs.existsSync(dependenciesDir)) fs.mkdirSync(dependenciesDir);
   //if (!fs.existsSync(changesDir)) fs.mkdirSync(changesDir);
@@ -153,11 +165,14 @@ function loadCurrentMatrixFile() {
 }
 
 function copyContractsToBaseline() {
-  fs.copySync(config.contractsDir, contracts_baseline);
+  fs.copySync(config_contractsDir, contracts_baseline);
 }
 
 function copyTestsToBaseline() {
-  fs.copySync(config.testsDir, tests_baseline);
+  var p = path.isAbsolute(config_testsDir)
+    ? config_testsDir
+    : path.resolve("ReSuMe", config_testsDir);
+  fs.copySync(p, tests_baseline);
 }
 
 function copyMutationOpertatorsToBaseline() {

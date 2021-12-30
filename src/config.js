@@ -1,7 +1,7 @@
 module.exports = {
-  projectDir: "C:/Users/chiar/Desktop/MSW",
-  contractsDir: "C:/Users/chiar/Desktop/MSW/contracts",
-  testsDir: "C:/Users/chiar/Desktop/MSW/test",
+  projectDir: "../example_projects/CDE",
+  contractsDir: "../example_projects/CDE/contracts",
+  testsDir: "../example_projects/CDE/test",
   skipContracts: [""],
   skipTests: [""],
   contractsGlob: "/**/*.sol",
