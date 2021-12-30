@@ -24,8 +24,8 @@ function loadTests() {
   paths.forEach((test) => {
     const content = fs.readFileSync(test);
 
-    var artifacts = new Array();
-    var requires = new Array();
+    var artifacts = new Array(); //used_contracts
+    var requires = new Array(); //used_tests
 
     if (test.endsWith(".js")) {
       var ast = acorn.parse(content.toString(), {
@@ -84,8 +84,8 @@ function loadTests() {
       path: test,
       name: path.parse(test).base,
       content: content,
-      used_tests: artifacts,
-      used_contracts: requires,
+      used_tests: requires,
+      used_contracts: artifacts,
     });
   });
 
@@ -111,7 +111,7 @@ function loadContracts() {
   paths.forEach((contract) => {
     const content = fs.readFileSync(contract);
 
-    var imports = new Array();
+    var imports = new Array(); //used_contracts
     var ast = sol_parser.parse(content.toString());
     sol_parser.visit(ast, {
       ImportDirective: function (node) {
