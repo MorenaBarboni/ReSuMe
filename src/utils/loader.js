@@ -4,6 +4,7 @@ const glob = require("glob");
 const fileSys = require("./fileSys");
 const sol_parser = require("@solidity-parser/parser");
 const acorn = require("acorn");
+const config = require("../config");
 
 function loadTests() {
   fileSys.copyTestsToBaseline();
@@ -47,6 +48,7 @@ function loadTests() {
             node.declarations[0].init.callee.property.name == "require"
           ) {
             artifacts.push(node.declarations[0].init.arguments[0].value);
+                    
           } else if (
             node.declarations.length > 0 &&
             node.declarations[0] != undefined &&
@@ -77,6 +79,23 @@ function loadTests() {
       var lines = content.toString().split(/(?:\r\n|\r|\n)/g);
       lines.forEach((l) => {
         if (l.includes(".sol")) artifacts.push(l.split("'", 2)[1]);
+      });
+    } else if (test.endsWith(".sol")) {
+      const content = fs.readFileSync(test);
+
+      var ast = sol_parser.parse(content.toString());
+      sol_parser.visit(ast, {
+        ImportDirective: function (node) {
+
+          //used contract is a test
+          if (node.path.includes(path.basename(config.testsDir))) {
+            requires.push(path.basename(node.path).split('.sol')[0]);
+          }
+          //used contract is a contract under test
+          else if (node.path.includes(path.basename(config.contractsDir))) {
+            artifacts.push(path.basename(node.path).split('.sol')[0]);
+          }
+        },
       });
     }
 

@@ -1,6 +1,7 @@
 const path = require("path");
 const fileSys = require("./utils/fileSys");
 var DepGraph = require("dependency-graph").DepGraph;
+const config = require("./config");
 
 function buildContractsDependencyCircularGraph(contracts) {
   var graph = new DepGraph({ circular: true });
@@ -26,11 +27,11 @@ function buildContractsDependencyCircularGraph(contracts) {
   contracts.forEach((c) => {
     console.log(
       "Dependencies of " +
-        c.name +
-        ": " +
-        (graph.dependenciesOf(c.name).length == 0
-          ? "none"
-          : "[" + graph.dependenciesOf(c.name) + "]")
+      c.name +
+      ": " +
+      (graph.dependenciesOf(c.name).length == 0
+        ? "none"
+        : "[" + graph.dependenciesOf(c.name) + "]")
     );
     console.log();
   });
@@ -59,11 +60,11 @@ function buildContractsDependencyGraph(contracts) {
   contracts.forEach((c) => {
     console.log(
       "Dependencies of " +
-        c.name +
-        ": " +
-        (graph.dependenciesOf(c.name).length == 0
-          ? "none"
-          : graph.dependenciesOf(c.name))
+      c.name +
+      ": " +
+      (graph.dependenciesOf(c.name).length == 0
+        ? "none"
+        : graph.dependenciesOf(c.name))
     );
     console.log();
   });
@@ -95,11 +96,11 @@ function buildTestsDependencyCircularGraph(tests) {
   tests.forEach((t) => {
     console.log(
       "Dependencies of " +
-        t.name +
-        ": " +
-        (graph.dependenciesOf(t.name).length == 0
-          ? "none"
-          : "[" + graph.dependenciesOf(t.name) + "]")
+      t.name +
+      ": " +
+      (graph.dependenciesOf(t.name).length == 0
+        ? "none"
+        : "[" + graph.dependenciesOf(t.name) + "]")
     );
     console.log();
   });
@@ -445,8 +446,15 @@ function buildDependencyGraph(contracts, tests) {
   var contractDependencies = new Array();
   var testDependencies = new Array();
   allDependencies.forEach((dep) => {
-    if (dep.file.endsWith(".sol")) contractDependencies.push(dep);
-    else testDependencies.push(dep);
+
+    //The dependency is a contract under test
+    if (dep.file.includes(path.basename(config.testsDir))) {
+      testDependencies.push(dep);
+    }
+    //The dependency is a test file
+    else if (dep.file.includes(path.basename(config.contractsDir))) {
+      contractDependencies.push(dep);
+    }
   });
 
   fileSys.writeFile(fileSys.types.contracts_deps, contractDependencies);
